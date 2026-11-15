@@ -93,3 +93,19 @@ assert.throws(() => unseal(sealed.slice(0, -4) + "AAAA", "secret-one"));
 assert.throws(() => unseal(seal({}, "secret-one", -1000), "secret-one"));
 
 console.log("All tests passed.");
+
+// Payment verification
+{
+  process.env.DODO_PRODUCT_CHECK = "pdt_check";
+  const dodo = require("../lib/dodo");
+  const ref = dodo.reportRef("sealed-abc");
+  const good = { status: "succeeded", metadata: { ref, product: "check" }, product_cart: [{ product_id: "pdt_check", quantity: 1 }] };
+  const assert = require("assert");
+  assert.strictEqual(dodo.checkPayment(good, { product: "check", ref }), null);
+  assert.strictEqual(dodo.checkPayment({ ...good, status: "processing" }, { product: "check", ref }), "not_paid");
+  assert.strictEqual(dodo.checkPayment({ ...good, refund_status: "full" }, { product: "check", ref }), "refunded");
+  assert.strictEqual(dodo.checkPayment(good, { product: "check", ref: dodo.reportRef("other") }), "other_report");
+  assert.strictEqual(dodo.checkPayment({ ...good, product_cart: [{ product_id: "pdt_x" }] }, { product: "check", ref }), "wrong_product");
+  assert.strictEqual(dodo.checkPayment({ ...good, metadata: { ref, product: "need" } }, { product: "check", ref }), "other_report");
+  console.log("Payment checks passed.");
+}

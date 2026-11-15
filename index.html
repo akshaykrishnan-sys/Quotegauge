@@ -1016,6 +1016,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   var C = window.QGCore, P = C.PRODUCTS;
   var $ = function (id) { return document.getElementById(id); };
   var usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  var inPreview = !!(window.claude && window.claude.use);
   var state = { product: "check", report: null, full: false, unlocked: false, sealed: null, vehicle: null };
 
   var COPY = {
@@ -1366,7 +1367,6 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     if (!input) return showError("Add your car's year, make, model and a 5-digit ZIP code" + (c.blobs.length ? ", or leave all four blank and we'll read them from what you uploaded." : "."));
     if (!input.vehicle.unknown) { try { localStorage.setItem("qg-vehicle", JSON.stringify({ "car-year": input.vehicle.year, "car-make": input.vehicle.make, "car-model": input.vehicle.model, "car-zip": input.vehicle.zip })); } catch (e2) {} }
     setBusy(true); track("check_started");
-    var inPreview = !!(window.claude && window.claude.use);
     (inPreview ? analysePreview(input, c.blobs) : analyseServer(c.body, c.blobs)).then(function (out) {
       state.report = out.report; state.sealed = out.sealed; state.full = out.full; state.unlocked = false; state.vehicle = input.vehicle;
       $("quote-form").hidden = true; $("result").hidden = false; setStep(3);
@@ -1385,19 +1385,38 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     }).then(function () { setBusy(false); });
   });
 
-  $("unlock-btn").addEventListener("click", function () {
-    $("unlock-error").hidden = true; track("unlock_clicked");
+  function unlockError(msg) { var el = $("unlock-error"); el.textContent = msg; el.hidden = false; }
+  function openReport(paymentId) {
+    return fetch("/api/unlock", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed, paymentId: paymentId || undefined }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.report) { var e = new Error("unlock"); e.code = j.code; throw e; } return j.report; }); })
+      .then(function (report) { state.report = report; state.full = true; state.unlocked = true; render(); if (paymentId) track("unlock_paid"); });
+  }
+  function testDialog() {
     $("pay-text").textContent = "Payments aren't switched on yet, so no card is charged. Once they are, this step takes a $" + P[state.product].price.toFixed(2) + " payment and then opens the full report.";
     $("pay-dialog").showModal();
+  }
+  $("unlock-btn").addEventListener("click", function () {
+    $("unlock-error").hidden = true; track("unlock_clicked");
+    if (state.full || inPreview) { testDialog(); return; }
+    var b = $("unlock-btn"), label = b.textContent;
+    b.disabled = true; b.textContent = "Opening secure checkout…";
+    fetch("/api/pay", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error("pay"); e.code = j.code; throw e; } return j; }); })
+      .then(function (j) {
+        if (j.test) { b.disabled = false; b.textContent = label; testDialog(); return; }
+        try { localStorage.setItem("qg-pending", JSON.stringify({ product: state.product, sealed: state.sealed, at: Date.now() })); } catch (e) {}
+        location.href = j.url;
+      })
+      .catch(function (e) {
+        b.disabled = false; b.textContent = label;
+        unlockError(e.code === "expired" ? "This check is more than a week old. Run it again to unlock it." : "Checkout couldn't be opened. Please try again in a moment.");
+      });
   });
   $("pay-cancel").addEventListener("click", function () { $("pay-dialog").close(); });
   $("pay-continue").addEventListener("click", function () {
     $("pay-dialog").close();
     if (state.full) { state.unlocked = true; render(); return; }
-    fetch("/api/unlock", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed }) })
-      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.report) throw new Error("unlock"); return j.report; }); })
-      .then(function (report) { state.report = report; state.full = true; state.unlocked = true; render(); })
-      .catch(function () { var el = $("unlock-error"); el.textContent = "The full report couldn't be opened. Run the check again."; el.hidden = false; });
+    openReport().catch(function () { unlockError("The full report couldn't be opened. Run the check again."); });
   });
   $("copy-btn").addEventListener("click", function () {
     var b = $("copy-btn");
@@ -1439,6 +1458,25 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
       $("quote-form").hidden = true; $("result").hidden = false; setStep(3); render();
     } catch (e) { $("result").hidden = true; $("quote-form").hidden = false; $("resume-btn").hidden = true; setStep(1); }
   });
+
+  /* Coming back from checkout: open the paid report */
+  (function () {
+    var q = new URLSearchParams(location.search), pid = q.get("payment_id");
+    if (!pid) return;
+    var status = q.get("status");
+    try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) {}
+    if (!last || !last.report || !last.sealed) return;
+    $("resume-btn").click();
+    $("tool").scrollIntoView({ block: "start" });
+    if (status && status !== "succeeded") { unlockError("The payment didn't go through, so you haven't been charged. You can try again."); return; }
+    var tries = 0;
+    (function attempt() {
+      openReport(pid).then(function () { try { localStorage.removeItem("qg-pending"); } catch (e) {} }).catch(function (e) {
+        if (e.code === "not_paid" && tries++ < 5) { setTimeout(attempt, 2500); return; }
+        unlockError(e.code === "other_report" ? "That payment was for a different report." : "We couldn't confirm the payment yet. If you were charged, email us with your receipt and we'll send the full report.");
+      });
+    })();
+  })();
 
   /* Links such as /#compare open the matching check */
   function fromHash() {

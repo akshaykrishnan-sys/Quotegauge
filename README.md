@@ -15,7 +15,9 @@ serverless functions, built to deploy on Vercel.
 | `img/` | Photos. Add any of `hero.jpg`, `check.jpg`, `compare.jpg`, `need.jpg`, `founder.jpg`, describe them in `img/photos.json`, and rebuild |
 | `og.png` | Share image used when the site is linked on social media |
 | `api/check.js` | Reads the quote with the Claude API, returns the free verdict and a sealed full report |
-| `api/unlock.js` | Opens the sealed report (test mode until payments are live) |
+| `api/pay.js` | Starts a Dodo Payments checkout for a sealed report |
+| `api/unlock.js` | Confirms the payment with Dodo, then opens the sealed report (free in test mode) |
+| `lib/dodo.js` | Dodo Payments calls and the payment check |
 | `lib/core.js` | Prompts, validation and scoring for the three products, shared by the server and the page |
 | `lib/seal.js` | Encrypts the full report until it is unlocked |
 | `test/report.test.js` | Tests for the scoring and sealing logic (`npm test`) |
@@ -35,11 +37,21 @@ serverless functions, built to deploy on Vercel.
    - `ANTHROPIC_API_KEY`: key from the Claude Console
    - `REPORT_SECRET`: a long random string, used to seal reports
    - `ANTHROPIC_MODEL` (optional): defaults to `claude-sonnet-5-5`
-   - `PAYMENTS_LIVE`: leave unset for test mode
-5. **Payments.** `api/unlock.js` opens reports without payment until
-   `PAYMENTS_LIVE` is `"true"`. Add the provider's server-side payment check at
-   the marked TODO before setting it, and update the test-mode dialog in
-   `index.html`.
+   - `PAYMENTS_LIVE`: leave unset for test mode (reports open free)
+   - `SITE_URL` (optional): e.g. `https://quotegauge.pro`; buyers return here after paying
+5. **Payments (Dodo Payments).** In the Dodo dashboard create three one-time
+   products (Repair Quote Checker $4.99, Repair Quote Comparator $14.99, Repair
+   Necessity Checker $9.99) and an API key, then set:
+   - `DODO_API_KEY`
+   - `DODO_MODE`: `test` or `live` (a test key only works in test mode)
+   - `DODO_PRODUCT_CHECK`, `DODO_PRODUCT_COMPARE`, `DODO_PRODUCT_NEED`: the product IDs (`pdt_...`)
+   - `PAYMENTS_LIVE=true`
+   Flow: the unlock button calls `/api/pay`, which creates a checkout tied to that
+   report and redirects the buyer. Dodo sends them back to `/?payment_id=...`; the
+   page calls `/api/unlock`, which fetches the payment from Dodo and opens the
+   report only if it succeeded, isn't refunded, and was made for that report and
+   product. No database or webhook is needed. Try a test-mode purchase with a
+   test card before switching `DODO_MODE` to `live`.
 6. **Abuse limits.** Every check costs an API call. Add a rate limit (for example
    Vercel Firewall rules on `/api/check`) before sending traffic to the site.
 7. **Analytics.** Turn on Web Analytics in the Vercel project; the page already sends `check_started`, `check_done` and `unlock_clicked` events.
