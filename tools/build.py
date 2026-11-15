@@ -82,12 +82,21 @@ meta = json.loads(read("img/photos.json")) if (ROOT / "img/photos.json").exists(
 has = lambda k: (ROOT / "img" / (k + ".jpg")).exists() and k in meta
 hero_vis = ""
 if has("hero"):
-    hero_vis = ('<div class="shot"><img src="img/hero.jpg" alt="%s" width="1280" height="1024">'
+    hero_vis = ('<div class="shot"><img src="img/hero.jpg" alt="%s" width="1280" height="853">'
                 '<div class="chip c1" aria-hidden="true"><i class="fair"></i>Brake pads + rotors · $689 · fair</div>'
                 '<div class="chip c2" aria-hidden="true"><i class="above"></i>Brake fluid flush · $179 · above market</div>'
                 '<div class="chip c3" aria-hidden="true"><i class="verify"></i>Fuel system cleaning · ask why</div>'
                 '<p class="paper-note">Example labels with illustrative figures.</p></div>') % html.escape(meta["hero"])
 card_img = {k: ('<img src="img/%s.jpg" alt="%s" width="900" height="600" loading="lazy" decoding="async">' % (k, html.escape(meta[k])) if has(k) else "") for k in ("check", "compare", "need", "any")}
+face = ""
+if has("face"):
+    face = ('<section class="face-sec" aria-labelledby="face-title"><div class="wrap">'
+            '<div class="sec-head"><h2 id="face-title">You know this face.</h2><p>Everyone who has ever owned a car or a house has made it.</p></div>'
+            '<figure class="face"><img src="img/face.jpg" alt="%s" width="1280" height="720" loading="lazy" decoding="async">'
+            '<figcaption class="cap c-left">The shop texts: &ldquo;Your car is ready!&rdquo;</figcaption>'
+            '<figcaption class="cap c-right">Then you see the bill.</figcaption></figure>'
+            '<div class="face-foot"><p>QuoteGauge gets you back to the first face. Upload the estimate, see which lines are fair and which are padded, and walk back to the counter knowing exactly what to say. <b>Before</b> you sign.</p>'
+            '<a class="btn" href="#tool" data-start="check">Fix my face. It&rsquo;s free</a></div></div></section>') % html.escape(meta["face"])
 founder = ""
 if has("founder"):
     f = meta["founder"]
@@ -116,7 +125,7 @@ home_graph = [
 home_desc = ("Check a car repair, home repair or contractor quote before you approve it. QuoteGauge prices every line for your area, "
              "compares estimates, and tells you which repairs are urgent. Free first answer, or Pro for every quote.")
 body = (read("src/body.html").replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
-        .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder))
+        .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder).replace("%%FACE%%", face))
 for k, v in card_img.items():
     body = body.replace("%%IMG_" + k + "%%", v)
 home = (head("Is My Car Repair Quote Fair? Check, Compare, Verify | QuoteGauge", home_desc, SITE + "/", home_graph,

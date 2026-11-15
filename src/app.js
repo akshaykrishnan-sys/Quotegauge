@@ -8,22 +8,22 @@
 
   var COPY = {
     check: {
-      step: "Estimate", go: "Check this estimate", busy: "Pricing every line…",
+      step: "Estimate", go: "Check this estimate", busy: "Pricing every line (and squinting at \"shop supplies\")…",
       unlock: "Fair range for every line, local parts and labor benchmarks, questionable charges explained, and a negotiation script.",
       missing: "Add a photo of the estimate or type its lines."
     },
     compare: {
-      step: "Estimates", go: "Compare these estimates", busy: "Comparing line by line…",
+      step: "Estimates", go: "Compare these estimates", busy: "Lining the quotes up side by side…",
       unlock: "Parts and labor differences, what each estimate leaves out, the value ranking and a best-value recommendation.",
       missing: "Add at least two estimates, each as a photo or typed lines."
     },
     need: {
-      step: "Repair list", go: "Check these repairs", busy: "Reviewing each repair…",
+      step: "Repair list", go: "Check these repairs", busy: "Sorting the must-dos from the nice-to-haves…",
       unlock: "Urgency for every item, what each repair does, symptoms to look for, questions to ask and where a second inspection is worth it.",
       missing: "Add a photo of the inspection report or type the recommended repairs."
     },
     any: {
-      step: "Quote", go: "Check this quote", busy: "Pricing every line…",
+      step: "Quote", go: "Check this quote", busy: "Pricing every line (and every \"misc. materials\")…",
       unlock: "Fair range for every line, local labor and materials benchmarks, vague or padded charges explained, and a script for the provider.",
       missing: "Add a photo of the quote or type its lines."
     }
