@@ -565,6 +565,18 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
 @media (max-width: 560px) { .face .cap { top: 8px; padding: 5px 7px; font-size: 13px; } .face .c-left { left: 8px; } .face .c-right { left: calc(50% + 8px); } }
 .face-foot { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; margin-top: 28px; }
 .face-foot p { font-size: 20px; max-width: 720px; }
+
+.kicker { font-weight: 700; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+/* Receipts: real reported quotes */
+.receipts { background: var(--ink); color: #fff; }
+.receipts .sec-head p { color: #d6d6d0; }
+.rc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+.rc { background: #fff; color: var(--ink); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 10px; border: 2px solid var(--yellow); }
+.rc b { font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; }
+.rc p { font-size: 16px; flex: 1; }
+.rc a { font-size: 13px; font-weight: 600; color: var(--muted); }
+.rc-foot { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; font-size: 20px; }
+.receipts .btn { background: var(--yellow); color: var(--ink); }
 </style>
 </head>
 <body>
@@ -588,8 +600,9 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
   <div class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
+        <p class="kicker">A sanity check for your repair quote</p>
         <h1>Don't sign that repair estimate yet.</h1>
-        <p class="lede">Upload it first. In about a minute you'll know which lines are fair, which are padded, and exactly what to say, without pretending you know what a "throttle body service" is. Works for car repairs, home repairs and contractor quotes.</p>
+        <p class="lede">Went in for an oil change, came out with a list? Upload it. In about a minute you'll see which lines are fair, which are padded, and exactly what to say. Cars, AC units, roofs, plumbing.</p>
         <div class="cta-row">
           <label class="btn" for="hero-file" id="hero-upload" tabindex="0">Upload my estimate</label>
           <input id="hero-file" type="file" accept="image/*,application/pdf" hidden>
@@ -607,7 +620,9 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
     </div>
   </div>
 
-  <section class="face-sec" aria-labelledby="face-title"><div class="wrap"><div class="sec-head"><h2 id="face-title">You know this face.</h2><p>Everyone who has ever owned a car or a house has made it.</p></div><figure class="face"><img src="img/face.jpg" alt="Two photos of the same man: smiling at his phone when told his car is ready, then wide-eyed reading the repair bill at the counter" width="1280" height="720" loading="lazy" decoding="async"><figcaption class="cap c-left">The shop texts: &ldquo;Your car is ready!&rdquo;</figcaption><figcaption class="cap c-right">Then you see the bill.</figcaption></figure><div class="face-foot"><p>QuoteGauge gets you back to the first face. Upload the estimate, see which lines are fair and which are padded, and walk back to the counter knowing exactly what to say. <b>Before</b> you sign.</p><a class="btn" href="#tool" data-start="check">Fix my face. It&rsquo;s free</a></div></div></section>
+  <section class="face-sec" aria-labelledby="face-title"><div class="wrap"><div class="sec-head"><h2 id="face-title">You know this face.</h2><p>It&rsquo;s the &ldquo;we also found a few things&rdquo; face.</p></div><figure class="face"><img src="img/face.jpg" alt="Two photos of the same man: smiling at his phone when told his car is ready, then wide-eyed reading the repair bill at the counter" width="1280" height="720" loading="lazy" decoding="async"><figcaption class="cap c-left">The shop texts: &ldquo;Your car is ready!&rdquo;</figcaption><figcaption class="cap c-right">&ldquo;&hellip;we also found a few things.&rdquo;</figcaption></figure><div class="face-foot"><p>QuoteGauge gets you back to the first face. Upload the list, see which &ldquo;few things&rdquo; are real and which are padded, and walk back to the counter knowing exactly what to say. <b>Before</b> you sign.</p><a class="btn" href="#tool" data-start="check">Fix my face. It&rsquo;s free</a></div></div></section>
+
+  <section class="receipts" aria-labelledby="receipts-title"><div class="wrap"><div class="sec-head"><h2 id="receipts-title">These are real quotes.</h2><p>All reported in the press. None of these people had QuoteGauge. You will.</p></div><div class="rc-grid"><article class="rc"><b>$2,584</b><p>Went in for a free oil change on a 2020 Highlander. Came out with $2,584 of "recommended" work, including a $160 cabin air filter and a $289 fuel injector cleaning.</p><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Source: Torque News</a></article><article class="rc"><b>$4,000 → $223</b><p>Told the AC needed a new compressor for about $4,000. A second company replaced some bad wiring terminals and had it running for $223.</p><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">Source: The Cool Down</a></article><article class="rc"><b>$7,000 → $75</b><p>Weighing a $7,000 AC replacement. The real fix turned out to be a $75 capacitor.</p><a href="https://www.thecooldown.com/?p=787418" rel="noopener" target="_blank">Source: The Cool Down</a></article><article class="rc"><b>$1,264 vs $157</b><p>Quoted $1,264.40 for a muffler that, by another mechanic's count, costs a shop $157 and under half an hour.</p><a href="https://www.motor1.com/news/813963/shop-overcharges-muffler/" rel="noopener" target="_blank">Source: Motor1</a></article><article class="rc"><b>$105 vs $30</b><p>Dealerships quoting $89 to $105 for a cabin air filter that owners later found online for $7 to $30.</p><a href="https://www.motor1.com/news/775153/5-scam-services-dealerships-sell/" rel="noopener" target="_blank">Source: Motor1</a></article></div><p class="rc-foot">Most shops and contractors are honest. The quote still deserves a sanity check. <a class="btn" href="#tool" data-start="check">Check mine, free</a></p></div></section>
 
   <section id="proof" class="proof-sec" aria-labelledby="proof-title">
     <div class="wrap">
@@ -646,7 +661,7 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
         <div class="sec-head"><h2 id="story-title">Watch what happens to a $1,261 estimate.</h2><p>Scroll to see it checked.</p></div>
         <div class="step on" data-step="1"><span class="k">Step 1</span><h3>This is what the shop hands you.</h3><p>Five lines, one total, a pen, and someone waiting for you to sign. Most people do, because they have nothing to compare it with.</p></div>
         <div class="step" data-step="2"><span class="k">Step 2</span><h3>We price every line.</h3><p>Each job is checked against the standard labor time, local labor rates and typical parts cost for your exact car.</p></div>
-        <div class="step" data-step="3"><span class="k">Step 3</span><h3>You see what to question.</h3><p>Two lines are above market and one service needs a reason. That's $287 worth asking about. Or, put another way, a very nice weekend.</p></div>
+        <div class="step" data-step="3"><span class="k">Step 3</span><h3>You see what to question.</h3><p>Two lines are above market and one service needs a reason. That's $287 of &ldquo;we also found a few things&rdquo; worth asking about before you agree to anything.</p></div>
         <div class="step" data-step="4"><span class="k">Step 4</span><h3>You walk back in with the words.</h3><p>The full report gives you a short, polite script naming the lines and the fair figures. No arguing, no bluffing, no Googling at the counter. You decide what to approve.</p><a class="btn" href="#tool" data-start="check" style="align-self:flex-start">Check my estimate</a></div>
       </div>
     </div>

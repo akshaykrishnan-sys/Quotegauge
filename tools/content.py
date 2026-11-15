@@ -10,6 +10,20 @@ PROOF = [
 ]
 PROOF_SOURCE = "AAA survey of US drivers, 2016"
 
+# Real quotes reported in the press. Shown with their source; never presented as QuoteGauge customers.
+RECEIPTS = [
+    ("$2,584", "Went in for a free oil change on a 2020 Highlander. Came out with $2,584 of \"recommended\" work, including a $160 cabin air filter and a $289 fuel injector cleaning.",
+     "Torque News", "https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended"),
+    ("$4,000 → $223", "Told the AC needed a new compressor for about $4,000. A second company replaced some bad wiring terminals and had it running for $223.",
+     "The Cool Down", "https://www.thecooldown.com/?p=768121"),
+    ("$7,000 → $75", "Weighing a $7,000 AC replacement. The real fix turned out to be a $75 capacitor.",
+     "The Cool Down", "https://www.thecooldown.com/?p=787418"),
+    ("$1,264 vs $157", "Quoted $1,264.40 for a muffler that, by another mechanic's count, costs a shop $157 and under half an hour.",
+     "Motor1", "https://www.motor1.com/news/813963/shop-overcharges-muffler/"),
+    ("$105 vs $30", "Dealerships quoting $89 to $105 for a cabin air filter that owners later found online for $7 to $30.",
+     "Motor1", "https://www.motor1.com/news/775153/5-scam-services-dealerships-sell/"),
+]
+
 FAQ = [
     ("How do I know if my car repair quote is fair?",
      "Compare each line of the quote with the typical price for your vehicle, your area and the type of shop. QuoteGauge does this in about a minute: add the estimate and it marks every line as fair, above market or needs verification, and totals the amount above market."),
