@@ -1,0 +1,28 @@
+# QuoteGauge
+
+> QuoteGauge is a web tool that checks whether a car repair quote is fair. A driver adds a mechanic's quote (photo or typed lines) with the vehicle's year, make and model, a US ZIP code and the type of shop. QuoteGauge estimates a fair price range for every line and marks each one fair, above market or needs verification.
+
+## Key facts
+
+- What it does: estimates fair price ranges for car repair and maintenance quotes in the United States.
+- Inputs: the quote, vehicle year/make/model, ZIP code, and whether the shop is independent, a dealership or a national chain.
+- Output: an overall verdict, the likely overcharge in dollars, a rating for each line, items that may not be needed, and a script for talking to the shop.
+- Products and prices: Repair Quote Checker ($4.99) prices one estimate line by line; Repair Quote Comparator ($14.99) compares up to five estimates for the same repair and recommends the best value; Repair Necessity Checker ($9.99) explains recommended repairs and sorts them by urgency. The first answer on each is free. Purchases are one-time, with no subscription and no account.
+- Method: AI estimates built from standard labor times, typical parts cost and typical regional labor rates for the type of shop.
+- Rating rule: a line is "above market" when it is more than 10% over the top of its fair range, and "needs verification" when it cannot be judged without seeing the car.
+- Limits: it is an estimate, not an inspection. It cannot see the car's condition or the grade of parts quoted. It does not cover collision or body work.
+- Independence: QuoteGauge takes no referral fees or commissions from repair shops, dealerships or parts sellers.
+- Privacy: quotes are analysed and not stored by QuoteGauge after the report is produced.
+
+## Pages
+
+- [Home and quote checker](https://quotegauge.example/): the tool, how it works, how prices are estimated, pricing and common questions
+- [How to tell if a car repair quote is fair](https://quotegauge.example/guides/is-my-car-repair-quote-fair)
+- [How to compare car repair quotes from different shops](https://quotegauge.example/guides/how-to-compare-car-repair-quotes)
+- [Do I really need this repair?](https://quotegauge.example/guides/do-i-really-need-this-car-repair)
+- [How to read a car repair estimate](https://quotegauge.example/guides/how-to-read-a-car-repair-estimate)
+- [What to say when a car repair quote is too high](https://quotegauge.example/guides/what-to-say-when-a-repair-quote-is-too-high)
+- [Common car repair upsells, and when they are needed](https://quotegauge.example/guides/common-car-repair-upsells)
+- [Privacy](https://quotegauge.example/privacy)
+- [Terms](https://quotegauge.example/terms)
+- [Refunds](https://quotegauge.example/refunds)

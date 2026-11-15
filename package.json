@@ -1,0 +1,8 @@
+{
+  "name": "quotegauge",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QuoteGauge: checks car repair quotes against typical local prices.",
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node test/report.test.js" }
+}
