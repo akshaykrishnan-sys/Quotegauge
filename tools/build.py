@@ -254,8 +254,97 @@ hwp = head("How QuoteGauge Prices a Quote | QuoteGauge", hwp_desc, hwp_url,
 """
 (ROOT / "how-we-price.html").write_text(hwp)
 
+
+# ---------- QuoteGauge for Teams ----------
+teams_url = SITE + "/teams"
+teams_desc = ("QuoteGauge for Teams checks every vendor quote your property or fleet team approves: HVAC, plumbing, roofing, "
+              "appliance and vehicle repairs. Fair range per line, padded charges flagged, the words to push back. From $199 a month.")
+teams_faq = [
+    ("Who is QuoteGauge for Teams for?", "Property managers, landlords with 10 or more units, facilities teams and small fleets that approve vendor quotes every week for HVAC, plumbing, roofing, appliances, turnovers or vehicle repairs."),
+    ("How much does QuoteGauge for Teams cost?", "The Team plan is $199 a month for up to 5 people and 150 quote checks a month. The Portfolio plan is $499 a month for unlimited people and 600 checks a month. The first 10 teams get 50% off for their first 6 months."),
+    ("Does QuoteGauge replace our vendors?", "No. It checks the quotes they send, so you approve fair ones faster and push back on padded lines with specific figures. Most vendors are honest; the check is about consistency, not accusation."),
+    ("How do we start?", "Book a 15-minute call. Send two or three recent quotes beforehand and we will show you what the report finds on your own numbers."),
+]
+teams_graph = [ORG, {"@type": "WebPage", "@id": teams_url, "name": "QuoteGauge for Teams", "description": teams_desc, "publisher": {"@id": SITE + "/#org"}},
+               {"@type": "Product", "name": "QuoteGauge for Teams", "description": teams_desc, "brand": {"@id": SITE + "/#org"},
+                "offers": [{"@type": "Offer", "name": "Team", "price": "199.00", "priceCurrency": "USD",
+                            "priceSpecification": {"@type": "UnitPriceSpecification", "price": "199.00", "priceCurrency": "USD", "billingDuration": "P1M", "unitCode": "MON"}},
+                           {"@type": "Offer", "name": "Portfolio", "price": "499.00", "priceCurrency": "USD",
+                            "priceSpecification": {"@type": "UnitPriceSpecification", "price": "499.00", "priceCurrency": "USD", "billingDuration": "P1M", "unitCode": "MON"}}]},
+               faq_ld(teams_faq, teams_url + "#faq")]
+demo = "mailto:hello@quotegauge.pro?subject=QuoteGauge%20for%20Teams%20demo&body=Company%3A%0AHow%20many%20units%20or%20vehicles%3A%0AQuotes%20approved%20per%20month%20(roughly)%3A%0ABest%20time%20for%20a%2015-minute%20call%20(with%20time%20zone)%3A%0A"
+teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge", teams_desc, teams_url, teams_graph, "Stop approving padded vendor quotes") + f"""
+<header class="top"><div class="wrap"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="{demo}">Book a demo</a></nav></div></header>
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <p class="kicker">QuoteGauge for property managers and fleets</p>
+      <h1>You approve 40 vendor quotes a month. How many were padded?</h1>
+      <p class="lede" style="max-width:780px;font-size:21px;margin-top:18px">Your team signs off on HVAC calls, plumbing, roofs, appliance swaps, turnovers and van repairs every week, mostly on trust. QuoteGauge checks every quote line by line against local prices, flags the padded and vague lines, and gives your team the exact words to push back. In about a minute, from a phone.</p>
+      <div class="cta-row"><a class="btn" href="{demo}">Book a 15-minute demo</a><span>Send us 3 real quotes. See what we find.</span></div>
+    </div>
+  </div>
+
+  <section aria-labelledby="math-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="math-title">The math your owners will like.</h2><p>An illustrative portfolio. Plug in your own numbers on the call.</p></div>
+      <div class="math">
+        <div><span class="k">Quotes approved a month</span><b>40</b></div>
+        <div><span class="k">Average quote</span><b>$1,200</b></div>
+        <div><span class="k">If 8% is avoidable</span><b>$3,840</b><small>a month in your pocket, or your owners'</small></div>
+        <div class="hot"><span class="k">QuoteGauge Team</span><b>$199</b><small>a month</small></div>
+      </div>
+      <p class="fine">Illustration, not a promise: what is avoidable depends on your vendors and your markets. The demo uses your real quotes so you can judge for yourself.</p>
+    </div>
+  </section>
+
+  <section id="how" class="dark on-dark" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="how-title">How your team uses it.</h2><p>No software rollout. No vendor portal. A phone and a quote.</p></div>
+      <div class="cols three">
+        <div class="col"><h3>1. Snap the quote</h3><p>Photo, PDF or the lines typed in. HVAC, plumbing, electrical, roofing, appliances, pest, landscaping, turnovers, and vehicle repairs for fleets.</p></div>
+        <div class="col"><h3>2. See what's off</h3><p>A fair range for every line for that ZIP code, with each line marked fair, above market or needs verification, and vague or padded charges called out.</p></div>
+        <div class="col"><h3>3. Push back, politely</h3><p>A short script your coordinator can send the vendor, naming the lines and the fair figures. Compare up to five bids for the same job side by side.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" aria-labelledby="plans-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="plans-title">Plans.</h2><p>Monthly, cancel anytime. The first 10 teams get 50% off for 6 months.</p></div>
+      <div class="plans">
+        <article class="plan"><h3>Team</h3><p class="plan-price"><b>$199</b><span>per month · $99.50 for founding teams</span></p>
+          <ul class="ticks"><li>Up to 5 people</li><li>150 quote checks a month</li><li>All four checks, every trade</li><li>Email support, same business day</li></ul>
+          <a class="btn block" href="{demo}">Book a demo</a></article>
+        <article class="plan best"><span class="badge">For portfolios</span><h3>Portfolio</h3><p class="plan-price"><b>$499</b><span>per month · $249.50 for founding teams</span></p>
+          <ul class="ticks"><li>Unlimited people</li><li>600 quote checks a month</li><li>Bid comparisons for every job</li><li>Onboarding call and a monthly review with us</li></ul>
+          <a class="btn block" href="{demo}">Book a demo</a></article>
+        <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$12.99</b><span>per month · QuoteGauge Pro</span></p>
+          <ul class="ticks"><li>One person</li><li>Every full report unlocked</li><li>Car, home and contractor quotes</li><li>Cancel anytime</li></ul>
+          <a class="btn-quiet block" href="index.html#pricing">See Pro</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0" aria-labelledby="tfaq-title">
+    <div class="wrap"><div class="sec-head"><h2 id="tfaq-title">Questions owners and managers ask.</h2></div>
+    {faq_html(teams_faq)}
+    </div>
+  </section>
+
+  <div class="promise"><div class="wrap"><p>Three of your quotes. Fifteen minutes. See what we find.</p><a class="btn" href="{demo}">Book a demo</a></div></div>
+</main>
+<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<div class="foot-links"><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
+<p class="small">© 2026 QuoteGauge. AI estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
+</body>
+</html>
+"""
+(ROOT / "teams.html").write_text(teams_page)
+
 # ---------- Sitemap ----------
-urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(hwp_url, "0.6")] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
+urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                   + "".join("  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (u, TODAY, p) for u, p in urls)
                                   + "</urlset>\n")

@@ -577,6 +577,18 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
 .rc a { font-size: 13px; font-weight: 600; color: var(--muted); }
 .rc-foot { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; font-size: 20px; }
 .receipts .btn { background: var(--yellow); color: var(--ink); }
+
+/* Teams page */
+.math { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 2px solid var(--ink); border-radius: 8px; overflow: hidden; margin-bottom: 14px; }
+.math > div { padding: 22px; display: flex; flex-direction: column; gap: 6px; border-left: 2px solid var(--ink); }
+.math > div:first-child { border-left: 0; }
+.math b { font-family: var(--display); font-weight: 800; font-size: 48px; line-height: 1; }
+.math small { font-size: 14px; font-weight: 600; }
+.math .hot { background: var(--yellow); }
+@media (max-width: 760px) { .math { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .math > div:nth-child(3) { border-left: 0; } .math > div:nth-child(n+3) { border-top: 2px solid var(--ink); } }
+
+.cols.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 760px) { .cols.three { grid-template-columns: minmax(0, 1fr); } }
 </style>
 </head>
 <body>
@@ -587,6 +599,7 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
     <nav class="nav" aria-label="Main">
       <a href="#products">The checks</a>
       <a href="#pricing">Pricing</a>
+      <a href="teams.html">For teams</a>
       <a href="#method">How we price</a>
       <a href="#guides">Guides</a>
       <a href="#faq">Questions</a>
@@ -772,7 +785,7 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
           <button class="btn block" type="button" data-plan="yearly">Go Pro yearly</button>
         </article>
       </div>
-      <p class="fine plans-fine">Payments by Dodo Payments, our merchant of record, so US sales tax is handled for you. Not useful? Full refund within 7 days of a single report. <button type="button" class="linkish" id="restore-open">Already Pro? Restore access</button> <button type="button" class="linkish" id="manage-btn" hidden>Manage my subscription</button></p>
+      <p class="fine plans-fine">Payments by Dodo Payments, our merchant of record, so US sales tax is handled for you. Not useful? Full refund within 7 days of a single report. <button type="button" class="linkish" id="restore-open">Already Pro? Restore access</button> <button type="button" class="linkish" id="manage-btn" hidden>Manage my subscription</button> Managing properties or a fleet? <a href="teams.html">See QuoteGauge for Teams</a>.</p>
 
       <div class="versus">
         <h3>Why QuoteGauge, not another app</h3>
@@ -1029,6 +1042,7 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="refunds.html">Refunds</a>
+        <a href="teams.html">For teams</a>
         <a href="how-we-price.html">How we price</a>
         <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a>
       </div>

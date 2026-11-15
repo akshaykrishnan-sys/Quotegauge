@@ -26,6 +26,7 @@
 - [How to tell if an HVAC quote is fair](https://quotegauge.pro/guides/is-my-hvac-quote-fair)
 - [How to check a roofing quote before you sign](https://quotegauge.pro/guides/how-to-check-a-roofing-quote)
 - [How QuoteGauge prices a quote](https://quotegauge.pro/how-we-price)
+- [QuoteGauge for Teams](https://quotegauge.pro/teams): vendor quote checks for property managers and fleets, $199 or $499 a month
 - [Privacy](https://quotegauge.pro/privacy)
 - [Terms](https://quotegauge.pro/terms)
 - [Refunds](https://quotegauge.pro/refunds)
