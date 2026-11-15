@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://quotegauge.example/</loc><lastmod>2026-11-15</lastmod><priority>1.0</priority></url>
-  <url><loc>https://quotegauge.example/guides/is-my-car-repair-quote-fair</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
-  <url><loc>https://quotegauge.example/guides/how-to-compare-car-repair-quotes</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
-  <url><loc>https://quotegauge.example/guides/do-i-really-need-this-car-repair</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
-  <url><loc>https://quotegauge.example/guides/how-to-read-a-car-repair-estimate</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
-  <url><loc>https://quotegauge.example/guides/what-to-say-when-a-repair-quote-is-too-high</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
-  <url><loc>https://quotegauge.example/guides/common-car-repair-upsells</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
-  <url><loc>https://quotegauge.example/privacy</loc><lastmod>2026-11-15</lastmod><priority>0.2</priority></url>
-  <url><loc>https://quotegauge.example/terms</loc><lastmod>2026-11-15</lastmod><priority>0.2</priority></url>
-  <url><loc>https://quotegauge.example/refunds</loc><lastmod>2026-11-15</lastmod><priority>0.2</priority></url>
+  <url><loc>https://quotegauge.pro/</loc><lastmod>2026-11-15</lastmod><priority>1.0</priority></url>
+  <url><loc>https://quotegauge.pro/guides/is-my-car-repair-quote-fair</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/guides/how-to-compare-car-repair-quotes</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/guides/do-i-really-need-this-car-repair</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/guides/how-to-read-a-car-repair-estimate</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/guides/what-to-say-when-a-repair-quote-is-too-high</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/guides/common-car-repair-upsells</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/guides/is-my-hvac-quote-fair</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/guides/how-to-check-a-roofing-quote</loc><lastmod>2026-11-15</lastmod><priority>0.8</priority></url>
+  <url><loc>https://quotegauge.pro/how-we-price</loc><lastmod>2026-11-15</lastmod><priority>0.6</priority></url>
+  <url><loc>https://quotegauge.pro/privacy</loc><lastmod>2026-11-15</lastmod><priority>0.2</priority></url>
+  <url><loc>https://quotegauge.pro/terms</loc><lastmod>2026-11-15</lastmod><priority>0.2</priority></url>
+  <url><loc>https://quotegauge.pro/refunds</loc><lastmod>2026-11-15</lastmod><priority>0.2</priority></url>
 </urlset>

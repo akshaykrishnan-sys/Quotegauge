@@ -14,7 +14,11 @@ FAQ = [
     ("How do I know if my car repair quote is fair?",
      "Compare each line of the quote with the typical price for your vehicle, your area and the type of shop. QuoteGauge does this in about a minute: add the estimate and it marks every line as fair, above market or needs verification, and totals the amount above market."),
     ("How much does QuoteGauge cost?",
-     "The first answer on every check is free. Full reports are one-time purchases with no subscription: the Repair Quote Checker is $4.99, the Repair Necessity Checker is $9.99 and the Repair Quote Comparator is $14.99."),
+     "The first answer on every check is free. A single full report is a one-time purchase: the Repair Quote Checker is $4.99, the Repair Necessity Checker and the Any Quote Checker are $9.99, and the Repair Quote Comparator is $14.99. QuoteGauge Pro unlocks every full report for $12.99 a month or $79 a year, and can be cancelled anytime."),
+    ("What is QuoteGauge Pro?",
+     "QuoteGauge Pro is a subscription that unlocks every full report across all four checks, for car repairs, home repairs and contractor quotes, with fair use of up to 30 reports a month. It costs $12.99 a month or $79 a year, and you can cancel anytime. There is no app to install and no account to create."),
+    ("Can QuoteGauge check home repair and contractor quotes?",
+     "Yes. The Any Quote Checker reads quotes for heating and air conditioning, roofing, plumbing, electrical work, appliance repair, remodeling, landscaping, pest control, moving and auto body work. It gives a fair range for each line for your ZIP code, flags vague or padded charges, and writes a short script to use with the provider."),
     ("How do I compare repair quotes from different mechanics?",
      "Add two to five estimates for the same repair to the Repair Quote Comparator. It lines them up side by side, shows the parts and labor differences, points out what each estimate leaves out, ranks them by price and by value, and recommends the best value with its caveats."),
     ("How do I know if I really need the repairs my mechanic recommended?",
@@ -26,11 +30,13 @@ FAQ = [
     ("What should I do if my repair quote is too high?",
      "Ask the shop to explain each line marked above market, ask which items are needed now and which can wait, and get a second estimate for the expensive ones. The full Repair Quote Checker report includes a short script with the specific items and fair figures to mention."),
     ("Which vehicles and repairs does QuoteGauge cover?",
-     "Most cars, SUVs and light trucks sold in the United States, for common maintenance and mechanical repairs such as brakes, fluids, filters, belts, batteries and suspension. It does not cover collision or body work, or insurance estimates."),
+     "Most cars, SUVs and light trucks sold in the United States, for common maintenance and mechanical repairs such as brakes, fluids, filters, belts, batteries and suspension. Collision and body work quotes go through the Any Quote Checker. Insurance claim estimates are not covered."),
+    ("What if the report isn't useful?",
+     "Email hello@quotegauge.pro within 7 days of buying a single report and say what was wrong. You get a full refund, with no forms."),
     ("Does QuoteGauge keep my estimate?",
      "No. Your estimate is sent to our AI provider to be analysed, and QuoteGauge does not store it after the report is produced. QuoteGauge does not sell personal data."),
-    ("Is QuoteGauge connected to any repair shop?",
-     "No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships or parts sellers."),
+    ("Is QuoteGauge connected to any repair shop or contractor?",
+     "No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships, contractors or parts sellers."),
 ]
 
 AAA_LINE = ("In an AAA survey of US drivers, two out of three said they do not trust auto repair shops in general. "
@@ -225,6 +231,65 @@ GUIDES = [
         "faq": [
             ("Is fuel injector cleaning necessary?", "Usually only when there is a symptom such as rough idle or hesitation. Many cars never need it as a routine service. Ask what symptom or test led to the recommendation."),
             ("How often should brake fluid be flushed?", "Follow the interval in your owner's manual, which differs by manufacturer. A shop can also test the fluid; ask to see the result if a flush is recommended early."),
+        ],
+    },
+    {
+        "slug": "is-my-hvac-quote-fair",
+        "product": "any", "cta": "Check my quote",
+        "title": "How to Tell if an HVAC Quote Is Fair",
+        "desc": "A fair heating or air conditioning quote names the equipment model and size, separates labor, permits and extras, and lands within the local range for that system. Here is how to check one.",
+        "answer": "An HVAC quote is fair when the equipment is sized for your home, the model and efficiency rating are named, and the total for equipment, labor, permit and disposal falls within the typical range for your area. Get the model numbers, the system size in tons or BTUs and an itemized price before you compare.",
+        "sections": [
+            ("Make sure the system is named and sized", [
+                "A quote that says only \"new AC system\" cannot be judged. Ask for the brand, model numbers, size and efficiency rating (SEER2 for cooling, AFUE for furnaces).",
+                "Ask how the size was chosen. A load calculation, often called a Manual J, is the professional way to size a system; a rule of thumb per square foot is a warning sign.",
+            ]),
+            ("Separate the big pieces", [
+                ["Equipment: the outdoor unit, indoor coil or air handler, furnace, thermostat",
+                 "Labor: installation hours and crew",
+                 "Permit, refrigerant, disposal of the old unit",
+                 "Extras: duct changes, pads, electrical work, extended warranties"],
+                "Extras are where quotes differ most. Ask which ones are required for this install and which are optional upgrades.",
+            ]),
+            ("Compare like with like", [
+                "Two quotes are only comparable for the same size and efficiency. A cheaper quote for a lower-efficiency unit is not the same job. Line them up item by item, not by total.",
+            ]),
+            ("Watch for padded add-ons", [
+                "Duct cleaning, UV lights, air purifiers and premium thermostats are sometimes added by default. They can be worthwhile, but ask what problem each one solves in your home before you pay for it.",
+            ]),
+        ],
+        "faq": [
+            ("How many HVAC quotes should I get?", "Three is a good number for a full system replacement. It shows you the local range and whether one contractor is sizing or pricing very differently from the others."),
+            ("Is a permit really needed for an AC replacement?", "In most US cities and counties a permit is required for replacing HVAC equipment. A contractor who offers to skip it to save money is a warning sign."),
+        ],
+    },
+    {
+        "slug": "how-to-check-a-roofing-quote",
+        "product": "any", "cta": "Check my quote",
+        "title": "How to Check a Roofing Quote Before You Sign",
+        "desc": "A fair roofing quote states the roof size in squares, the materials by name, the tear-off and disposal, and how rotten decking is priced. Here is what to look for.",
+        "answer": "A roofing quote is fair when it states the roof area in squares, names the shingle or material line, includes tear-off, underlayment, flashing and disposal, and prices extra decking per sheet rather than as an open-ended allowance. Check those lines against the local price per square before comparing totals.",
+        "sections": [
+            ("Check the size first", [
+                "Roofers price by the square, which is 100 square feet of roof. Ask how many squares were measured and how. Quotes that differ a lot on size are measuring different roofs, or padding one.",
+            ]),
+            ("Read the scope line by line", [
+                ["Tear-off of existing layers and disposal",
+                 "Underlayment and ice-and-water shield",
+                 "Flashing, drip edge, vents and ridge cap",
+                 "Shingle or material brand and product line",
+                 "Decking replacement: price per sheet and an estimated count"],
+            ]),
+            ("Watch the open-ended items", [
+                "Rotten decking can only be confirmed once the old roof is off, so it is fair for a quote to price it per sheet. An unlimited allowance, or no price at all, leaves the final bill open. Ask for the per-sheet price in writing.",
+            ]),
+            ("Look at the warranty and the paperwork", [
+                "Ask for both the manufacturer's material warranty and the contractor's workmanship warranty, and confirm the roofer is licensed and insured where your state requires it.",
+            ]),
+        ],
+        "faq": [
+            ("Why do roofing quotes vary so much?", "Roofers differ on materials, how many layers they tear off, how they price decking and how much profit they build in. Comparing the scope line by line shows which differences are real."),
+            ("Should I pay a large deposit for a roof?", "Deposits for materials are common, but a request for most of the price before work starts is a warning sign. Check your state's rules on contractor deposits."),
         ],
     },
 ]

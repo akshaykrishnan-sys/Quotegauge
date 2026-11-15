@@ -111,3 +111,38 @@ console.log("All tests passed.");
   assert.strictEqual(dodo.checkPayment({ ...good, metadata: { ref, product: "need" } }, { product: "check", ref }), "other_report");
   console.log("Payment checks passed.");
 }
+
+// Any Quote Checker
+{
+  const assert = require("assert");
+  const A = require("../lib/core").PRODUCTS.any;
+  assert.ok(A.clean({ category: "hvac", zip: "30301", text: "AC $9,800" }), "typed HVAC quote with ZIP accepted");
+  assert.strictEqual(A.clean({ category: "spaceship", zip: "30301", text: "x" }), null, "unknown category refused");
+  assert.strictEqual(A.clean({ category: "roofing", text: "x" }), null, "typed quote needs a ZIP");
+  assert.ok(A.clean({ category: "roofing", images: ["a"] }), "uploaded quote may leave ZIP blank");
+  assert.strictEqual(A.clean({ category: "roofing", zip: "123", text: "x" }), null, "bad ZIP refused");
+  const r = A.normalise({ job_read: "AC replacement", script: "say", items: [{ name: "3-ton AC", quoted: 9800, fair_low: 5500, fair_high: 8500 }, { name: "Duct cleaning", quoted: 499, fair_low: 300, fair_high: 450, questionable: true }] });
+  assert.strictEqual(r.verdict, "above");
+  assert.strictEqual(r.jobRead, "AC replacement");
+  const t = JSON.stringify(A.teaser(r));
+  assert.ok(!t.includes('"say"') && !t.includes('"lo"'), "any teaser leaks nothing paid");
+  assert.ok(A.prompt(A.clean({ category: "hvac", zip: "30301", text: "AC" })).includes("heating and air conditioning"));
+  console.log("Any quote checks passed.");
+}
+
+// Pro pass
+{
+  const assert = require("assert");
+  const pass = require("../lib/pass");
+  const p = pass.issue({ subscription_id: "sub_1", customer: { customer_id: "cus_1" } }, "secret");
+  assert.strictEqual(pass.read(p, "secret").sid, "sub_1");
+  assert.strictEqual(pass.read(p, "other"), null, "wrong secret refused");
+  assert.strictEqual(pass.read(p.slice(0, -2) + "xx", "secret"), null, "tampered pass refused");
+  assert.strictEqual(pass.read(p, "secret", Date.now() + 25 * 3600e3), null, "expired pass refused");
+  process.env.DODO_PLAN_MONTHLY = "pdt_m"; process.env.DODO_PLAN_YEARLY = "pdt_y";
+  const dodo = require("../lib/dodo");
+  assert.strictEqual(dodo.checkSubscription({ product_id: "pdt_y", status: "active" }), null);
+  assert.strictEqual(dodo.checkSubscription({ product_id: "pdt_y", status: "on_hold" }), "inactive");
+  assert.strictEqual(dodo.checkSubscription({ product_id: "pdt_other", status: "active" }), "wrong_product");
+  console.log("Pro pass checks passed.");
+}

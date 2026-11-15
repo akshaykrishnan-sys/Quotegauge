@@ -1,10 +1,11 @@
 "use strict";
-// POST /api/unlock  { sealed, paymentId }
+// POST /api/unlock  { sealed, paymentId } or { sealed, pass } for QuoteGauge Pro members
 // Opens the sealed full report. While PAYMENTS_LIVE is not "true" this is test mode and the
 // report opens without payment. When live, the payment is confirmed with Dodo Payments first:
 // it must have succeeded, not been refunded, and have been made for this exact report.
 const { unseal } = require("../lib/seal");
 const dodo = require("../lib/dodo");
+const pass = require("../lib/pass");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -27,6 +28,11 @@ module.exports = async function handler(req, res) {
 
   if (process.env.PAYMENTS_LIVE !== "true") {
     return res.status(200).json({ product: payload.product, report: payload.report, test: true });
+  }
+
+  if (body.pass) {
+    if (!pass.read(body.pass, secret)) return res.status(401).json({ code: "pass_expired" });
+    return res.status(200).json({ product: payload.product, report: payload.report, pro: true });
   }
 
   const paymentId = typeof body.paymentId === "string" && /^[A-Za-z0-9_-]{4,80}$/.test(body.paymentId) ? body.paymentId : null;

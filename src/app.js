@@ -21,8 +21,14 @@
       step: "Repair list", go: "Check these repairs", busy: "Reviewing each repair…",
       unlock: "Urgency for every item, what each repair does, symptoms to look for, questions to ask and where a second inspection is worth it.",
       missing: "Add a photo of the inspection report or type the recommended repairs."
+    },
+    any: {
+      step: "Quote", go: "Check this quote", busy: "Pricing every line…",
+      unlock: "Fair range for every line, local labor and materials benchmarks, vague or padded charges explained, and a script for the provider.",
+      missing: "Add a photo of the quote or type its lines."
     }
   };
+  var CAT = { hvac: "Heating & air conditioning", roofing: "Roofing", plumbing: "Plumbing", electrical: "Electrical", appliance: "Appliance repair", remodel: "Remodeling / contractor", landscaping: "Landscaping / tree work", pest: "Pest control", moving: "Moving", autobody: "Auto body / collision", other: "Service quote" };
   var VERDICT = { fair: "Looks fair", mixed: "Mostly fair, but question some charges", above: "Above market", verify: "Needs verification" };
   var TAG = { fair: "Fair", above: "Above market", verify: "Needs verification" };
   var URG = { now: "Do now", soon: "Do soon", later: "Can wait", verify: "Verify first" };
@@ -128,7 +134,7 @@
   }
   function setProduct(p) {
     state.product = p;
-    ["check", "compare", "need"].forEach(function (k) {
+    ["check", "compare", "need", "any"].forEach(function (k) {
       $("tab-" + k).setAttribute("aria-selected", k === p ? "true" : "false");
       $("tab-" + k).tabIndex = k === p ? 0 : -1;
       $("in-" + k).hidden = k !== p;
@@ -136,6 +142,8 @@
     $("st-1").textContent = COPY[p].step;
     $("check-btn").textContent = COPY[p].go;
     $("shop-field").hidden = p === "compare";
+    $("st-2").textContent = p === "any" ? "Job details" : "Your car";
+    $("car-fields").hidden = p === "any"; $("any-fields").hidden = p !== "any";
     $("form-error").hidden = true;
     if (!$("result").hidden) { $("result").hidden = true; $("quote-form").hidden = false; }
     setStep(1);
@@ -151,6 +159,10 @@
     if (p === "need") {
       body.text = $("need-text").value; body.symptoms = $("need-symptoms").value;
       blobs = ($("need-photo")._blobs || []).slice();
+    }
+    if (p === "any") {
+      body = { category: $("any-cat").value, zip: $("any-zip").value.trim(), provider: $("any-provider").value, text: $("any-text").value };
+      blobs = ($("any-photo")._blobs || []).slice();
     }
     if (p === "compare") {
       body.quotes = [];
@@ -200,10 +212,10 @@
   function tag(cls, text) { return "<span class=\"tag " + cls + "\">" + esc(text) + "</span>"; }
   function lock(text) { return "<span class=\"lock\">" + esc(text) + "</span>"; }
 
-  function renderCheck(r, open) {
+  function renderCheck(r, open, any) {
     var h = "<div class=\"verdict " + r.verdict + "\"><span class=\"k\">Verdict</span><strong>" + VERDICT[r.verdict] + "</strong><p>" + esc(r.summary || (r.flagged + " of " + r.items.length + " lines need a second look.")) + "</p></div>";
     h += "<div class=\"figs\"><div><span class=\"k\">Quoted</span><b>" + money(r.quoted) + "</b></div><div><span class=\"k\">Fair range</span><b>" + (open ? range(r.lo, r.hi) : lock("$•••–$•••")) + "</b></div><div><span class=\"k\">Above market by</span><b>" + money(Math.max(0, r.over)) + "</b></div></div>";
-    if (open && r.rateLo != null && r.rateHi != null) h += "<p class=\"bench\"><span class=\"k\">Local labor benchmark</span> " + range(r.rateLo, r.rateHi) + " per hour for this type of shop</p>";
+    if (open && r.rateLo != null && r.rateHi != null) h += "<p class=\"bench\"><span class=\"k\">Local labor benchmark</span> " + range(r.rateLo, r.rateHi) + " per hour for this " + (any ? "trade" : "type of shop") + "</p>";
     h += "<div class=\"k sub\">Line by line · " + r.flagged + " of " + r.items.length + " flagged</div><div class=\"rows\">";
     h += r.items.map(function (it) {
       var m = tag(it.rating, TAG[it.rating]) + (it.questionable ? tag("q", "Questionable charge") : "");
@@ -211,13 +223,13 @@
         m += "<span>Fair: " + range(it.lo, it.hi) + "</span>";
         var b = [];
         if (it.hours != null) b.push(it.hours + " labor hr");
-        if (it.pLo != null && it.pHi != null) b.push("parts " + range(it.pLo, it.pHi));
+        if (it.pLo != null && it.pHi != null) b.push((any ? "materials " : "parts ") + range(it.pLo, it.pHi));
         if (b.length) m += "<span>" + esc(b.join(" · ")) + "</span>";
         if (it.note) m += "<span class=\"wide\">" + esc(it.note) + "</span>";
       } else m += lock("Fair: $•••–$•••");
       return "<div class=\"row\"><div class=\"row-name\">" + esc(it.name) + "</div><div class=\"row-num\">" + money(it.quoted) + "</div><div class=\"row-meta\">" + m + "</div></div>";
     }).join("") + "</div>";
-    if (open && r.script) h += "<div class=\"k sub\">What to say to the shop</div><pre class=\"script\" id=\"script-text\">" + esc(r.script) + "</pre>";
+    if (open && r.script) h += "<div class=\"k sub\">What to say to the " + (any ? "provider" : "shop") + "</div><pre class=\"script\" id=\"script-text\">" + esc(r.script) + "</pre>";
     if (open) h += "<p class=\"dim\">Confidence: " + esc(r.confidence) + ". " + esc(r.caveats) + "</p>";
     return h;
   }
@@ -256,18 +268,22 @@
   }
 
   function render() {
-    var p = state.product, r = state.report, open = state.unlocked, v = state.vehicle;
-    var carName = v.unknown ? (r.vehicleRead || "Vehicle not shown on the estimate") : v.year + " " + v.make + " " + v.model;
-    var place = v.unknown ? (r.locationRead || "Location not shown") : "ZIP " + v.zip;
-    var head = "<div class=\"rep-head\"><div><b>" + esc(carName) + "</b><span>" + esc(place) + (p === "compare" ? "" : " · " + esc(SHOP[v.shop])) + "</span></div><span class=\"k\">" + esc(P[p].title) + "</span></div>";
-    $("report").innerHTML = head + (p === "check" ? renderCheck(r, open) : p === "compare" ? renderCompare(r, open) : renderNeed(r, open));
+    var p = state.product, r = state.report, open = state.unlocked, v = state.vehicle, head;
+    if (p === "any") {
+      head = "<div class=\"rep-head\"><div><b>" + esc(r.jobRead || CAT[v.category] || "Your quote") + "</b><span>" + esc(CAT[v.category] || "") + " · " + esc(v.zip ? "ZIP " + v.zip : (r.locationRead || "Location not shown")) + "</span></div><span class=\"k\">" + esc(P[p].title) + "</span></div>";
+    } else {
+      var carName = v.unknown ? (r.vehicleRead || "Vehicle not shown on the estimate") : v.year + " " + v.make + " " + v.model;
+      var place = v.unknown ? (r.locationRead || "Location not shown") : "ZIP " + v.zip;
+      head = "<div class=\"rep-head\"><div><b>" + esc(carName) + "</b><span>" + esc(place) + (p === "compare" ? "" : " · " + esc(SHOP[v.shop])) + "</span></div><span class=\"k\">" + esc(P[p].title) + "</span></div>";
+    }
+    $("report").innerHTML = head + (p === "check" || p === "any" ? renderCheck(r, open, p === "any") : p === "compare" ? renderCompare(r, open) : renderNeed(r, open));
     $("r-unlock").hidden = open;
     $("unlock-copy").textContent = COPY[p].unlock;
     var price = "$" + P[p].price.toFixed(2), title, anchor;
-    if (p === "check") {
+    if (p === "check" || p === "any") {
       var avoid = (r.over || 0) + (r.questioned || 0);
       title = avoid > 0 ? "Up to " + money(avoid) + " of this estimate may be avoidable. See exactly where." : (r.flagged ? r.flagged + " lines need a closer look. See which, and what to ask." : "Looks fair. See the fair range for every line.");
-      anchor = price + " to check a " + money(r.quoted) + " estimate. ";
+      anchor = price + " to check a " + money(r.quoted) + (p === "any" ? " quote. " : " estimate. ");
     } else if (p === "compare") {
       title = "These estimates are " + money(r.spread) + " apart. See which is the best value.";
       anchor = price + " before you commit to one of them. ";
@@ -276,11 +292,13 @@
       anchor = price + " before you approve the work. ";
     }
     $("unlock-title").textContent = title;
-    $("unlock-anchor").textContent = anchor + "Refund if the report couldn't read what you uploaded.";
-    $("unlock-btn").textContent = "Unlock my full report · " + price;
-    var alt = { check: [["compare", "Got a second quote? Compare them"], ["need", "Not sure you need it all? Check the repairs"]], compare: [["check", "Check one estimate line by line"], ["need", "Check whether the repairs are needed"]], need: [["check", "Check the prices on the estimate"], ["compare", "Compare estimates from other shops"]] }[p];
+    $("unlock-anchor").textContent = anchor + "Not useful? Full refund within 7 days.";
+    $("unlock-btn").textContent = member() ? "Open my full report · Pro" : "Unlock my full report · " + price;
+    $("pro-line").hidden = !!member();
+    var alt = { check: [["compare", "Got a second quote? Compare them"], ["need", "Not sure you need it all? Check the repairs"]], compare: [["check", "Check one estimate line by line"], ["need", "Check whether the repairs are needed"]], need: [["check", "Check the prices on the estimate"], ["compare", "Compare estimates from other shops"]], any: [["any", "Check another quote"], ["check", "Got a car repair estimate? Check it"]] }[p];
     $("cross").innerHTML = alt.map(function (x) { return "<button type=\"button\" class=\"btn-quiet\" data-go=\"" + x[0] + "\">" + esc(x[1]) + "</button>"; }).join("");
-    $("copy-btn").hidden = !(open && p === "check" && r.script);
+    $("copy-btn").hidden = !(open && (p === "check" || p === "any") && r.script);
+    $("fb-thanks").hidden = true; Array.prototype.forEach.call(document.querySelectorAll("[data-fb]"), function (b) { b.hidden = false; });
     try { localStorage.setItem("qg-last", JSON.stringify({ product: p, report: r, full: state.full, unlocked: open, sealed: state.sealed, vehicle: v, at: Date.now() })); } catch (e) {}
   }
 
@@ -300,11 +318,11 @@
   }
 
   /* Events */
-  ["check", "compare", "need"].forEach(function (k) { $("tab-" + k).addEventListener("click", function () { setProduct(k); }); });
+  ["check", "compare", "need", "any"].forEach(function (k) { $("tab-" + k).addEventListener("click", function () { setProduct(k); }); });
   Array.prototype.forEach.call(document.querySelectorAll("[data-start]"), function (el) {
     el.addEventListener("click", function () { setProduct(el.getAttribute("data-start")); });
   });
-  wirePhoto($("check-photo")); wirePhoto($("need-photo"));
+  wirePhoto($("check-photo")); wirePhoto($("need-photo")); wirePhoto($("any-photo"));
   addQuote(""); addQuote("");
   $("add-quote").addEventListener("click", function () { addQuote(""); });
 
@@ -317,17 +335,19 @@
     $("form-error").hidden = true;
     var c = collect(), ok = state.product === "compare" ? (c.body.quotes || []).length >= 2 : !!(String(c.body.text || "").trim() || c.blobs.length);
     if (!ok) return showError(COPY[state.product].missing);
-    $("car-hint").hidden = !c.blobs.length;
+    $("car-hint").hidden = !c.blobs.length; $("any-hint").hidden = !c.blobs.length;
     setStep(2);
   });
   var EX = {
     check: "Front brake pads and rotors ... $689.00\nBrake fluid flush .............. $179.00\nEngine air filter ..............  $89.00\nCabin air filter ............... $119.00\nFuel system cleaning service ... $229.00\nShop supplies / disposal fee ...  $45.00",
+    any: "Replace 3-ton AC condenser and evaporator coil ... $8,900\nRefrigerant (R-454B) recharge ................. $650\nNew thermostat, installed ...................... $425\nWhole-house duct cleaning ...................... $499\nPermit and disposal ............................ $275",
     need: "Front brake pads at 3 mm, recommend replacement\nBrake fluid flush\nSerpentine belt cracked, recommend replacement\nFuel injector cleaning service\nEngine air filter dirty\nRear shocks leaking, recommend replacement"
   };
   $("example-btn").addEventListener("click", function () {
     var p = state.product;
     if (p === "check") $("check-text").value = EX.check;
     else if (p === "need") $("need-text").value = EX.need;
+    else if (p === "any") { $("any-text").value = EX.any; $("any-cat").value = "hvac"; $("any-zip").value = "30301"; }
     else Array.prototype.forEach.call($("quotes").children, function (slot, i) { if (EXAMPLES[i]) slot.querySelector(".q-text").value = EXAMPLES[i]; });
     $("car-year").value = "2017"; $("car-make").value = "Honda"; $("car-model").value = "Accord"; $("car-zip").value = "30301";
     $("next-btn").click();
@@ -352,11 +372,11 @@
     $("form-error").hidden = true;
     var c = collect();
     var input = P[state.product].clean(Object.assign({}, c.body, { images: c.blobs }));
-    if (!input) return showError("Add your car's year, make, model and a 5-digit ZIP code" + (c.blobs.length ? ", or leave all four blank and we'll read them from what you uploaded." : "."));
-    if (!input.vehicle.unknown) { try { localStorage.setItem("qg-vehicle", JSON.stringify({ "car-year": input.vehicle.year, "car-make": input.vehicle.make, "car-model": input.vehicle.model, "car-zip": input.vehicle.zip })); } catch (e2) {} }
+    if (!input) return showError(state.product === "any" ? "Choose what the quote is for and add the 5-digit ZIP code of the job" + (c.blobs.length ? ", or leave the ZIP blank and we'll read it from what you uploaded." : ".") : "Add your car's year, make, model and a 5-digit ZIP code" + (c.blobs.length ? ", or leave all four blank and we'll read them from what you uploaded." : "."));
+    if (input.vehicle && !input.vehicle.unknown) { try { localStorage.setItem("qg-vehicle", JSON.stringify({ "car-year": input.vehicle.year, "car-make": input.vehicle.make, "car-model": input.vehicle.model, "car-zip": input.vehicle.zip })); } catch (e2) {} }
     setBusy(true); track("check_started");
     (inPreview ? analysePreview(input, c.blobs) : analyseServer(c.body, c.blobs)).then(function (out) {
-      state.report = out.report; state.sealed = out.sealed; state.full = out.full; state.unlocked = false; state.vehicle = input.vehicle;
+      state.report = out.report; state.sealed = out.sealed; state.full = out.full; state.unlocked = false; state.vehicle = input.vehicle || { any: true, category: input.category, zip: input.zip };
       $("quote-form").hidden = true; $("result").hidden = false; setStep(3);
       render(); track("check_done");
       $("tool").scrollIntoView({ block: "start" });
@@ -374,18 +394,51 @@
   });
 
   function unlockError(msg) { var el = $("unlock-error"); el.textContent = msg; el.hidden = false; }
-  function openReport(paymentId) {
-    return fetch("/api/unlock", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed, paymentId: paymentId || undefined }) })
+  /* QuoteGauge Pro: a signed pass kept on this device, renewed from the subscription when it expires */
+  function proSaved() { try { return JSON.parse(localStorage.getItem("qg-pro") || "null"); } catch (e) { return null; } }
+  function member() { var m = proSaved(); return m && m.sid ? m : null; }
+  function passExp(pass) { try { return JSON.parse(atob(pass.split(".")[0].replace(/-/g, "+").replace(/_/g, "/"))).exp || 0; } catch (e) { return 0; } }
+  function post(url, data) {
+    return fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(url); e.code = j.code; e.status = r.status; throw e; } return j; }); });
+  }
+  function joinPro(sid) {
+    return post("/api/member", { subscriptionId: sid }).then(function (j) {
+      try { localStorage.setItem("qg-pro", JSON.stringify({ sid: sid, pass: j.pass, plan: j.plan, renews: j.renews })); } catch (e) {}
+      showPro(); return j.pass;
+    });
+  }
+  function freshPass() {
+    var m = member();
+    if (!m) return Promise.reject(new Error("no pro"));
+    if (m.pass && passExp(m.pass) > Date.now() + 60e3) return Promise.resolve(m.pass);
+    return joinPro(m.sid).catch(function (e) { if (e.status === 402 || e.status === 404) { try { localStorage.removeItem("qg-pro"); } catch (x) {} showPro(); } throw e; });
+  }
+  function showPro() {
+    var m = member();
+    $("pro-chip").hidden = !m; $("manage-btn").hidden = !m; $("restore-open").hidden = !!m;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-plan]"), function (b) { b.disabled = !!m; if (m) b.textContent = "You're on Pro"; });
+  }
+  function toast(msg) { var t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { t.hidden = true; }, 6000); }
+
+  function openReport(paymentId, pass) {
+    return fetch("/api/unlock", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed, paymentId: paymentId || undefined, pass: pass || undefined }) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.report) { var e = new Error("unlock"); e.code = j.code; throw e; } return j.report; }); })
       .then(function (report) { state.report = report; state.full = true; state.unlocked = true; render(); if (paymentId) track("unlock_paid"); });
   }
   function testDialog() {
+    $("pay-continue").hidden = false;
     $("pay-text").textContent = "Payments aren't switched on yet, so no card is charged. Once they are, this step takes a $" + P[state.product].price.toFixed(2) + " payment and then opens the full report.";
     $("pay-dialog").showModal();
   }
   $("unlock-btn").addEventListener("click", function () {
     $("unlock-error").hidden = true; track("unlock_clicked");
     if (state.full || inPreview) { testDialog(); return; }
+    if (member()) {
+      freshPass().then(function (pass) { return openReport(null, pass); }).then(function () { track("unlock_pro"); })
+        .catch(function () { unlockError("Your Pro membership couldn't be confirmed. Restore it from the Pricing section, or unlock this report on its own."); showPro(); render(); });
+      return;
+    }
     var b = $("unlock-btn"), label = b.textContent;
     b.disabled = true; b.textContent = "Opening secure checkout…";
     fetch("/api/pay", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed }) })
@@ -447,6 +500,55 @@
     } catch (e) { $("result").hidden = true; $("quote-form").hidden = false; $("resume-btn").hidden = true; setStep(1); }
   });
 
+  /* Pro: plan buttons, restore, manage */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-plan]"), function (b) {
+    b.addEventListener("click", function () {
+      var plan = b.getAttribute("data-plan"), label = b.textContent;
+      track("pro_clicked");
+      if (inPreview) { $("pay-text").textContent = "Pro isn't switched on in this preview. On the live site this opens a secure checkout for the " + plan + " plan."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
+      b.disabled = true; b.textContent = "Opening secure checkout…";
+      post("/api/subscribe", { plan: plan }).then(function (j) {
+        if (j.test) { b.disabled = false; b.textContent = label; $("pay-text").textContent = "Payments aren't switched on yet, so Pro can't be bought today. Every full report opens free while the site is in test mode."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
+        location.href = j.url;
+      }).catch(function () { b.disabled = false; b.textContent = label; toast("Checkout couldn't be opened. Please try again in a moment."); });
+    });
+  });
+  $("restore-open").addEventListener("click", function () { $("restore-error").hidden = true; $("restore-dialog").showModal(); });
+  $("restore-cancel").addEventListener("click", function () { $("restore-dialog").close(); });
+  $("restore-go").addEventListener("click", function () {
+    var id = $("restore-id").value.trim(), el = $("restore-error");
+    if (!/^[A-Za-z0-9_-]{4,80}$/.test(id)) { el.textContent = "That doesn't look like a subscription ID. It starts with sub_."; el.hidden = false; return; }
+    joinPro(id).then(function () { $("restore-dialog").close(); toast("Pro is active on this device."); if (!$("result").hidden && state.report) render(); })
+      .catch(function (e) { el.textContent = e.code === "inactive" ? "That subscription isn't active. Renew it, or email us." : e.code === "not_configured" ? "Pro isn't switched on yet." : "We couldn't find an active Pro subscription with that ID."; el.hidden = false; });
+  });
+  $("manage-btn").addEventListener("click", function () {
+    freshPass().then(function (pass) { return post("/api/portal", { pass: pass }); }).then(function (j) { location.href = j.url; })
+      .catch(function () { toast("The subscription page couldn't be opened. Email hello@quotegauge.pro and we'll help."); });
+  });
+  $("pay-cancel").addEventListener("click", function () { $("pay-continue").hidden = false; });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-fb]"), function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-fb");
+      try { if (LIVE) window.va("event", { name: "feedback", data: { product: state.product, answer: v, verdict: (state.report && state.report.verdict) || "" } }); } catch (e) {}
+      Array.prototype.forEach.call(document.querySelectorAll("[data-fb]"), function (x) { x.hidden = true; });
+      $("fb-thanks").textContent = v === "yes" ? "Thank you. It helps us get the next one right." : "Thanks for telling us. Email hello@quotegauge.pro with what was off and we'll look at it, and refund you if the report didn't help.";
+      $("fb-thanks").hidden = false;
+    });
+  });
+  showPro();
+
+  /* Coming back from a Pro checkout */
+  (function () {
+    var q = new URLSearchParams(location.search), sid = q.get("subscription_id");
+    if (!q.get("pro") || !sid) return;
+    try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) {}
+    var tries = 0;
+    (function attempt() {
+      joinPro(sid).then(function () { toast("Welcome to QuoteGauge Pro. Every full report is now unlocked on this device."); track("pro_joined"); })
+        .catch(function (e) { if (e.code === "inactive" && tries++ < 5) { setTimeout(attempt, 2500); return; } toast("We couldn't confirm your Pro subscription yet. Use Restore access with the ID from your receipt."); });
+    })();
+  })();
+
   /* Coming back from checkout: open the paid report */
   (function () {
     var q = new URLSearchParams(location.search), pid = q.get("payment_id");
@@ -499,6 +601,12 @@
   /* Phone-width call to action, hidden while the tool itself is on screen */
   var sticky = $("sticky");
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) { sticky.className = entries[0].isIntersecting ? "sticky" : "sticky show"; }).observe($("tool"));
+    /* Show the bar only when neither the hero button nor the tool is on screen, so there is one button at a time */
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { seen[en.target.id] = en.isIntersecting; });
+      sticky.className = seen["hero-upload"] || seen.tool ? "sticky" : "sticky show";
+    });
+    io.observe($("tool")); io.observe($("hero-upload"));
   }
 })();

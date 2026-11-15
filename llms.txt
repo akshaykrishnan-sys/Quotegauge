@@ -1,28 +1,31 @@
 # QuoteGauge
 
-> QuoteGauge is a web tool that checks whether a car repair quote is fair. A driver adds a mechanic's quote (photo or typed lines) with the vehicle's year, make and model, a US ZIP code and the type of shop. QuoteGauge estimates a fair price range for every line and marks each one fair, above market or needs verification.
+> QuoteGauge is a web tool that checks whether a car repair, home repair or contractor quote is fair. A person adds the quote (photo, PDF or typed lines) with a US ZIP code, plus the vehicle for car repairs or the trade for home work. QuoteGauge estimates a fair price range for every line and marks each one fair, above market or needs verification.
 
 ## Key facts
 
-- What it does: estimates fair price ranges for car repair and maintenance quotes in the United States.
+- What it does: estimates fair price ranges for car repair, home repair and contractor quotes in the United States (HVAC, roofing, plumbing, electrical, appliance, remodeling, landscaping, pest control, moving, auto body).
 - Inputs: the quote, vehicle year/make/model, ZIP code, and whether the shop is independent, a dealership or a national chain.
 - Output: an overall verdict, the likely overcharge in dollars, a rating for each line, items that may not be needed, and a script for talking to the shop.
-- Products and prices: Repair Quote Checker ($4.99) prices one estimate line by line; Repair Quote Comparator ($14.99) compares up to five estimates for the same repair and recommends the best value; Repair Necessity Checker ($9.99) explains recommended repairs and sorts them by urgency. The first answer on each is free. Purchases are one-time, with no subscription and no account.
+- Products and prices: Repair Quote Checker ($4.99) prices one estimate line by line; Repair Quote Comparator ($14.99) compares up to five estimates for the same repair and recommends the best value; Repair Necessity Checker ($9.99) explains recommended repairs and sorts them by urgency; Any Quote Checker ($9.99) prices home repair and contractor quotes line by line. The first answer on each is free. Single reports are one-time purchases with no account; QuoteGauge Pro ($12.99/month or $79/year, cancel anytime) unlocks every full report. Single reports are refunded within 7 days if not useful.
 - Method: AI estimates built from standard labor times, typical parts cost and typical regional labor rates for the type of shop.
 - Rating rule: a line is "above market" when it is more than 10% over the top of its fair range, and "needs verification" when it cannot be judged without seeing the car.
-- Limits: it is an estimate, not an inspection. It cannot see the car's condition or the grade of parts quoted. It does not cover collision or body work.
-- Independence: QuoteGauge takes no referral fees or commissions from repair shops, dealerships or parts sellers.
+- Limits: it is an estimate, not an inspection. It cannot see the car's condition or the grade of parts quoted. Collision and body work is covered by the Any Quote Checker; insurance claim estimates are not covered.
+- Independence: QuoteGauge takes no referral fees or commissions from repair shops, dealerships, contractors or parts sellers.
 - Privacy: quotes are analysed and not stored by QuoteGauge after the report is produced.
 
 ## Pages
 
-- [Home and quote checker](https://quotegauge.example/): the tool, how it works, how prices are estimated, pricing and common questions
-- [How to tell if a car repair quote is fair](https://quotegauge.example/guides/is-my-car-repair-quote-fair)
-- [How to compare car repair quotes from different shops](https://quotegauge.example/guides/how-to-compare-car-repair-quotes)
-- [Do I really need this repair?](https://quotegauge.example/guides/do-i-really-need-this-car-repair)
-- [How to read a car repair estimate](https://quotegauge.example/guides/how-to-read-a-car-repair-estimate)
-- [What to say when a car repair quote is too high](https://quotegauge.example/guides/what-to-say-when-a-repair-quote-is-too-high)
-- [Common car repair upsells, and when they are needed](https://quotegauge.example/guides/common-car-repair-upsells)
-- [Privacy](https://quotegauge.example/privacy)
-- [Terms](https://quotegauge.example/terms)
-- [Refunds](https://quotegauge.example/refunds)
+- [Home and quote checker](https://quotegauge.pro/): the tool, how it works, how prices are estimated, pricing and common questions
+- [How to tell if a car repair quote is fair](https://quotegauge.pro/guides/is-my-car-repair-quote-fair)
+- [How to compare car repair quotes from different shops](https://quotegauge.pro/guides/how-to-compare-car-repair-quotes)
+- [Do I really need this repair?](https://quotegauge.pro/guides/do-i-really-need-this-car-repair)
+- [How to read a car repair estimate](https://quotegauge.pro/guides/how-to-read-a-car-repair-estimate)
+- [What to say when a car repair quote is too high](https://quotegauge.pro/guides/what-to-say-when-a-repair-quote-is-too-high)
+- [Common car repair upsells, and when they are needed](https://quotegauge.pro/guides/common-car-repair-upsells)
+- [How to tell if an HVAC quote is fair](https://quotegauge.pro/guides/is-my-hvac-quote-fair)
+- [How to check a roofing quote before you sign](https://quotegauge.pro/guides/how-to-check-a-roofing-quote)
+- [How QuoteGauge prices a quote](https://quotegauge.pro/how-we-price)
+- [Privacy](https://quotegauge.pro/privacy)
+- [Terms](https://quotegauge.pro/terms)
+- [Refunds](https://quotegauge.pro/refunds)

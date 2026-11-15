@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Is My Car Repair Quote Fair? Check, Compare, Verify | QuoteGauge</title>
-<meta name="description" content="Check a car repair estimate before you approve it. QuoteGauge prices every line for your car and area, compares estimates from different shops, and tells you which recommended repairs are urgent. Free first answer.">
-<link rel="canonical" href="https://quotegauge.example/">
+<meta name="description" content="Check a car repair, home repair or contractor quote before you approve it. QuoteGauge prices every line for your area, compares estimates, and tells you which repairs are urgent. Free first answer, or Pro for every quote.">
+<link rel="canonical" href="https://quotegauge.pro/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="QuoteGauge">
 <meta property="og:title" content="Don&#x27;t sign that repair estimate yet">
-<meta property="og:description" content="Check a car repair estimate before you approve it. QuoteGauge prices every line for your car and area, compares estimates from different shops, and tells you which recommended repairs are urgent. Free first answer.">
-<meta property="og:url" content="https://quotegauge.example/">
-<meta property="og:image" content="https://quotegauge.example/og.png">
+<meta property="og:description" content="Check a car repair, home repair or contractor quote before you approve it. QuoteGauge prices every line for your area, compares estimates, and tells you which repairs are urgent. Free first answer, or Pro for every quote.">
+<meta property="og:url" content="https://quotegauge.pro/">
+<meta property="og:image" content="https://quotegauge.pro/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ffd60a'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%23111'/%3E%3Cpath d='M32 32 L43 17' stroke='%23ffd60a' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#ffd60a">
@@ -24,21 +24,22 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://quotegauge.example/#org",
+      "@id": "https://quotegauge.pro/#org",
       "name": "QuoteGauge",
-      "url": "https://quotegauge.example/",
-      "description": "QuoteGauge checks car repair estimates against typical local prices so drivers know what is fair before approving work."
+      "url": "https://quotegauge.pro/",
+      "description": "QuoteGauge checks car repair, home repair and contractor quotes against typical local prices so people know what is fair before approving work.",
+      "email": "hello@quotegauge.pro"
     },
     {
       "@type": "WebApplication",
-      "@id": "https://quotegauge.example/#app",
+      "@id": "https://quotegauge.pro/#app",
       "name": "QuoteGauge",
-      "url": "https://quotegauge.example/",
+      "url": "https://quotegauge.pro/",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any (web browser)",
-      "description": "Three web tools for car owners in the United States: a repair quote checker, a repair quote comparator and a repair necessity checker.",
+      "description": "Four web tools for consumers in the United States: a repair quote checker, a repair quote comparator, a repair necessity checker and a checker for home repair and contractor quotes.",
       "publisher": {
-        "@id": "https://quotegauge.example/#org"
+        "@id": "https://quotegauge.pro/#org"
       },
       "offers": [
         {
@@ -61,15 +62,47 @@
         },
         {
           "@type": "Offer",
+          "name": "Any Quote Checker full report",
+          "price": "9.99",
+          "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
           "name": "Repair Quote Comparator full report",
           "price": "14.99",
           "priceCurrency": "USD"
+        },
+        {
+          "@type": "Offer",
+          "name": "QuoteGauge Pro monthly",
+          "price": "12.99",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "12.99",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M",
+            "unitCode": "MON"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "QuoteGauge Pro yearly",
+          "price": "79.00",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "79.00",
+            "priceCurrency": "USD",
+            "billingDuration": "P1Y",
+            "unitCode": "ANN"
+          }
         }
       ]
     },
     {
       "@type": "FAQPage",
-      "@id": "https://quotegauge.example/#faq",
+      "@id": "https://quotegauge.pro/#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -84,7 +117,23 @@
           "name": "How much does QuoteGauge cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The first answer on every check is free. Full reports are one-time purchases with no subscription: the Repair Quote Checker is $4.99, the Repair Necessity Checker is $9.99 and the Repair Quote Comparator is $14.99."
+            "text": "The first answer on every check is free. A single full report is a one-time purchase: the Repair Quote Checker is $4.99, the Repair Necessity Checker and the Any Quote Checker are $9.99, and the Repair Quote Comparator is $14.99. QuoteGauge Pro unlocks every full report for $12.99 a month or $79 a year, and can be cancelled anytime."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is QuoteGauge Pro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "QuoteGauge Pro is a subscription that unlocks every full report across all four checks, for car repairs, home repairs and contractor quotes, with fair use of up to 30 reports a month. It costs $12.99 a month or $79 a year, and you can cancel anytime. There is no app to install and no account to create."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can QuoteGauge check home repair and contractor quotes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The Any Quote Checker reads quotes for heating and air conditioning, roofing, plumbing, electrical work, appliance repair, remodeling, landscaping, pest control, moving and auto body work. It gives a fair range for each line for your ZIP code, flags vague or padded charges, and writes a short script to use with the provider."
           }
         },
         {
@@ -132,7 +181,15 @@
           "name": "Which vehicles and repairs does QuoteGauge cover?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Most cars, SUVs and light trucks sold in the United States, for common maintenance and mechanical repairs such as brakes, fluids, filters, belts, batteries and suspension. It does not cover collision or body work, or insurance estimates."
+            "text": "Most cars, SUVs and light trucks sold in the United States, for common maintenance and mechanical repairs such as brakes, fluids, filters, belts, batteries and suspension. Collision and body work quotes go through the Any Quote Checker. Insurance claim estimates are not covered."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if the report isn't useful?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Email hello@quotegauge.pro within 7 days of buying a single report and say what was wrong. You get a full refund, with no forms."
           }
         },
         {
@@ -145,10 +202,10 @@
         },
         {
           "@type": "Question",
-          "name": "Is QuoteGauge connected to any repair shop?",
+          "name": "Is QuoteGauge connected to any repair shop or contractor?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships or parts sellers."
+            "text": "No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships, contractors or parts sellers."
           }
         }
       ]
@@ -252,7 +309,7 @@ section { padding: 80px 0; }
 .sec-head p { font-size: 20px; color: var(--muted); }
 
 /* Product cards */
-.products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 @media (max-width: 900px) { .products { grid-template-columns: minmax(0, 1fr); } }
 .product { border: 2px solid var(--ink); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px; background: var(--paper); }
 .product.lead { background: var(--yellow); }
@@ -266,16 +323,16 @@ section { padding: 80px 0; }
 /* Tool */
 .tool-sec { background: var(--soft); }
 .tool { background: var(--paper); border: 2px solid var(--ink); border-radius: 8px; max-width: 760px; scroll-margin-top: 12px; overflow: hidden; }
-.tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .tabs button { font: inherit; background: var(--soft); border: 0; border-bottom: 2px solid var(--ink); border-left: 2px solid var(--ink); padding: 14px 12px; cursor: pointer; text-align: left; display: flex; flex-direction: column; gap: 2px; color: var(--ink); }
 .tabs button:first-child { border-left: 0; }
 .tabs button b { font-family: var(--display); font-weight: 800; font-size: 21px; line-height: 1; text-transform: uppercase; }
 .tabs button span { font-size: 14px; color: var(--muted); font-weight: 600; }
 .tabs button[aria-selected="true"] { background: var(--yellow); }
 .tabs button[aria-selected="true"] span { color: var(--ink); }
-@media (max-width: 560px) { .tabs button b { font-size: 17px; } .tabs button { padding: 12px 8px; } }
+@media (max-width: 560px) { .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tabs button b { font-size: 17px; } .tabs button { padding: 12px 8px; } .tabs button:nth-child(3) { border-left: 0; } }
 .stepper { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; padding: 14px 22px; border-bottom: 1px solid var(--line); counter-reset: s; }
-.stepper li { counter-increment: s; font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: #9a9a94; }
+.stepper li { counter-increment: s; font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b6b66; }
 .stepper li::before { content: counter(s) ". "; }
 .stepper li.on { color: var(--ink); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; text-decoration-color: var(--yellow); }
 .stepper li.done { color: var(--ink); }
@@ -470,6 +527,33 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
 .cta-row label.btn { cursor: pointer; }
 #cross:empty { display: none; }
 #cross .btn-quiet { flex: 1; font-size: 15px; }
+
+/* Pricing and Pro */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+@media (max-width: 900px) { .plans { grid-template-columns: minmax(0, 1fr); } }
+.plan { position: relative; border: 2px solid var(--ink); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px; background: var(--paper); }
+.plan.best { background: var(--yellow); box-shadow: 8px 8px 0 var(--ink); }
+.plan h3 { font-family: var(--display); font-weight: 800; font-size: 28px; text-transform: uppercase; line-height: 1; }
+.plan-price { display: flex; flex-direction: column; gap: 2px; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); padding: 10px 0; }
+.plan-price b { font-family: var(--display); font-weight: 800; font-size: 48px; line-height: 1; }
+.plan-price span { font-size: 15px; font-weight: 600; }
+.plan .badge { position: absolute; top: -14px; left: 20px; background: var(--ink); color: var(--yellow); font-weight: 700; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 10px; border-radius: 4px; }
+.btn-quiet.block { width: 100%; text-align: center; text-decoration: none; }
+.plans-fine { margin-top: 18px; max-width: 860px; }
+.versus { margin-top: 44px; max-width: 900px; }
+.versus h3 { font-family: var(--display); font-weight: 800; font-size: 28px; text-transform: uppercase; margin-bottom: 14px; }
+.versus table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.versus th, .versus td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.versus thead th { font-family: var(--display); font-size: 18px; text-transform: uppercase; border-bottom: 2px solid var(--ink); }
+.versus tbody th { font-weight: 700; width: 24%; }
+.versus td:nth-child(2) { background: #fff8cc; font-weight: 600; }
+@media (max-width: 560px) { .versus table { font-size: 14px; } .versus th, .versus td { padding: 10px 6px; } }
+.pro-chip { background: var(--ink); color: var(--yellow); font-weight: 800; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 9px; border-radius: 4px; }
+.pro-line { margin-top: 6px; }
+.feedback { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; border-top: 1px solid var(--line); padding-top: 14px; font-weight: 600; }
+.toast { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 20; max-width: min(560px, calc(100vw - 32px)); background: var(--ink); color: #fff; padding: 14px 18px; border-radius: 8px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
+@media (max-width: 720px) { .nav .nav-cta { display: none; } }
 </style>
 </head>
 <body>
@@ -478,11 +562,13 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   <div class="wrap">
     <a class="logo" href="#top" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
     <nav class="nav" aria-label="Main">
-      <a href="#products">The three checks</a>
+      <a href="#products">The checks</a>
+      <a href="#pricing">Pricing</a>
       <a href="#method">How we price</a>
       <a href="#guides">Guides</a>
       <a href="#faq">Questions</a>
-      <a class="btn keep" style="font-size:19px;padding:9px 16px" href="#tool">Start a check</a>
+      <a class="btn keep nav-cta" style="font-size:19px;padding:9px 16px" href="#tool">Start a check</a>
+      <span class="pro-chip" id="pro-chip" hidden>Pro</span>
     </nav>
   </div>
 </header>
@@ -492,16 +578,16 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <h1>Don't sign that repair estimate yet.</h1>
-        <p class="lede">Upload it first. In about a minute you'll know which lines are fair, which are above market, and exactly what to say to the shop.</p>
+        <p class="lede">Upload it first. In about a minute you'll know which lines are fair, which are above market, and exactly what to say. Car repairs, home repairs and contractor quotes.</p>
         <div class="cta-row">
-          <label class="btn" for="hero-file" id="hero-upload" tabindex="0" role="button">Upload my estimate</label>
+          <label class="btn" for="hero-file" id="hero-upload" tabindex="0">Upload my estimate</label>
           <input id="hero-file" type="file" accept="image/*,application/pdf" hidden>
-          <span><a href="#tool" data-start="check">or type it in</a> · Free verdict</span>
+          <span><a href="#tool" data-start="check">or type what the shop told you</a> · Free verdict</span>
         </div>
         <ul class="proof">
-          <li>No account</li>
-          <li>No shop pays us</li>
-          <li>Refund if we can't read it</li>
+          <li>No app, no account</li>
+          <li>No shop or contractor pays us</li>
+          <li>Not useful? Full refund</li>
         </ul>
         <p class="source">Nearly 9 in 10 US drivers say a repair shop has overcharged them, or may have. Source: Jerry driver survey.</p>
       </div>
@@ -556,12 +642,12 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   <section id="products" aria-labelledby="products-title">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="products-title">Three checks. Start with the question you have.</h2>
-        <p>Each one gives you a free first answer. Pay only if you want the full report.</p>
+        <h2 id="products-title">Four checks. Start with the question you have.</h2>
+        <p>Each one gives you a free first answer. Pay for one report, or go Pro and unlock them all.</p>
       </div>
       <div class="products">
         <article class="product lead">
-          <img src="img/check.jpg" alt="A man reading a printed repair estimate at a repair shop counter, pen in hand" width="900" height="600">
+          <img src="img/check.jpg" alt="A man reading a printed repair estimate at a repair shop counter, pen in hand" width="900" height="600" loading="lazy" decoding="async">
           <p class="pain">Am I being overcharged?</p>
           <div class="name"><span>Repair Quote Checker</span><b>$4.99</b></div>
           <ul class="ticks">
@@ -574,7 +660,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
           <a class="btn block" href="#tool" data-start="check">Check one estimate</a>
         </article>
         <article class="product">
-          <img src="img/compare.jpg" alt="A woman at a kitchen table comparing two printed repair estimates side by side" width="900" height="600">
+          <img src="img/compare.jpg" alt="A woman at a kitchen table comparing two printed repair estimates side by side" width="900" height="600" loading="lazy" decoding="async">
           <p class="pain">Which mechanic should I trust?</p>
           <div class="name"><span>Repair Quote Comparator</span><b>$14.99</b></div>
           <ul class="ticks">
@@ -587,7 +673,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
           <a class="btn block" href="#tool" data-start="compare">Compare estimates</a>
         </article>
         <article class="product">
-          <img src="img/need.jpg" alt="A mechanic showing a worn brake pad to a customer beside a car on a lift" width="900" height="600">
+          <img src="img/need.jpg" alt="A mechanic showing a worn brake pad to a customer beside a car on a lift" width="900" height="600" loading="lazy" decoding="async">
           <p class="pain">Do I actually need these repairs?</p>
           <div class="name"><span>Repair Necessity Checker</span><b>$9.99</b></div>
           <ul class="ticks">
@@ -599,6 +685,79 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
           </ul>
           <a class="btn block" href="#tool" data-start="need">Check a repair list</a>
         </article>
+        <article class="product">
+          <img src="img/any.jpg" alt="Homeowner reading a printed air conditioning replacement quote beside the outdoor AC unit, checking it on her phone" width="900" height="600" loading="lazy" decoding="async">
+          <p class="pain">Is this contractor's price fair?</p>
+          <div class="name"><span>Any Quote Checker</span><b>$9.99</b></div>
+          <ul class="ticks">
+            <li>HVAC, roofing, plumbing, electrical and more</li>
+            <li>Appliance, remodeling, moving and auto body</li>
+            <li>Fair range for every line, local benchmarks</li>
+            <li>Vague or padded charges flagged</li>
+            <li>A script for the provider</li>
+          </ul>
+          <a class="btn block" href="#tool" data-start="any">Check any quote</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" aria-labelledby="pricing-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="pricing-title">Pay once, or never think about it again.</h2>
+        <p>Every check starts free. Unlock a single report, or go Pro for every quote that comes your way: the car, the furnace, the roof.</p>
+      </div>
+      <div class="plans">
+        <article class="plan">
+          <h3>Single report</h3>
+          <p class="plan-price"><b>$4.99</b><span>to $14.99, one time</span></p>
+          <ul class="ticks">
+            <li>One full report, kept on your device</li>
+            <li>Repair check $4.99 · Necessity $9.99</li>
+            <li>Any quote $9.99 · Compare up to five $14.99</li>
+            <li>No subscription, no account</li>
+          </ul>
+          <a class="btn-quiet block" href="#tool">Start a free check</a>
+        </article>
+        <article class="plan">
+          <h3>Pro monthly</h3>
+          <p class="plan-price"><b>$12.99</b><span>per month · cancel anytime</span></p>
+          <ul class="ticks">
+            <li>Every full report unlocked, all four checks</li>
+            <li>Car, home and contractor quotes</li>
+            <li>Compare up to five quotes, as often as you need</li>
+            <li>Fair use: up to 30 reports a month</li>
+          </ul>
+          <button class="btn block" type="button" data-plan="monthly">Go Pro monthly</button>
+        </article>
+        <article class="plan best">
+          <span class="badge">Best value · save 49%</span>
+          <h3>Pro yearly</h3>
+          <p class="plan-price"><b>$79</b><span>per year · about $6.58 a month</span></p>
+          <ul class="ticks">
+            <li>Everything in Pro monthly</li>
+            <li>Covers a year of car service, home repairs and projects</li>
+            <li>One payment a year instead of twelve</li>
+            <li>Cancel anytime; it runs to the end of the year you paid for</li>
+          </ul>
+          <button class="btn block" type="button" data-plan="yearly">Go Pro yearly</button>
+        </article>
+      </div>
+      <p class="fine plans-fine">Payments by Dodo Payments, our merchant of record, so US sales tax is handled for you. Not useful? Full refund within 7 days of a single report. <button type="button" class="linkish" id="restore-open">Already Pro? Restore access</button> <button type="button" class="linkish" id="manage-btn" hidden>Manage my subscription</button></p>
+
+      <div class="versus">
+        <h3>Why QuoteGauge, not another app</h3>
+        <table>
+          <thead><tr><th scope="col"></th><th scope="col">QuoteGauge</th><th scope="col">Typical repair-check app</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Get started</th><td>Open the site and upload. Nothing to install</td><td>Download from an app store</td></tr>
+            <tr><th scope="row">Pay</th><td>One report, or Pro monthly or yearly</td><td>Subscription, sometimes billed weekly</td></tr>
+            <tr><th scope="row">Covers</th><td>Car repairs, home repairs and contractor quotes</td><td>Car repairs</td></tr>
+            <tr><th scope="row">Before you pay</th><td>A free verdict on your own quote</td><td>Varies</td></tr>
+            <tr><th scope="row">What you walk away with</th><td>Fair range per line, what to question, the words to say</td><td>A score or a range</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
@@ -614,6 +773,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
           <button type="button" role="tab" id="tab-check" aria-selected="true" aria-controls="tool-panel"><b>Check an estimate</b><span>$4.99</span></button>
           <button type="button" role="tab" id="tab-compare" aria-selected="false" aria-controls="tool-panel"><b>Compare estimates</b><span>$14.99</span></button>
           <button type="button" role="tab" id="tab-need" aria-selected="false" aria-controls="tool-panel"><b>Do I need it?</b><span>$9.99</span></button>
+          <button type="button" role="tab" id="tab-any" aria-selected="false" aria-controls="tool-panel"><b>Any other quote</b><span>$9.99</span></button>
         </div>
         <div id="tool-panel" role="tabpanel">
         <ol class="stepper" aria-label="Steps">
@@ -631,7 +791,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
                 <div class="filebox"><input id="check-photo" type="file" accept="image/*,application/pdf"><span class="file-note" hidden></span></div>
               </div>
               <div class="field">
-                <label for="check-text">Or type the lines and prices</label>
+                <label for="check-text">Or type the lines and prices, or what the shop told you on the phone</label>
                 <textarea id="check-text" rows="5" spellcheck="false" placeholder="Front brake pads and rotors ... $689.00&#10;Brake fluid flush .............. $179.00"></textarea>
               </div>
             </div>
@@ -657,11 +817,45 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
               </div>
             </div>
 
+            <div id="in-any" hidden>
+              <div class="field">
+                <label for="any-photo">Photo or PDF of the quote</label>
+                <div class="filebox"><input id="any-photo" type="file" accept="image/*,application/pdf"><span class="file-note" hidden></span></div>
+              </div>
+              <div class="field">
+                <label for="any-text">Or type the lines and prices, or what you were told</label>
+                <textarea id="any-text" rows="5" spellcheck="false" placeholder="Replace 3-ton AC condenser and coil ... $8,900&#10;Refrigerant recharge ......................... $650&#10;Duct cleaning ..................................... $499"></textarea>
+              </div>
+            </div>
+
             <button id="next-btn" class="btn block" type="button">Next</button>
             <button id="example-btn" class="linkish" type="button">Nothing to hand? Try it with an example</button>
           </div>
 
           <div id="step-2" hidden>
+            <div id="any-fields" hidden>
+              <div class="row-2x">
+                <div class="field"><label for="any-cat">What is the quote for?</label>
+                  <select id="any-cat">
+                    <option value="hvac">Heating or air conditioning (HVAC)</option>
+                    <option value="roofing">Roofing</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="appliance">Appliance repair</option>
+                    <option value="remodel">Remodeling or general contractor</option>
+                    <option value="landscaping">Landscaping or tree work</option>
+                    <option value="pest">Pest control</option>
+                    <option value="moving">Moving</option>
+                    <option value="autobody">Auto body or collision</option>
+                    <option value="other">Something else</option>
+                  </select>
+                </div>
+                <div class="field"><label for="any-zip">ZIP code of the job</label><input id="any-zip" type="text" inputmode="numeric" maxlength="5" placeholder="30301" autocomplete="postal-code"></div>
+              </div>
+              <div class="field"><label for="any-provider">Who quoted it? (optional)</label><input id="any-provider" type="text" maxlength="60" placeholder="Local family business, national franchise…" autocomplete="off"></div>
+              <p class="hint" id="any-hint" hidden>Leave the ZIP blank if it's printed on what you uploaded.</p>
+            </div>
+            <div id="car-fields">
             <p class="hint" id="car-hint" hidden>Leave these four blank if they are printed on what you uploaded. We'll read them from it.</p>
             <div class="row-3">
               <div class="field"><label for="car-year">Year</label><input id="car-year" type="number" inputmode="numeric" min="1980" max="2027" placeholder="2017"></div>
@@ -681,6 +875,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
                 <label><input type="radio" name="shop" id="shop-chain" value="a national repair chain">Chain</label>
               </div>
             </fieldset>
+            </div>
             <div class="actions">
               <button id="back-btn" class="btn-quiet" type="button">Back</button>
               <button id="check-btn" class="btn" type="submit">Check this estimate</button>
@@ -688,7 +883,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
           </div>
 
           <div id="form-error" class="notice" role="alert" hidden></div>
-          <p class="fine">Not stored after your report · No account · No shop pays us. AI estimate, not an inspection of your car. <a href="#method">How we price a repair</a></p>
+          <p class="fine">Not stored after your report · No account · No shop pays us. AI estimate, not an inspection. <a href="how-we-price.html">How we price</a></p>
         </form>
 
         <div id="result" class="panel" hidden>
@@ -698,6 +893,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
             <p id="unlock-copy"></p>
             <button id="unlock-btn" class="btn block" type="button">Unlock</button>
             <p class="fine" id="unlock-anchor" style="color:var(--ink)"></p>
+            <p class="fine pro-line" id="pro-line">Checking more than one quote this year? <a href="#pricing">Pro unlocks every report from $6.58 a month.</a></p>
             <div id="unlock-error" class="notice" role="alert" hidden></div>
           </div>
           <div class="actions">
@@ -707,7 +903,13 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
             <button id="again-btn" class="btn-quiet" type="button">Run another check</button>
           </div>
           <div id="cross" class="actions"></div>
-          <p class="fine">AI estimate of typical prices and maintenance needs for this vehicle and area. Part brands, shop rates and the car's condition can justify a different price or priority. For anything safety-related, have the car inspected.</p>
+          <div class="feedback" id="feedback">
+            <span>Was this check right for your quote?</span>
+            <button type="button" class="btn-quiet" data-fb="yes">Yes</button>
+            <button type="button" class="btn-quiet" data-fb="no">Something's off</button>
+            <span id="fb-thanks" hidden>Thank you. It helps us get the next one right.</span>
+          </div>
+          <p class="fine">AI estimate of typical prices and needs for this job and area. Brands, local rates and the condition of the car or property can justify a different price or priority. For anything safety-related, have it inspected.</p>
         </div>
         </div>
       </div>
@@ -738,7 +940,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
             <li>The brand and grade of parts the shop plans to fit</li>
             <li>Rust, seized bolts and other things that add real labor</li>
           </ul>
-          <p>That is why some lines come back as needs verification. QuoteGauge is an AI estimate, not an inspection, and never a claim that a shop acted dishonestly.</p>
+          <p>That is why some lines come back as needs verification. QuoteGauge is an AI estimate, not an inspection, and never a claim that a shop acted dishonestly. <a href="how-we-price.html">Read the full method</a>.</p>
         </div>
       </div>
     </div>
@@ -746,7 +948,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
 
   <div class="promise">
     <div class="wrap">
-      <p>If the report can't read your estimate, you get your money back.</p>
+      <p>Not useful? Full refund within 7 days. No forms, just email us.</p>
       <a class="btn" href="#tool">Start a check</a>
     </div>
   </div>
@@ -763,6 +965,8 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
         <a href="guides/how-to-read-a-car-repair-estimate.html"><span>How to Read a Car Repair Estimate</span><span aria-hidden="true">→</span></a>
         <a href="guides/what-to-say-when-a-repair-quote-is-too-high.html"><span>What to Say When a Car Repair Quote Is Too High</span><span aria-hidden="true">→</span></a>
         <a href="guides/common-car-repair-upsells.html"><span>Common Car Repair Upsells, and When They Are Actually Needed</span><span aria-hidden="true">→</span></a>
+        <a href="guides/is-my-hvac-quote-fair.html"><span>How to Tell if an HVAC Quote Is Fair</span><span aria-hidden="true">→</span></a>
+        <a href="guides/how-to-check-a-roofing-quote.html"><span>How to Check a Roofing Quote Before You Sign</span><span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -772,15 +976,18 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
       <div class="sec-head"><h2 id="faq-title">Questions, answered plainly.</h2></div>
       <div class="faq">
         <details open><summary>How do I know if my car repair quote is fair?</summary><p>Compare each line of the quote with the typical price for your vehicle, your area and the type of shop. QuoteGauge does this in about a minute: add the estimate and it marks every line as fair, above market or needs verification, and totals the amount above market.</p></details>
-        <details><summary>How much does QuoteGauge cost?</summary><p>The first answer on every check is free. Full reports are one-time purchases with no subscription: the Repair Quote Checker is $4.99, the Repair Necessity Checker is $9.99 and the Repair Quote Comparator is $14.99.</p></details>
+        <details><summary>How much does QuoteGauge cost?</summary><p>The first answer on every check is free. A single full report is a one-time purchase: the Repair Quote Checker is $4.99, the Repair Necessity Checker and the Any Quote Checker are $9.99, and the Repair Quote Comparator is $14.99. QuoteGauge Pro unlocks every full report for $12.99 a month or $79 a year, and can be cancelled anytime.</p></details>
+        <details><summary>What is QuoteGauge Pro?</summary><p>QuoteGauge Pro is a subscription that unlocks every full report across all four checks, for car repairs, home repairs and contractor quotes, with fair use of up to 30 reports a month. It costs $12.99 a month or $79 a year, and you can cancel anytime. There is no app to install and no account to create.</p></details>
+        <details><summary>Can QuoteGauge check home repair and contractor quotes?</summary><p>Yes. The Any Quote Checker reads quotes for heating and air conditioning, roofing, plumbing, electrical work, appliance repair, remodeling, landscaping, pest control, moving and auto body work. It gives a fair range for each line for your ZIP code, flags vague or padded charges, and writes a short script to use with the provider.</p></details>
         <details><summary>How do I compare repair quotes from different mechanics?</summary><p>Add two to five estimates for the same repair to the Repair Quote Comparator. It lines them up side by side, shows the parts and labor differences, points out what each estimate leaves out, ranks them by price and by value, and recommends the best value with its caveats.</p></details>
         <details><summary>How do I know if I really need the repairs my mechanic recommended?</summary><p>Add the inspection report or repair list to the Repair Necessity Checker. It explains each repair in plain language, sorts it into do now, do soon, can wait or verify first, lists the symptoms you would notice and the questions to ask, and says when an independent inspection is worth getting. It cannot inspect your car, so safety items are never marked as able to wait.</p></details>
         <details><summary>How accurate are QuoteGauge's price ranges?</summary><p>They are AI estimates built from standard labor times and typical regional labor rates. They are closest on routine jobs such as filters, fluid services and brake pads, and wider on large repairs, where honest shops can differ by hundreds of dollars. Use them to ask better questions, not as a guarantee.</p></details>
         <details><summary>Does QuoteGauge work for dealership quotes?</summary><p>Yes. You say whether the estimate is from a dealership, an independent shop or a national chain. Dealerships usually charge more, so QuoteGauge compares a dealership estimate with dealership prices.</p></details>
         <details><summary>What should I do if my repair quote is too high?</summary><p>Ask the shop to explain each line marked above market, ask which items are needed now and which can wait, and get a second estimate for the expensive ones. The full Repair Quote Checker report includes a short script with the specific items and fair figures to mention.</p></details>
-        <details><summary>Which vehicles and repairs does QuoteGauge cover?</summary><p>Most cars, SUVs and light trucks sold in the United States, for common maintenance and mechanical repairs such as brakes, fluids, filters, belts, batteries and suspension. It does not cover collision or body work, or insurance estimates.</p></details>
+        <details><summary>Which vehicles and repairs does QuoteGauge cover?</summary><p>Most cars, SUVs and light trucks sold in the United States, for common maintenance and mechanical repairs such as brakes, fluids, filters, belts, batteries and suspension. Collision and body work quotes go through the Any Quote Checker. Insurance claim estimates are not covered.</p></details>
+        <details><summary>What if the report isn't useful?</summary><p>Email hello@quotegauge.pro within 7 days of buying a single report and say what was wrong. You get a full refund, with no forms.</p></details>
         <details><summary>Does QuoteGauge keep my estimate?</summary><p>No. Your estimate is sent to our AI provider to be analysed, and QuoteGauge does not store it after the report is produced. QuoteGauge does not sell personal data.</p></details>
-        <details><summary>Is QuoteGauge connected to any repair shop?</summary><p>No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships or parts sellers.</p></details>
+        <details><summary>Is QuoteGauge connected to any repair shop or contractor?</summary><p>No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships, contractors or parts sellers.</p></details>
       </div>
     </div>
   </section>
@@ -794,15 +1001,29 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
         <a href="privacy.html">Privacy</a>
         <a href="terms.html">Terms</a>
         <a href="refunds.html">Refunds</a>
-        <span>hello@quotegauge.example</span>
+        <a href="how-we-price.html">How we price</a>
+        <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a>
       </div>
     </div>
-    <p class="small">QuoteGauge provides AI-generated estimates for information only. It is not an inspection, appraisal or professional mechanical advice, and it is not affiliated with any repair shop, dealership or vehicle manufacturer.</p>
+    <p class="small">QuoteGauge provides AI-generated estimates for information only. It is not an inspection, appraisal or professional mechanical advice, and it is not affiliated with any repair shop, dealership, contractor or manufacturer.</p>
     <p class="small">© 2026 QuoteGauge.</p>
   </div>
 </footer>
 
 <div class="sticky" id="sticky"><a class="btn yellow block" href="#tool" data-start="check">Check my estimate free</a></div>
+
+<dialog id="restore-dialog" aria-labelledby="restore-title">
+  <h3 id="restore-title">Restore Pro on this device</h3>
+  <p>Enter the subscription ID from your QuoteGauge Pro receipt email. It starts with <b>sub_</b>.</p>
+  <div class="field"><label for="restore-id">Subscription ID</label><input id="restore-id" type="text" autocomplete="off" spellcheck="false" placeholder="sub_..."></div>
+  <div id="restore-error" class="notice" role="alert" hidden></div>
+  <div class="dialog-actions">
+    <button id="restore-go" class="btn" type="button">Restore Pro</button>
+    <button id="restore-cancel" class="btn-quiet" type="button">Cancel</button>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" hidden></div>
 
 <dialog id="pay-dialog" aria-labelledby="pay-title">
   <h3 id="pay-title">Test mode</h3>
@@ -814,7 +1035,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
 </dialog>
 
 <script>
-// QuoteGauge core: prompts, validation and scoring for the three products.
+// QuoteGauge core: prompts, validation and scoring for the four products.
 // One file, used by the server functions (require) and inlined into the page.
 (function (root, factory) {
   if (typeof module === "object" && module.exports) module.exports = factory();
@@ -1011,7 +1232,49 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     teaser: function (r) { return { vehicleRead: r.vehicleRead, locationRead: r.locationRead, counts: r.counts, items: r.items.map(function (it) { return { name: it.name }; }) }; }
   };
 
-  return { PRODUCTS: { check: check, compare: compare, need: need }, SHOPS: SHOPS, parseJson: parseJson, cleanVehicle: cleanVehicle };
+  // 4. Any Quote Checker: home, contractor and other service quotes, scored like the Repair Quote Checker
+  var CATEGORIES = {
+    hvac: "heating and air conditioning (HVAC)", roofing: "roofing", plumbing: "plumbing", electrical: "electrical work",
+    appliance: "appliance repair", remodel: "remodeling or general contracting", landscaping: "landscaping or tree work",
+    pest: "pest control", moving: "moving", autobody: "auto body or collision repair", other: "another home or personal service"
+  };
+  var anyq = {
+    title: "Any Quote Checker", price: 9.99,
+    clean: function (body) {
+      var text = str(body.text, 6000), n = imageCount(body), cat = Object.prototype.hasOwnProperty.call(CATEGORIES, body.category) ? body.category : null;
+      var zip = str(body.zip, 5);
+      if (!cat || n > 3 || (!text && !n)) return null;
+      if (zip && !/^\d{5}$/.test(zip)) return null;
+      if (!zip && !n) return null;
+      return { category: cat, zip: zip, text: text, images: n, provider: str(body.provider, 60).replace(/[^\w .,&'\-]/g, "") };
+    },
+    prompt: function (i) {
+      return [
+        "You are an independent US pricing analyst helping a homeowner or consumer check one quote for " + CATEGORIES[i.category] + ".",
+        i.zip ? "Location ZIP code: " + i.zip + "." : "The customer did not enter a location. Read the provider's city or ZIP code from the document; if it is missing, use typical US prices.",
+        i.provider ? "The customer describes the provider as: " + i.provider + "." : "",
+        i.images ? "The quote is in the attached image or images, which are pages of one quote. Read every line item and price from them." : "",
+        i.text ? "Quote text from the customer:\n<quote>\n" + i.text + "\n</quote>" : "",
+        "For each line item give a fair price range in USD (materials plus labor) for this job in this area, based on typical labor time, regional labor rates for licensed professionals in this trade, and typical material or equipment cost from economy to premium quality. If the quote is one lump sum, treat it as one line and judge the whole job.",
+        "Real prices vary widely. For any line over $500 make the range wide enough that its top is a price a reputable, licensed and insured provider might honestly charge with quality materials. Permits, disposal, warranties and brand-name equipment legitimately add cost.",
+        "Set needs_verification to true when a fair price cannot be judged without seeing the site or knowing more (hidden damage, unclear scope, sizes or quantities missing, unreadable prices). Set questionable to true for charges commonly padded or sold as upsells in this trade, or that look unnecessary for the described job.",
+        "Skip subtotal, tax and total lines. Do not invent line items. If a price is unreadable set quoted to null.",
+        "Write a short, polite, firm script (5-8 sentences) the customer can use with the provider to question above-market items, ask for the scope behind vague lines and request a better price, naming specific items and fair figures.",
+        RULES.replace("inspect the car", "inspect the property or item").replace("a shop", "a provider"),
+        "Shape: {\"readable\": true, \"job_read\": \"the job in a few words\", \"location_read\": \"city or ZIP as read from the document, or empty\", \"summary\": \"one sentence\", \"labor_rate_low\": number|null, \"labor_rate_high\": number|null, \"items\": [{\"name\": \"\", \"quoted\": number|null, \"fair_low\": number, \"fair_high\": number, \"labor_hours\": number|null, \"parts_low\": number|null, \"parts_high\": number|null, \"needs_verification\": boolean, \"questionable\": boolean, \"note\": \"one short sentence\"}], \"script\": \"\", \"confidence\": \"low|medium|high\", \"caveats\": \"one or two sentences\"}",
+        "If there is no readable quote reply {\"readable\": false}."
+      ].filter(Boolean).join("\n\n");
+    },
+    normalise: function (raw, input) {
+      var r = check.normalise(raw, input);
+      r.jobRead = str(raw.job_read, 120);
+      return r;
+    },
+    valid: function (r) { return check.valid(r); },
+    teaser: function (r) { var t = check.teaser(r); t.jobRead = r.jobRead; return t; }
+  };
+
+  return { PRODUCTS: { check: check, compare: compare, need: need, any: anyq }, SHOPS: SHOPS, CATEGORIES: CATEGORIES, parseJson: parseJson, cleanVehicle: cleanVehicle };
 });
 </script>
 <script>
@@ -1038,8 +1301,14 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
       step: "Repair list", go: "Check these repairs", busy: "Reviewing each repair…",
       unlock: "Urgency for every item, what each repair does, symptoms to look for, questions to ask and where a second inspection is worth it.",
       missing: "Add a photo of the inspection report or type the recommended repairs."
+    },
+    any: {
+      step: "Quote", go: "Check this quote", busy: "Pricing every line…",
+      unlock: "Fair range for every line, local labor and materials benchmarks, vague or padded charges explained, and a script for the provider.",
+      missing: "Add a photo of the quote or type its lines."
     }
   };
+  var CAT = { hvac: "Heating & air conditioning", roofing: "Roofing", plumbing: "Plumbing", electrical: "Electrical", appliance: "Appliance repair", remodel: "Remodeling / contractor", landscaping: "Landscaping / tree work", pest: "Pest control", moving: "Moving", autobody: "Auto body / collision", other: "Service quote" };
   var VERDICT = { fair: "Looks fair", mixed: "Mostly fair, but question some charges", above: "Above market", verify: "Needs verification" };
   var TAG = { fair: "Fair", above: "Above market", verify: "Needs verification" };
   var URG = { now: "Do now", soon: "Do soon", later: "Can wait", verify: "Verify first" };
@@ -1145,7 +1414,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   }
   function setProduct(p) {
     state.product = p;
-    ["check", "compare", "need"].forEach(function (k) {
+    ["check", "compare", "need", "any"].forEach(function (k) {
       $("tab-" + k).setAttribute("aria-selected", k === p ? "true" : "false");
       $("tab-" + k).tabIndex = k === p ? 0 : -1;
       $("in-" + k).hidden = k !== p;
@@ -1153,6 +1422,8 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     $("st-1").textContent = COPY[p].step;
     $("check-btn").textContent = COPY[p].go;
     $("shop-field").hidden = p === "compare";
+    $("st-2").textContent = p === "any" ? "Job details" : "Your car";
+    $("car-fields").hidden = p === "any"; $("any-fields").hidden = p !== "any";
     $("form-error").hidden = true;
     if (!$("result").hidden) { $("result").hidden = true; $("quote-form").hidden = false; }
     setStep(1);
@@ -1168,6 +1439,10 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     if (p === "need") {
       body.text = $("need-text").value; body.symptoms = $("need-symptoms").value;
       blobs = ($("need-photo")._blobs || []).slice();
+    }
+    if (p === "any") {
+      body = { category: $("any-cat").value, zip: $("any-zip").value.trim(), provider: $("any-provider").value, text: $("any-text").value };
+      blobs = ($("any-photo")._blobs || []).slice();
     }
     if (p === "compare") {
       body.quotes = [];
@@ -1217,10 +1492,10 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   function tag(cls, text) { return "<span class=\"tag " + cls + "\">" + esc(text) + "</span>"; }
   function lock(text) { return "<span class=\"lock\">" + esc(text) + "</span>"; }
 
-  function renderCheck(r, open) {
+  function renderCheck(r, open, any) {
     var h = "<div class=\"verdict " + r.verdict + "\"><span class=\"k\">Verdict</span><strong>" + VERDICT[r.verdict] + "</strong><p>" + esc(r.summary || (r.flagged + " of " + r.items.length + " lines need a second look.")) + "</p></div>";
     h += "<div class=\"figs\"><div><span class=\"k\">Quoted</span><b>" + money(r.quoted) + "</b></div><div><span class=\"k\">Fair range</span><b>" + (open ? range(r.lo, r.hi) : lock("$•••–$•••")) + "</b></div><div><span class=\"k\">Above market by</span><b>" + money(Math.max(0, r.over)) + "</b></div></div>";
-    if (open && r.rateLo != null && r.rateHi != null) h += "<p class=\"bench\"><span class=\"k\">Local labor benchmark</span> " + range(r.rateLo, r.rateHi) + " per hour for this type of shop</p>";
+    if (open && r.rateLo != null && r.rateHi != null) h += "<p class=\"bench\"><span class=\"k\">Local labor benchmark</span> " + range(r.rateLo, r.rateHi) + " per hour for this " + (any ? "trade" : "type of shop") + "</p>";
     h += "<div class=\"k sub\">Line by line · " + r.flagged + " of " + r.items.length + " flagged</div><div class=\"rows\">";
     h += r.items.map(function (it) {
       var m = tag(it.rating, TAG[it.rating]) + (it.questionable ? tag("q", "Questionable charge") : "");
@@ -1228,13 +1503,13 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
         m += "<span>Fair: " + range(it.lo, it.hi) + "</span>";
         var b = [];
         if (it.hours != null) b.push(it.hours + " labor hr");
-        if (it.pLo != null && it.pHi != null) b.push("parts " + range(it.pLo, it.pHi));
+        if (it.pLo != null && it.pHi != null) b.push((any ? "materials " : "parts ") + range(it.pLo, it.pHi));
         if (b.length) m += "<span>" + esc(b.join(" · ")) + "</span>";
         if (it.note) m += "<span class=\"wide\">" + esc(it.note) + "</span>";
       } else m += lock("Fair: $•••–$•••");
       return "<div class=\"row\"><div class=\"row-name\">" + esc(it.name) + "</div><div class=\"row-num\">" + money(it.quoted) + "</div><div class=\"row-meta\">" + m + "</div></div>";
     }).join("") + "</div>";
-    if (open && r.script) h += "<div class=\"k sub\">What to say to the shop</div><pre class=\"script\" id=\"script-text\">" + esc(r.script) + "</pre>";
+    if (open && r.script) h += "<div class=\"k sub\">What to say to the " + (any ? "provider" : "shop") + "</div><pre class=\"script\" id=\"script-text\">" + esc(r.script) + "</pre>";
     if (open) h += "<p class=\"dim\">Confidence: " + esc(r.confidence) + ". " + esc(r.caveats) + "</p>";
     return h;
   }
@@ -1273,18 +1548,22 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   }
 
   function render() {
-    var p = state.product, r = state.report, open = state.unlocked, v = state.vehicle;
-    var carName = v.unknown ? (r.vehicleRead || "Vehicle not shown on the estimate") : v.year + " " + v.make + " " + v.model;
-    var place = v.unknown ? (r.locationRead || "Location not shown") : "ZIP " + v.zip;
-    var head = "<div class=\"rep-head\"><div><b>" + esc(carName) + "</b><span>" + esc(place) + (p === "compare" ? "" : " · " + esc(SHOP[v.shop])) + "</span></div><span class=\"k\">" + esc(P[p].title) + "</span></div>";
-    $("report").innerHTML = head + (p === "check" ? renderCheck(r, open) : p === "compare" ? renderCompare(r, open) : renderNeed(r, open));
+    var p = state.product, r = state.report, open = state.unlocked, v = state.vehicle, head;
+    if (p === "any") {
+      head = "<div class=\"rep-head\"><div><b>" + esc(r.jobRead || CAT[v.category] || "Your quote") + "</b><span>" + esc(CAT[v.category] || "") + " · " + esc(v.zip ? "ZIP " + v.zip : (r.locationRead || "Location not shown")) + "</span></div><span class=\"k\">" + esc(P[p].title) + "</span></div>";
+    } else {
+      var carName = v.unknown ? (r.vehicleRead || "Vehicle not shown on the estimate") : v.year + " " + v.make + " " + v.model;
+      var place = v.unknown ? (r.locationRead || "Location not shown") : "ZIP " + v.zip;
+      head = "<div class=\"rep-head\"><div><b>" + esc(carName) + "</b><span>" + esc(place) + (p === "compare" ? "" : " · " + esc(SHOP[v.shop])) + "</span></div><span class=\"k\">" + esc(P[p].title) + "</span></div>";
+    }
+    $("report").innerHTML = head + (p === "check" || p === "any" ? renderCheck(r, open, p === "any") : p === "compare" ? renderCompare(r, open) : renderNeed(r, open));
     $("r-unlock").hidden = open;
     $("unlock-copy").textContent = COPY[p].unlock;
     var price = "$" + P[p].price.toFixed(2), title, anchor;
-    if (p === "check") {
+    if (p === "check" || p === "any") {
       var avoid = (r.over || 0) + (r.questioned || 0);
       title = avoid > 0 ? "Up to " + money(avoid) + " of this estimate may be avoidable. See exactly where." : (r.flagged ? r.flagged + " lines need a closer look. See which, and what to ask." : "Looks fair. See the fair range for every line.");
-      anchor = price + " to check a " + money(r.quoted) + " estimate. ";
+      anchor = price + " to check a " + money(r.quoted) + (p === "any" ? " quote. " : " estimate. ");
     } else if (p === "compare") {
       title = "These estimates are " + money(r.spread) + " apart. See which is the best value.";
       anchor = price + " before you commit to one of them. ";
@@ -1293,11 +1572,13 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
       anchor = price + " before you approve the work. ";
     }
     $("unlock-title").textContent = title;
-    $("unlock-anchor").textContent = anchor + "Refund if the report couldn't read what you uploaded.";
-    $("unlock-btn").textContent = "Unlock my full report · " + price;
-    var alt = { check: [["compare", "Got a second quote? Compare them"], ["need", "Not sure you need it all? Check the repairs"]], compare: [["check", "Check one estimate line by line"], ["need", "Check whether the repairs are needed"]], need: [["check", "Check the prices on the estimate"], ["compare", "Compare estimates from other shops"]] }[p];
+    $("unlock-anchor").textContent = anchor + "Not useful? Full refund within 7 days.";
+    $("unlock-btn").textContent = member() ? "Open my full report · Pro" : "Unlock my full report · " + price;
+    $("pro-line").hidden = !!member();
+    var alt = { check: [["compare", "Got a second quote? Compare them"], ["need", "Not sure you need it all? Check the repairs"]], compare: [["check", "Check one estimate line by line"], ["need", "Check whether the repairs are needed"]], need: [["check", "Check the prices on the estimate"], ["compare", "Compare estimates from other shops"]], any: [["any", "Check another quote"], ["check", "Got a car repair estimate? Check it"]] }[p];
     $("cross").innerHTML = alt.map(function (x) { return "<button type=\"button\" class=\"btn-quiet\" data-go=\"" + x[0] + "\">" + esc(x[1]) + "</button>"; }).join("");
-    $("copy-btn").hidden = !(open && p === "check" && r.script);
+    $("copy-btn").hidden = !(open && (p === "check" || p === "any") && r.script);
+    $("fb-thanks").hidden = true; Array.prototype.forEach.call(document.querySelectorAll("[data-fb]"), function (b) { b.hidden = false; });
     try { localStorage.setItem("qg-last", JSON.stringify({ product: p, report: r, full: state.full, unlocked: open, sealed: state.sealed, vehicle: v, at: Date.now() })); } catch (e) {}
   }
 
@@ -1317,11 +1598,11 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   }
 
   /* Events */
-  ["check", "compare", "need"].forEach(function (k) { $("tab-" + k).addEventListener("click", function () { setProduct(k); }); });
+  ["check", "compare", "need", "any"].forEach(function (k) { $("tab-" + k).addEventListener("click", function () { setProduct(k); }); });
   Array.prototype.forEach.call(document.querySelectorAll("[data-start]"), function (el) {
     el.addEventListener("click", function () { setProduct(el.getAttribute("data-start")); });
   });
-  wirePhoto($("check-photo")); wirePhoto($("need-photo"));
+  wirePhoto($("check-photo")); wirePhoto($("need-photo")); wirePhoto($("any-photo"));
   addQuote(""); addQuote("");
   $("add-quote").addEventListener("click", function () { addQuote(""); });
 
@@ -1334,17 +1615,19 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     $("form-error").hidden = true;
     var c = collect(), ok = state.product === "compare" ? (c.body.quotes || []).length >= 2 : !!(String(c.body.text || "").trim() || c.blobs.length);
     if (!ok) return showError(COPY[state.product].missing);
-    $("car-hint").hidden = !c.blobs.length;
+    $("car-hint").hidden = !c.blobs.length; $("any-hint").hidden = !c.blobs.length;
     setStep(2);
   });
   var EX = {
     check: "Front brake pads and rotors ... $689.00\nBrake fluid flush .............. $179.00\nEngine air filter ..............  $89.00\nCabin air filter ............... $119.00\nFuel system cleaning service ... $229.00\nShop supplies / disposal fee ...  $45.00",
+    any: "Replace 3-ton AC condenser and evaporator coil ... $8,900\nRefrigerant (R-454B) recharge ................. $650\nNew thermostat, installed ...................... $425\nWhole-house duct cleaning ...................... $499\nPermit and disposal ............................ $275",
     need: "Front brake pads at 3 mm, recommend replacement\nBrake fluid flush\nSerpentine belt cracked, recommend replacement\nFuel injector cleaning service\nEngine air filter dirty\nRear shocks leaking, recommend replacement"
   };
   $("example-btn").addEventListener("click", function () {
     var p = state.product;
     if (p === "check") $("check-text").value = EX.check;
     else if (p === "need") $("need-text").value = EX.need;
+    else if (p === "any") { $("any-text").value = EX.any; $("any-cat").value = "hvac"; $("any-zip").value = "30301"; }
     else Array.prototype.forEach.call($("quotes").children, function (slot, i) { if (EXAMPLES[i]) slot.querySelector(".q-text").value = EXAMPLES[i]; });
     $("car-year").value = "2017"; $("car-make").value = "Honda"; $("car-model").value = "Accord"; $("car-zip").value = "30301";
     $("next-btn").click();
@@ -1369,11 +1652,11 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     $("form-error").hidden = true;
     var c = collect();
     var input = P[state.product].clean(Object.assign({}, c.body, { images: c.blobs }));
-    if (!input) return showError("Add your car's year, make, model and a 5-digit ZIP code" + (c.blobs.length ? ", or leave all four blank and we'll read them from what you uploaded." : "."));
-    if (!input.vehicle.unknown) { try { localStorage.setItem("qg-vehicle", JSON.stringify({ "car-year": input.vehicle.year, "car-make": input.vehicle.make, "car-model": input.vehicle.model, "car-zip": input.vehicle.zip })); } catch (e2) {} }
+    if (!input) return showError(state.product === "any" ? "Choose what the quote is for and add the 5-digit ZIP code of the job" + (c.blobs.length ? ", or leave the ZIP blank and we'll read it from what you uploaded." : ".") : "Add your car's year, make, model and a 5-digit ZIP code" + (c.blobs.length ? ", or leave all four blank and we'll read them from what you uploaded." : "."));
+    if (input.vehicle && !input.vehicle.unknown) { try { localStorage.setItem("qg-vehicle", JSON.stringify({ "car-year": input.vehicle.year, "car-make": input.vehicle.make, "car-model": input.vehicle.model, "car-zip": input.vehicle.zip })); } catch (e2) {} }
     setBusy(true); track("check_started");
     (inPreview ? analysePreview(input, c.blobs) : analyseServer(c.body, c.blobs)).then(function (out) {
-      state.report = out.report; state.sealed = out.sealed; state.full = out.full; state.unlocked = false; state.vehicle = input.vehicle;
+      state.report = out.report; state.sealed = out.sealed; state.full = out.full; state.unlocked = false; state.vehicle = input.vehicle || { any: true, category: input.category, zip: input.zip };
       $("quote-form").hidden = true; $("result").hidden = false; setStep(3);
       render(); track("check_done");
       $("tool").scrollIntoView({ block: "start" });
@@ -1391,18 +1674,51 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   });
 
   function unlockError(msg) { var el = $("unlock-error"); el.textContent = msg; el.hidden = false; }
-  function openReport(paymentId) {
-    return fetch("/api/unlock", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed, paymentId: paymentId || undefined }) })
+  /* QuoteGauge Pro: a signed pass kept on this device, renewed from the subscription when it expires */
+  function proSaved() { try { return JSON.parse(localStorage.getItem("qg-pro") || "null"); } catch (e) { return null; } }
+  function member() { var m = proSaved(); return m && m.sid ? m : null; }
+  function passExp(pass) { try { return JSON.parse(atob(pass.split(".")[0].replace(/-/g, "+").replace(/_/g, "/"))).exp || 0; } catch (e) { return 0; } }
+  function post(url, data) {
+    return fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(url); e.code = j.code; e.status = r.status; throw e; } return j; }); });
+  }
+  function joinPro(sid) {
+    return post("/api/member", { subscriptionId: sid }).then(function (j) {
+      try { localStorage.setItem("qg-pro", JSON.stringify({ sid: sid, pass: j.pass, plan: j.plan, renews: j.renews })); } catch (e) {}
+      showPro(); return j.pass;
+    });
+  }
+  function freshPass() {
+    var m = member();
+    if (!m) return Promise.reject(new Error("no pro"));
+    if (m.pass && passExp(m.pass) > Date.now() + 60e3) return Promise.resolve(m.pass);
+    return joinPro(m.sid).catch(function (e) { if (e.status === 402 || e.status === 404) { try { localStorage.removeItem("qg-pro"); } catch (x) {} showPro(); } throw e; });
+  }
+  function showPro() {
+    var m = member();
+    $("pro-chip").hidden = !m; $("manage-btn").hidden = !m; $("restore-open").hidden = !!m;
+    Array.prototype.forEach.call(document.querySelectorAll("[data-plan]"), function (b) { b.disabled = !!m; if (m) b.textContent = "You're on Pro"; });
+  }
+  function toast(msg) { var t = $("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { t.hidden = true; }, 6000); }
+
+  function openReport(paymentId, pass) {
+    return fetch("/api/unlock", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed, paymentId: paymentId || undefined, pass: pass || undefined }) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok || !j.report) { var e = new Error("unlock"); e.code = j.code; throw e; } return j.report; }); })
       .then(function (report) { state.report = report; state.full = true; state.unlocked = true; render(); if (paymentId) track("unlock_paid"); });
   }
   function testDialog() {
+    $("pay-continue").hidden = false;
     $("pay-text").textContent = "Payments aren't switched on yet, so no card is charged. Once they are, this step takes a $" + P[state.product].price.toFixed(2) + " payment and then opens the full report.";
     $("pay-dialog").showModal();
   }
   $("unlock-btn").addEventListener("click", function () {
     $("unlock-error").hidden = true; track("unlock_clicked");
     if (state.full || inPreview) { testDialog(); return; }
+    if (member()) {
+      freshPass().then(function (pass) { return openReport(null, pass); }).then(function () { track("unlock_pro"); })
+        .catch(function () { unlockError("Your Pro membership couldn't be confirmed. Restore it from the Pricing section, or unlock this report on its own."); showPro(); render(); });
+      return;
+    }
     var b = $("unlock-btn"), label = b.textContent;
     b.disabled = true; b.textContent = "Opening secure checkout…";
     fetch("/api/pay", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ sealed: state.sealed }) })
@@ -1464,6 +1780,55 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     } catch (e) { $("result").hidden = true; $("quote-form").hidden = false; $("resume-btn").hidden = true; setStep(1); }
   });
 
+  /* Pro: plan buttons, restore, manage */
+  Array.prototype.forEach.call(document.querySelectorAll("[data-plan]"), function (b) {
+    b.addEventListener("click", function () {
+      var plan = b.getAttribute("data-plan"), label = b.textContent;
+      track("pro_clicked");
+      if (inPreview) { $("pay-text").textContent = "Pro isn't switched on in this preview. On the live site this opens a secure checkout for the " + plan + " plan."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
+      b.disabled = true; b.textContent = "Opening secure checkout…";
+      post("/api/subscribe", { plan: plan }).then(function (j) {
+        if (j.test) { b.disabled = false; b.textContent = label; $("pay-text").textContent = "Payments aren't switched on yet, so Pro can't be bought today. Every full report opens free while the site is in test mode."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
+        location.href = j.url;
+      }).catch(function () { b.disabled = false; b.textContent = label; toast("Checkout couldn't be opened. Please try again in a moment."); });
+    });
+  });
+  $("restore-open").addEventListener("click", function () { $("restore-error").hidden = true; $("restore-dialog").showModal(); });
+  $("restore-cancel").addEventListener("click", function () { $("restore-dialog").close(); });
+  $("restore-go").addEventListener("click", function () {
+    var id = $("restore-id").value.trim(), el = $("restore-error");
+    if (!/^[A-Za-z0-9_-]{4,80}$/.test(id)) { el.textContent = "That doesn't look like a subscription ID. It starts with sub_."; el.hidden = false; return; }
+    joinPro(id).then(function () { $("restore-dialog").close(); toast("Pro is active on this device."); if (!$("result").hidden && state.report) render(); })
+      .catch(function (e) { el.textContent = e.code === "inactive" ? "That subscription isn't active. Renew it, or email us." : e.code === "not_configured" ? "Pro isn't switched on yet." : "We couldn't find an active Pro subscription with that ID."; el.hidden = false; });
+  });
+  $("manage-btn").addEventListener("click", function () {
+    freshPass().then(function (pass) { return post("/api/portal", { pass: pass }); }).then(function (j) { location.href = j.url; })
+      .catch(function () { toast("The subscription page couldn't be opened. Email hello@quotegauge.pro and we'll help."); });
+  });
+  $("pay-cancel").addEventListener("click", function () { $("pay-continue").hidden = false; });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-fb]"), function (b) {
+    b.addEventListener("click", function () {
+      var v = b.getAttribute("data-fb");
+      try { if (LIVE) window.va("event", { name: "feedback", data: { product: state.product, answer: v, verdict: (state.report && state.report.verdict) || "" } }); } catch (e) {}
+      Array.prototype.forEach.call(document.querySelectorAll("[data-fb]"), function (x) { x.hidden = true; });
+      $("fb-thanks").textContent = v === "yes" ? "Thank you. It helps us get the next one right." : "Thanks for telling us. Email hello@quotegauge.pro with what was off and we'll look at it, and refund you if the report didn't help.";
+      $("fb-thanks").hidden = false;
+    });
+  });
+  showPro();
+
+  /* Coming back from a Pro checkout */
+  (function () {
+    var q = new URLSearchParams(location.search), sid = q.get("subscription_id");
+    if (!q.get("pro") || !sid) return;
+    try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) {}
+    var tries = 0;
+    (function attempt() {
+      joinPro(sid).then(function () { toast("Welcome to QuoteGauge Pro. Every full report is now unlocked on this device."); track("pro_joined"); })
+        .catch(function (e) { if (e.code === "inactive" && tries++ < 5) { setTimeout(attempt, 2500); return; } toast("We couldn't confirm your Pro subscription yet. Use Restore access with the ID from your receipt."); });
+    })();
+  })();
+
   /* Coming back from checkout: open the paid report */
   (function () {
     var q = new URLSearchParams(location.search), pid = q.get("payment_id");
@@ -1516,7 +1881,13 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
   /* Phone-width call to action, hidden while the tool itself is on screen */
   var sticky = $("sticky");
   if ("IntersectionObserver" in window) {
-    new IntersectionObserver(function (entries) { sticky.className = entries[0].isIntersecting ? "sticky" : "sticky show"; }).observe($("tool"));
+    /* Show the bar only when neither the hero button nor the tool is on screen, so there is one button at a time */
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { seen[en.target.id] = en.isIntersecting; });
+      sticky.className = seen["hero-upload"] || seen.tool ? "sticky" : "sticky show";
+    });
+    io.observe($("tool")); io.observe($("hero-upload"));
   }
 })();
 </script>

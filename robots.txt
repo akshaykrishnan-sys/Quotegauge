@@ -25,4 +25,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://quotegauge.example/sitemap.xml
+Sitemap: https://quotegauge.pro/sitemap.xml

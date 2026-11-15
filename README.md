@@ -16,6 +16,11 @@ serverless functions, built to deploy on Vercel.
 | `og.png` | Share image used when the site is linked on social media |
 | `api/check.js` | Reads the quote with the Claude API, returns the free verdict and a sealed full report |
 | `api/pay.js` | Starts a Dodo Payments checkout for a sealed report |
+| `api/subscribe.js` | Starts a QuoteGauge Pro checkout (monthly or yearly) |
+| `api/member.js` | Confirms an active Pro subscription with Dodo and issues a 24-hour signed pass |
+| `api/portal.js` | Opens Dodo's customer portal (cancel, change card, invoices) for a Pro member |
+| `lib/pass.js` | Signs and checks the Pro pass |
+| `how-we-price.html` | The pricing method page (built by `tools/build.py`) |
 | `api/unlock.js` | Confirms the payment with Dodo, then opens the sealed report (free in test mode) |
 | `lib/dodo.js` | Dodo Payments calls and the payment check |
 | `lib/core.js` | Prompts, validation and scoring for the three products, shared by the server and the page |
@@ -26,7 +31,7 @@ serverless functions, built to deploy on Vercel.
 
 ## Before going live
 
-1. **Domain.** Replace every `quotegauge.example` with the real domain. It appears
+1. **Domain.** Replace every `quotegauge.pro` with the real domain. It appears
    in `index.html` (canonical, Open Graph, structured data, footer email),
    `robots.txt`, `sitemap.xml`, `llms.txt` and the three policy pages.
 2. **Name.** "QuoteGauge" is a working name. Check the domain and trademark before
@@ -44,13 +49,21 @@ serverless functions, built to deploy on Vercel.
    Necessity Checker $9.99) and an API key, then set:
    - `DODO_API_KEY`
    - `DODO_MODE`: `test` or `live` (a test key only works in test mode)
-   - `DODO_PRODUCT_CHECK`, `DODO_PRODUCT_COMPARE`, `DODO_PRODUCT_NEED`: the product IDs (`pdt_...`)
+   - `DODO_PRODUCT_CHECK`, `DODO_PRODUCT_COMPARE`, `DODO_PRODUCT_NEED`, `DODO_PRODUCT_ANY`: the one-time product IDs (`pdt_...`): $4.99, $14.99, $9.99, $9.99
+   - `DODO_PLAN_MONTHLY`, `DODO_PLAN_YEARLY`: two **subscription** products for QuoteGauge Pro, $12.99 a month and $79 a year
    - `PAYMENTS_LIVE=true`
    Flow: the unlock button calls `/api/pay`, which creates a checkout tied to that
    report and redirects the buyer. Dodo sends them back to `/?payment_id=...`; the
    page calls `/api/unlock`, which fetches the payment from Dodo and opens the
    report only if it succeeded, isn't refunded, and was made for that report and
-   product. No database or webhook is needed. Try a test-mode purchase with a
+   product. No database or webhook is needed.
+   Pro: the plan buttons call `/api/subscribe`; Dodo returns the buyer to
+   `/?pro=1&subscription_id=...`; the page calls `/api/member`, which checks the
+   subscription is active and returns a signed pass valid for 24 hours. The page
+   renews it from the subscription when it runs out, so a cancelled or failed
+   subscription stops unlocking within a day. Members on a new device use
+   "Restore access" with the subscription ID from their receipt. Verify the
+   customer-portal call (`lib/dodo.js` `portalLink`) in test mode before launch. Try a test-mode purchase with a
    test card before switching `DODO_MODE` to `live`.
 6. **Abuse limits.** Every check costs an API call. Add a rate limit (for example
    Vercel Firewall rules on `/api/check`) before sending traffic to the site.

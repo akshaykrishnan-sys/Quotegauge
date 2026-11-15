@@ -10,13 +10,14 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 from content import AAA_URL, FAQ, GUIDES, PROOF, PROOF_SOURCE  # noqa: E402
 
-SITE = "https://quotegauge.example"
+SITE = "https://quotegauge.pro"
 TODAY = "2026-11-15"
-PRODUCT_NAME = {"check": "Repair Quote Checker", "compare": "Repair Quote Comparator", "need": "Repair Necessity Checker"}
+PRODUCT_NAME = {"check": "Repair Quote Checker", "compare": "Repair Quote Comparator", "need": "Repair Necessity Checker", "any": "Any Quote Checker"}
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">')
 ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "QuoteGauge", "url": SITE + "/",
-       "description": "QuoteGauge checks car repair estimates against typical local prices so drivers know what is fair before approving work."}
+       "description": "QuoteGauge checks car repair, home repair and contractor quotes against typical local prices so people know what is fair before approving work.",
+       "email": "hello@quotegauge.pro"}
 
 e = lambda s: html.escape(s, quote=False)
 read = lambda p: (ROOT / p).read_text()
@@ -86,7 +87,7 @@ if has("hero"):
                 '<div class="chip c2" aria-hidden="true"><i class="above"></i>Brake fluid flush · $179 · above market</div>'
                 '<div class="chip c3" aria-hidden="true"><i class="verify"></i>Fuel system cleaning · ask why</div>'
                 '<p class="paper-note">Example labels with illustrative figures.</p></div>') % html.escape(meta["hero"])
-card_img = {k: ('<img src="img/%s.jpg" alt="%s" width="900" height="600">' % (k, html.escape(meta[k])) if has(k) else "") for k in ("check", "compare", "need")}
+card_img = {k: ('<img src="img/%s.jpg" alt="%s" width="900" height="600" loading="lazy" decoding="async">' % (k, html.escape(meta[k])) if has(k) else "") for k in ("check", "compare", "need", "any")}
 founder = ""
 if has("founder"):
     f = meta["founder"]
@@ -97,18 +98,23 @@ home_graph = [
     ORG,
     {"@type": "WebApplication", "@id": SITE + "/#app", "name": "QuoteGauge", "url": SITE + "/",
      "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)",
-     "description": "Three web tools for car owners in the United States: a repair quote checker, a repair quote comparator and a repair necessity checker.",
+     "description": "Four web tools for consumers in the United States: a repair quote checker, a repair quote comparator, a repair necessity checker and a checker for home repair and contractor quotes.",
      "publisher": {"@id": SITE + "/#org"},
      "offers": [
          {"@type": "Offer", "name": "Free first answer", "price": "0", "priceCurrency": "USD"},
          {"@type": "Offer", "name": "Repair Quote Checker full report", "price": "4.99", "priceCurrency": "USD"},
          {"@type": "Offer", "name": "Repair Necessity Checker full report", "price": "9.99", "priceCurrency": "USD"},
+         {"@type": "Offer", "name": "Any Quote Checker full report", "price": "9.99", "priceCurrency": "USD"},
          {"@type": "Offer", "name": "Repair Quote Comparator full report", "price": "14.99", "priceCurrency": "USD"},
+         {"@type": "Offer", "name": "QuoteGauge Pro monthly", "price": "12.99", "priceCurrency": "USD",
+          "priceSpecification": {"@type": "UnitPriceSpecification", "price": "12.99", "priceCurrency": "USD", "billingDuration": "P1M", "unitCode": "MON"}},
+         {"@type": "Offer", "name": "QuoteGauge Pro yearly", "price": "79.00", "priceCurrency": "USD",
+          "priceSpecification": {"@type": "UnitPriceSpecification", "price": "79.00", "priceCurrency": "USD", "billingDuration": "P1Y", "unitCode": "ANN"}},
      ]},
     faq_ld(FAQ, SITE + "/#faq"),
 ]
-home_desc = ("Check a car repair estimate before you approve it. QuoteGauge prices every line for your car and area, "
-             "compares estimates from different shops, and tells you which recommended repairs are urgent. Free first answer.")
+home_desc = ("Check a car repair, home repair or contractor quote before you approve it. QuoteGauge prices every line for your area, "
+             "compares estimates, and tells you which repairs are urgent. Free first answer, or Pro for every quote.")
 body = (read("src/body.html").replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
         .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder))
 for k, v in card_img.items():
@@ -175,9 +181,9 @@ for g in GUIDES:
   <div class="wrap">
     <div class="foot-row">
       <a class="logo" href="../index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-      <div class="foot-links"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refunds.html">Refunds</a></div>
+      <div class="foot-links"><a href="../how-we-price.html">How we price</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refunds.html">Refunds</a></div>
     </div>
-    <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership or vehicle manufacturer.</p>
+    <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p>
   </div>
 </footer>
 </body>
@@ -185,8 +191,57 @@ for g in GUIDES:
 """
     (ROOT / "guides" / (g["slug"] + ".html")).write_text(page)
 
+# ---------- How we price ----------
+hwp_url = SITE + "/how-we-price"
+hwp_desc = "How QuoteGauge builds each fair price range, what it can and cannot know, and how to use it with a shop or contractor."
+hwp = head("How QuoteGauge Prices a Quote | QuoteGauge", hwp_desc, hwp_url,
+           [ORG, {"@type": "WebPage", "@id": hwp_url, "name": "How QuoteGauge prices a quote", "description": hwp_desc, "publisher": {"@id": SITE + "/#org"}}],
+           "How QuoteGauge prices a quote") + """
+<header class="top"><div class="wrap"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<nav class="nav" aria-label="Main"><a class="btn keep" style="font-size:19px;padding:9px 16px" href="index.html#tool">Start a check</a></nav></div></header>
+<main>
+  <article class="article">
+    <p class="crumbs"><a href="index.html">QuoteGauge</a> / How we price</p>
+    <h1>How QuoteGauge prices a quote</h1>
+    <p class="answer">Every fair range is an estimate built from the standard labor time for the job, typical labor rates for your area and type of provider, and typical parts or materials cost from economy to premium. It is a starting point for a better conversation, not an inspection or a guarantee.</p>
+    <h2>What goes into a range</h2>
+    <ul>
+      <li><b>Labor time.</b> Car repairs are priced from the standard time for that job on that vehicle. Home and contractor work uses typical hours for the trade and the size of the job.</li>
+      <li><b>Labor rate.</b> Typical hourly rates for your ZIP code and the kind of provider. Dealerships and licensed specialists usually charge more, and the range allows for that.</li>
+      <li><b>Parts and materials.</b> From economy to original-equipment or premium quality, so a fair price for the parts you're getting stays inside the range.</li>
+      <li><b>Room for honest variation.</b> On bigger jobs the top of each range is set at a price a reputable provider might honestly charge with quality parts.</li>
+    </ul>
+    <h2>How lines are marked</h2>
+    <ul>
+      <li><b>Fair:</b> at or within 10% of the top of its range.</li>
+      <li><b>Above market:</b> more than 10% over the top of its range.</li>
+      <li><b>Needs verification:</b> it can't be judged without seeing the car or the job, the price is unreadable, or the description is too vague.</li>
+      <li><b>Questionable charge:</b> a line that is often padded or sold as an upsell. It may still be right for you; it's worth a question.</li>
+    </ul>
+    <h2>What it can't know</h2>
+    <ul>
+      <li>The condition of your car or home, or what the technician found</li>
+      <li>The exact brand and grade of parts the provider plans to use</li>
+      <li>Rust, hidden damage, access problems and other things that add real labor</li>
+    </ul>
+    <p>That is why some lines come back as needs verification, and why the report never claims a provider acted dishonestly. Use it to ask better questions: most honest shops and contractors welcome them.</p>
+    <h2>What happens to your quote</h2>
+    <p>Your quote is sent to our AI provider to be analysed and is not stored by QuoteGauge after the report is produced. No shop, dealership or contractor pays us, and we don't sell personal data.</p>
+    <h2>When we get it wrong</h2>
+    <p>Every report has a \"Was this right?\" button, and every flagged mistake is reviewed to improve future checks. If a single report wasn't useful, email <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a> within 7 days for a full refund.</p>
+    <div class="cta-box"><h3>Check your quote</h3><p>The first answer is free.</p><a class="btn" href="index.html#tool">Start a check</a></div>
+  </article>
+</main>
+<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<div class="foot-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a></div></div>
+<p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p></div></footer>
+</body>
+</html>
+"""
+(ROOT / "how-we-price.html").write_text(hwp)
+
 # ---------- Sitemap ----------
-urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
+urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(hwp_url, "0.6")] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                   + "".join("  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (u, TODAY, p) for u, p in urls)
                                   + "</urlset>\n")
