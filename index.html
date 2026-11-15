@@ -313,7 +313,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: flex; flex-d
 .rep-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
 .rep-head span { display: block; color: var(--muted); font-size: 15px; }
 .verdict { padding: 16px 18px; border-radius: 6px; border-left: 8px solid var(--good); background: #e9f6ee; display: flex; flex-direction: column; gap: 4px; }
-.verdict.above { border-color: var(--warn); background: #fff1dc; }
+.verdict.above, .verdict.mixed { border-color: var(--warn); background: #fff1dc; }
 .verdict.verify { border-color: var(--bad); background: #fdecea; }
 .verdict strong { font-family: var(--display); font-weight: 800; font-size: 42px; line-height: 1; text-transform: uppercase; }
 .verdict p { font-size: 16px; }
@@ -895,10 +895,14 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
       var quoted = sum(priced, function (it) { return it.quoted; });
       var over = sum(judged, function (it) { return Math.max(0, it.quoted - it.hi); });
       var pct = quoted > 0 ? over / quoted : 0;
+      // Money on lines the shopper should question before paying: questionable or unverifiable charges.
+      var questioned = sum(priced.filter(function (it) { return it.questionable || it.rating === "verify"; }), function (it) { return it.quoted; });
+      var anyAbove = judged.some(function (it) { return it.rating === "above"; });
       return {
         vehicleRead: str(raw.vehicle_read, 80), locationRead: str(raw.location_read, 60),
         items: items, quoted: quoted, lo: sum(judged, function (it) { return it.lo; }), hi: sum(judged, function (it) { return it.hi; }), over: over,
-        verdict: !judged.length ? "verify" : (pct > 0.08 ? "above" : "fair"),
+        questioned: questioned,
+        verdict: !judged.length ? "verify" : (pct > 0.08 ? "above" : ((anyAbove || questioned > 0) ? "mixed" : "fair")),
         flagged: items.filter(function (it) { return it.rating !== "fair" || it.questionable; }).length,
         rateLo: num(raw.labor_rate_low), rateHi: num(raw.labor_rate_high),
         summary: str(raw.summary, 300), script: str(raw.script, 2000),
@@ -907,7 +911,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     },
     valid: function (r) { return r.items.length > 0 && r.quoted > 0; },
     teaser: function (r) {
-      return { items: r.items.map(function (it) { return { name: it.name, quoted: it.quoted, rating: it.rating, questionable: it.questionable }; }), quoted: r.quoted, over: r.over, verdict: r.verdict, flagged: r.flagged, summary: r.summary, vehicleRead: r.vehicleRead, locationRead: r.locationRead };
+      return { items: r.items.map(function (it) { return { name: it.name, quoted: it.quoted, rating: it.rating, questionable: it.questionable }; }), quoted: r.quoted, over: r.over, questioned: r.questioned, verdict: r.verdict, flagged: r.flagged, summary: r.summary, vehicleRead: r.vehicleRead, locationRead: r.locationRead };
     }
   };
 
@@ -1036,7 +1040,7 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
       missing: "Add a photo of the inspection report or type the recommended repairs."
     }
   };
-  var VERDICT = { fair: "Looks fair", above: "Above market", verify: "Needs verification" };
+  var VERDICT = { fair: "Looks fair", mixed: "Mostly fair, but question some charges", above: "Above market", verify: "Needs verification" };
   var TAG = { fair: "Fair", above: "Above market", verify: "Needs verification" };
   var URG = { now: "Do now", soon: "Do soon", later: "Can wait", verify: "Verify first" };
   var SHOP = {}; SHOP[C.SHOPS[0]] = "Independent shop"; SHOP[C.SHOPS[1]] = "Dealership"; SHOP[C.SHOPS[2]] = "National chain";
@@ -1278,7 +1282,8 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
     $("unlock-copy").textContent = COPY[p].unlock;
     var price = "$" + P[p].price.toFixed(2), title, anchor;
     if (p === "check") {
-      title = r.over > 0 ? "You may be overpaying " + money(r.over) + ". See exactly where." : (r.flagged ? r.flagged + " lines need a closer look. See which, and what to ask." : "Looks fair. See the fair range for every line.");
+      var avoid = (r.over || 0) + (r.questioned || 0);
+      title = avoid > 0 ? "Up to " + money(avoid) + " of this estimate may be avoidable. See exactly where." : (r.flagged ? r.flagged + " lines need a closer look. See which, and what to ask." : "Looks fair. See the fair range for every line.");
       anchor = price + " to check a " + money(r.quoted) + " estimate. ";
     } else if (p === "compare") {
       title = "These estimates are " + money(r.spread) + " apart. See which is the best value.";

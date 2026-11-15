@@ -32,7 +32,9 @@ assert.deepStrictEqual(cr.items.map((i) => i.rating), ["fair", "above", "verify"
 assert.strictEqual(cr.items[1].hi, 90, "swapped range corrected");
 assert.strictEqual(cr.quoted, 1037);
 assert.strictEqual(cr.over, 29, "verify lines are not counted as overcharge");
-assert.strictEqual(cr.verdict, "fair");
+assert.strictEqual(cr.verdict, "mixed", "small overcharge plus a questionable line is not a clean 'fair'");
+assert.strictEqual(cr.questioned, 229);
+assert.strictEqual(C.normalise({ items: [{ name: "Brakes", quoted: 600, fair_low: 480, fair_high: 700 }] }).verdict, "fair");
 assert.strictEqual(cr.flagged, 2);
 assert.ok(C.valid(cr));
 const ct = JSON.stringify(C.teaser(cr));

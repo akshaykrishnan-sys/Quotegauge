@@ -23,7 +23,7 @@
       missing: "Add a photo of the inspection report or type the recommended repairs."
     }
   };
-  var VERDICT = { fair: "Looks fair", above: "Above market", verify: "Needs verification" };
+  var VERDICT = { fair: "Looks fair", mixed: "Mostly fair, but question some charges", above: "Above market", verify: "Needs verification" };
   var TAG = { fair: "Fair", above: "Above market", verify: "Needs verification" };
   var URG = { now: "Do now", soon: "Do soon", later: "Can wait", verify: "Verify first" };
   var SHOP = {}; SHOP[C.SHOPS[0]] = "Independent shop"; SHOP[C.SHOPS[1]] = "Dealership"; SHOP[C.SHOPS[2]] = "National chain";
@@ -265,7 +265,8 @@
     $("unlock-copy").textContent = COPY[p].unlock;
     var price = "$" + P[p].price.toFixed(2), title, anchor;
     if (p === "check") {
-      title = r.over > 0 ? "You may be overpaying " + money(r.over) + ". See exactly where." : (r.flagged ? r.flagged + " lines need a closer look. See which, and what to ask." : "Looks fair. See the fair range for every line.");
+      var avoid = (r.over || 0) + (r.questioned || 0);
+      title = avoid > 0 ? "Up to " + money(avoid) + " of this estimate may be avoidable. See exactly where." : (r.flagged ? r.flagged + " lines need a closer look. See which, and what to ask." : "Looks fair. See the fair range for every line.");
       anchor = price + " to check a " + money(r.quoted) + " estimate. ";
     } else if (p === "compare") {
       title = "These estimates are " + money(r.spread) + " apart. See which is the best value.";
