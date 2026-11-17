@@ -209,14 +209,17 @@
 
 :root {
   --bg: #ffffff;
-  --sky: #a6defc;
-  --sky-2: #d6f0fe;
-  --canvas: #eef8fe;
-  --ink: #0b1f3a;
-  --ink-2: #33455f;
-  --muted: #5d6c82;
-  --line: #dbe6f0;
-  --line-2: #c3d2e0;
+  --green: #0f3b2e;
+  --green-2: #0a2c22;
+  --green-3: #164a3a;
+  --brass: #c9a227;
+  --brass-2: #e0bd4a;
+  --canvas: #eef3f0;
+  --ink: #0f241d;
+  --ink-2: #33473f;
+  --muted: #5b6d66;
+  --line: #dde5e1;
+  --line-2: #c4d1cb;
   --good: #11795a;
   --warn: #a65f00;
   --bad: #c8283b;
@@ -259,7 +262,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .btn.block, .btn-quiet.block { width: 100%; }
 .btn.yellow { background: var(--ink); color: #fff; }
 .btn-quiet { display: inline-flex; align-items: center; justify-content: center; font: inherit; font-weight: 600; font-size: 16px; line-height: 1.2; background: var(--bg); color: var(--ink); border: 1.5px solid var(--ink); border-radius: 999px; padding: 12px 22px; text-decoration: none; cursor: pointer; transition: background 0.15s; }
-.btn-quiet:hover { background: var(--sky-2); }
+.btn-quiet:hover { background: var(--canvas); }
 .linkish { font: inherit; font-size: inherit; font-weight: 600; background: none; border: 0; padding: 0; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
 /* Header */
@@ -585,78 +588,153 @@ dialog p { color: var(--ink-2); margin-bottom: 16px; }
 }
 .hero .cta-row { margin-top: 12px; }
 
-/* ===== Bold layer: full-colour hero, pills, big rounded surfaces ===== */
-.top { background: var(--sky); border-bottom: 0; backdrop-filter: none; }
-.top.scrolled, .top { box-shadow: 0 1px 0 rgba(11, 31, 58, 0.08); }
-.logo i { border-color: var(--ink); }
-.nav a:not(.btn) { color: var(--ink); font-weight: 600; }
-.nav .btn { padding: 10px 18px; }
+/* ===== British racing green: deep green, white, brass ===== */
+.btn { background: var(--green); border-color: var(--green); }
+.btn:hover { background: var(--green-3); }
+.btn-quiet { border-color: var(--green); color: var(--green); }
+.btn-quiet:hover { background: var(--canvas); }
+.top { background: var(--green); border-bottom: 1px solid rgba(255,255,255,.08); backdrop-filter: none; }
+.top .logo, .top .nav a:not(.btn) { color: #fff; }
+.top .nav a:not(.btn):hover { color: var(--brass-2); }
+.top .logo i { border-color: #fff; } .logo i::after { background: var(--brass); }
+.top .btn, .hero .drop-btn, .lift .btn, .plan.best .btn, .sticky .btn { background: var(--brass); border-color: var(--brass); color: var(--green-2); }
+.top .btn:hover, .hero .drop:hover .drop-btn, .lift .btn:hover, .plan.best .btn:hover, .sticky .btn:hover { background: var(--brass-2); }
+.pro-chip { background: var(--brass); color: var(--green-2); }
 
-.hero { background: var(--sky); border-bottom: 0; padding: 72px 0 0; }
-.hero-copy h1 { max-width: 12ch; }
-.lede { color: var(--ink); font-weight: 500; }
-.drop { border: 0; border-radius: 999px; box-shadow: 0 10px 30px -12px rgba(11, 31, 58, 0.35); padding: 10px 10px 10px 22px; }
-.drop:hover, .drop.over { box-shadow: 0 0 0 2px var(--ink), 0 10px 30px -12px rgba(11, 31, 58, 0.35); }
+.hero { background: var(--green); color: #fff; padding: 76px 0 72px; border-bottom: 0; }
+.hero h1 { color: #fff; max-width: 12ch; }
+.hero .lede { color: #d5e2dc; font-weight: 500; max-width: 50ch; text-wrap: balance; }
+.drop { border: 0; border-radius: 999px; padding: 10px 10px 10px 22px; box-shadow: 0 18px 40px -16px rgba(0,0,0,.5); }
+.drop:hover, .drop.over { box-shadow: 0 0 0 2px var(--brass), 0 18px 40px -16px rgba(0,0,0,.5); }
+.drop-ico { stroke: var(--green); }
 .drop-btn { border-radius: 999px; padding: 14px 24px; }
-.hero-alt { color: var(--ink-2); }
-.demo { background: #fff; border-radius: var(--r-l) var(--r-l) 0 0; padding: 40px 40px 28px; margin-top: 56px; max-width: 1040px; box-shadow: 0 -20px 60px -30px rgba(11, 31, 58, 0.35); }
-.est-paper { box-shadow: 0 1px 0 var(--line), 0 24px 50px -24px rgba(11, 31, 58, 0.35); }
-.rep { border: 0; background: var(--canvas); box-shadow: none; border-radius: 22px; }
-.rep-say { background: #fff; }
-.proof { background: #fff; margin: 0 auto; max-width: 1040px; padding: 0 40px 36px; border-radius: 0 0 var(--r-l) var(--r-l); }
-.hero + section { padding-top: 112px; }
-.hero { padding-bottom: 64px; }
-@media (max-width: 600px) {
-  .drop { border-radius: 24px; padding: 16px; }
-  .demo { padding: 22px 16px 16px; border-radius: 22px 22px 0 0; }
-  .proof { padding: 0 16px 24px; border-radius: 0 0 22px 22px; flex-direction: column; align-items: center; }
+.hero-alt { color: #b9ccc4; } .hero-alt a { color: #fff; }
+.proof { margin-top: 28px; color: #d5e2dc; } .proof li::before { border-color: var(--brass); }
+@media (max-width: 600px) { .drop { border-radius: 24px; padding: 16px; } }
+
+/* The lift story */
+.lift { padding: 0; height: 420vh; background: var(--green-2); position: relative; }
+.lift-pin { position: relative; height: 100vh; min-height: 560px; overflow: hidden; }
+.lift.live .lift-pin { position: sticky; top: 0; }
+.lift-pic, .lift-pic img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.lift-pic img { object-fit: cover; object-position: 50% 40%; border-radius: 0; transform: scale(calc(1.02 + var(--p, 1) * 0.1)); transform-origin: 56% 40%; will-change: transform; }
+.lift-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,44,34,.92) 0%, rgba(10,44,34,.6) 34%, rgba(10,44,34,.05) 62%), linear-gradient(0deg, rgba(10,44,34,.55), transparent 40%); transition: background .4s; }
+.pins { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; transform: scale(calc(1.02 + var(--p, 1) * 0.1)); transform-origin: 56% 40%; }
+.pin { position: absolute; left: var(--x); top: var(--y); display: flex; align-items: center; gap: 10px; transform: translate(-11px, -50%); transition: opacity .45s ease, transform .45s ease; transition-delay: calc(var(--i) * 0.12s); }
+.pin i { flex: none; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 6px rgba(255,255,255,.3); transition: background .3s, box-shadow .3s; }
+.pin span { display: grid; grid-template-columns: auto auto; column-gap: 12px; align-items: baseline; background: #fff; color: var(--ink); border-radius: 14px; padding: 10px 14px; box-shadow: 0 14px 30px -10px rgba(0,0,0,.45); white-space: nowrap; }
+.pin b { font-size: 15px; font-weight: 600; }
+.pin strong { font-size: 16px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+.pin em { grid-column: 1 / -1; font-style: normal; font-size: 13px; font-weight: 600; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .35s, opacity .35s, margin .35s; }
+.pin.ok em { color: var(--good); } .pin.hi em { color: var(--warn); } .pin.ask em { color: var(--bad); }
+.lift-copy { position: absolute; left: max(24px, calc((100vw - 1120px) / 2 + 24px)); top: 50%; transform: translateY(-50%); width: min(440px, calc(100vw - 48px)); color: #fff; }
+.lift-step h2 { color: #fff; font-size: clamp(32px, 4.4vw, 54px); }
+.lift-step p { color: #d5e2dc; font-size: 19px; margin-top: 14px; max-width: 36ch; }
+.lift-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.lift .btn-quiet { border-color: rgba(255,255,255,.6); color: #fff; background: transparent; }
+.lift .btn-quiet:hover { background: rgba(255,255,255,.1); }
+.lift-meter { position: absolute; right: max(24px, calc((100vw - 1120px) / 2 + 24px)); bottom: 36px; background: rgba(10,44,34,.82); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.14); color: #fff; border-radius: 18px; padding: 14px 20px; display: flex; flex-direction: column; min-width: 210px; }
+.lift-meter span { font-size: 13px; font-weight: 600; color: #b9ccc4; }
+.lift-meter b { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+
+/* Static (no-JS / reduced motion): show the finished state */
+.lift:not(.live) { height: auto; }
+.lift:not(.live) .lift-step:not([data-s="3"]) { display: none; }
+.lift:not(.live) .pin em { max-height: 40px; opacity: 1; margin-top: 2px; }
+.lift:not(.live) .pin.ok i { background: var(--good); } .lift:not(.live) .pin.hi i { background: var(--warn); } .lift:not(.live) .pin.ask i { background: var(--bad); }
+.lift:not(.live) .lift-meter b { color: #ffb3bb; }
+
+/* Live stages */
+.lift.live .lift-step { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(calc(-50% + 24px)); opacity: 0; visibility: hidden; transition: opacity .45s, transform .45s, visibility .45s; }
+.lift.live[data-stage="0"] .lift-step[data-s="0"], .lift.live[data-stage="1"] .lift-step[data-s="1"], .lift.live[data-stage="2"] .lift-step[data-s="2"], .lift.live[data-stage="3"] .lift-step[data-s="3"] { opacity: 1; visibility: visible; transform: translateY(-50%); }
+.lift.live .pin { opacity: 0; transform: translate(-11px, calc(-50% + 14px)); }
+.lift.live:not([data-stage="0"]) .pin { opacity: 1; transform: translate(-11px, -50%); }
+.lift.live:is([data-stage="2"], [data-stage="3"]) .pin em { max-height: 40px; opacity: 1; margin-top: 2px; }
+.lift.live:is([data-stage="2"], [data-stage="3"]) .pin.ok i { background: var(--good); box-shadow: 0 0 0 6px rgba(17,121,90,.35); }
+.lift.live:is([data-stage="2"], [data-stage="3"]) .pin.hi i { background: var(--warn); box-shadow: 0 0 0 6px rgba(166,95,0,.35); }
+.lift.live:is([data-stage="2"], [data-stage="3"]) .pin.ask i { background: var(--bad); box-shadow: 0 0 0 6px rgba(200,40,59,.4); }
+.lift.live[data-stage="3"] .pin.ok { opacity: .6; }
+.lift.live .lift-meter { opacity: 0; transform: translateY(12px); transition: opacity .4s, transform .4s; }
+.lift.live:not([data-stage="0"]) .lift-meter { opacity: 1; transform: none; }
+.lift.live[data-stage="3"] .lift-meter b { color: #ffb3bb; }
+
+@media (max-width: 1180px) {
+  .lift { height: 440vh; }
+  .lift-pic img { object-position: 50% 30%; }
+  .lift-shade { background: linear-gradient(0deg, rgba(10,44,34,.96) 0%, rgba(10,44,34,.85) 34%, rgba(10,44,34,.1) 62%); }
+  .pins { transform: none; display: flex; flex-direction: column; gap: 8px; inset: auto; top: 84px; left: 18px; right: 18px; max-width: 480px; }
+  .pin i { display: none; }
+  .pin span { border-left: 4px solid var(--good); }
+  .pin.hi span { border-left-color: var(--warn); } .pin.ask span { border-left-color: var(--bad); }
+  .lift-copy { left: 18px; }
+  .pin { position: static; transform: none; }
+  .lift.live .pin { transform: translateY(10px); }
+  .lift.live:not([data-stage="0"]) .pin { transform: none; }
+  .pin i { width: 12px; height: 12px; box-shadow: none; }
+  .pin span { flex: 1; grid-template-columns: 1fr auto; padding: 9px 12px; }
+  .pin b { font-size: 14px; } .pin strong { font-size: 15px; } .pin em { font-size: 12px; }
+  .lift-pic img { transform-origin: 50% 25%; }
+  .lift-meter { display: none; }
+  .lift-copy { top: auto; bottom: 110px; transform: none; }
+  .lift.live .lift-step { top: auto; bottom: 0; transform: translateY(24px); }
+  .lift.live[data-stage="0"] .lift-step[data-s="0"], .lift.live[data-stage="1"] .lift-step[data-s="1"], .lift.live[data-stage="2"] .lift-step[data-s="2"], .lift.live[data-stage="3"] .lift-step[data-s="3"] { transform: none; }
+  .lift-step h2 { font-size: 30px; } .lift-step p { font-size: 16px; margin-top: 8px; }
+  .lift-cta { margin-top: 16px; } .lift-cta .btn, .lift-cta .btn-quiet { flex: 1; padding: 12px 14px; font-size: 15px; }
+  .lift-meter { left: 18px; right: auto; bottom: 22px; min-width: 0; padding: 10px 14px; flex-direction: row; align-items: baseline; gap: 10px; }
+  .lift-meter b { font-size: 26px; }
+  .lift:not(.live) .lift-pin { height: 760px; }
 }
 
+/* Rest of the page in the same family */
 .how-steps { border-top: 0; gap: 16px; }
 .how-steps li, .how-steps li + li { background: var(--canvas); border: 0; border-radius: 24px; padding: 28px; }
-.how-steps li::before { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--sky); color: var(--ink); font-size: 16px; font-weight: 800; }
+.how-steps li::before { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: var(--brass-2); font-size: 16px; font-weight: 800; }
 @media (max-width: 760px) { .how-steps li, .how-steps li + li { padding: 24px; border-top: 0; } }
-
-#products { background: var(--ink); color: #fff; }
+#products { background: var(--green); color: #fff; }
 #products h2, #products h3 { color: #fff; }
-#products .sec-head p { color: #b9c7da; }
+#products .sec-head p, .product p { color: #c3d4cc; }
 .products { gap: 16px; background: none; border: 0; border-radius: 0; overflow: visible; }
-.product { border-radius: 24px; background: #12304f; }
-.product p { color: #b9c7da; }
-.product .name { border-top-color: rgba(255, 255, 255, 0.14); color: #d4dfec; }
-.product .name b { color: var(--sky); }
-.product .btn-quiet { background: var(--sky); border-color: var(--sky); color: var(--ink); }
-.product .btn-quiet:hover { background: #c4e9fd; }
-
-.ledger { border-top: 2px solid var(--ink); }
-.ledger b { font-size: 30px; font-weight: 900; }
-.ledger li:hover { background: var(--canvas); }
-.ledger li { padding-left: 12px; padding-right: 12px; border-radius: 12px; border-bottom-color: var(--line); }
-
+.product { border-radius: 24px; background: var(--green-3); }
+.product .name { border-top-color: rgba(255,255,255,.14); color: #d5e2dc; }
+.product .name b { color: var(--brass-2); }
+.product .btn-quiet { border-color: var(--brass); color: #fff; }
+.product .btn-quiet:hover { background: rgba(201,162,39,.15); }
 #pricing { background: var(--canvas); }
 .plan { border: 0; border-radius: var(--r-l); padding: 32px; }
-.plan.best { background: var(--sky); border: 0; box-shadow: none; }
-.plan .badge { background: var(--ink); }
+.plan.best { background: var(--green); color: #fff; border: 0; box-shadow: 0 24px 50px -24px rgba(10,44,34,.6); }
+.plan.best h3 { color: #fff; } .plan.best .plan-price span, .plan.best .ticks li { color: #d5e2dc; }
+.plan.best .ticks li::before { border-color: var(--brass); }
+.plan .badge { background: var(--brass); color: var(--green-2); }
 .plan-price b { font-weight: 900; font-size: 56px; }
-.plan.best .ticks li::before, .ticks li::before { border-color: var(--ink); }
-
-.tool { border: 0; border-radius: var(--r-l); box-shadow: 0 20px 60px -24px rgba(11, 31, 58, 0.35); }
+.tool { border: 0; border-radius: var(--r-l); box-shadow: 0 20px 60px -24px rgba(10,44,34,.35); }
 .tabs { background: var(--canvas); }
-.tabs button[aria-selected="true"] { background: #fff; box-shadow: inset 0 -3px 0 var(--ink); }
-input[type="text"], input[type="number"], input[type="email"], textarea, select { border-radius: 12px; }
-.seg { border-radius: 999px; }
-.unlock { background: var(--sky-2); border: 0; border-radius: 22px; }
-
-.faq, .guide-list { border-top-width: 2px; }
-.foot { background: var(--ink); color: #9fb0c6; border-top: 0; }
-.foot .logo { color: #fff; } .foot .logo i { border-color: #fff; }
-.foot-links a { color: #d4dfec; }
-.foot-links a:hover { color: #fff; }
-.sticky { background: var(--sky); border-top: 0; }
-.ledger li { grid-template-columns: 270px minmax(0, 1fr) 130px; }
-.ledger b { white-space: nowrap; font-size: 28px; }
+.tabs button[aria-selected="true"] { background: #fff; box-shadow: inset 0 -3px 0 var(--green); }
+.seg label:has(input:checked) { background: var(--green); }
+.slot-n { background: var(--green); }
+.unlock { background: var(--canvas); border: 0; border-radius: 22px; }
+.ledger { border-top: 2px solid var(--green); }
+.ledger li { grid-template-columns: 270px minmax(0, 1fr) 130px; padding-left: 12px; padding-right: 12px; border-radius: 12px; }
+.ledger li:hover { background: var(--canvas); }
+.ledger b { white-space: nowrap; font-size: 28px; font-weight: 900; color: var(--green); }
 @media (max-width: 760px) { .ledger li { grid-template-columns: minmax(0, 1fr); } .ledger b { white-space: normal; } }
-.lede { max-width: 50ch; text-wrap: balance; }
+.faq, .guide-list { border-top: 2px solid var(--green); }
+.foot { background: var(--green-2); color: #9fb5ab; border-top: 0; }
+.foot .logo { color: #fff; } .foot .logo i { border-color: #fff; }
+.foot-links a { color: #d5e2dc; } .foot-links a:hover { color: #fff; }
+.sticky { background: var(--green); border-top: 0; }
+.dark { background: var(--green); }
+.drop { color: var(--ink); }
+@media (min-width: 1181px) {
+  .pin.flip { flex-direction: row-reverse; transform: translate(calc(-100% + 11px), -50%); }
+  .lift.live .pin.flip { transform: translate(calc(-100% + 11px), calc(-50% + 14px)); }
+  .lift.live:not([data-stage="0"]) .pin.flip { transform: translate(calc(-100% + 11px), -50%); }
+}
+@media (max-width: 1180px) {
+  .lift.live .pin span { border-left-color: #fff; transition: border-color .3s; }
+  .lift.live:is([data-stage="2"], [data-stage="3"]) .pin.ok span { border-left-color: var(--good); }
+  .lift.live:is([data-stage="2"], [data-stage="3"]) .pin.hi span { border-left-color: var(--warn); }
+  .lift.live:is([data-stage="2"], [data-stage="3"]) .pin.ask span { border-left-color: var(--bad); }
+}
 </style>
 </head>
 <body>
@@ -689,7 +767,6 @@ input[type="text"], input[type="number"], input[type="email"], textarea, select 
         <input id="hero-file" type="file" accept="image/*,application/pdf" hidden>
         <p class="hero-alt">No photo? <a href="#tool" data-start="check">Type it in instead</a>. The first verdict is free.</p>
       </div>
-      <figure class="demo" aria-label="Example: a repair estimate checked by QuoteGauge"><div class="est-paper"><div class="est-head"><b>Riverside Auto Service</b><span>Estimate 20418</span></div><p class="est-car">2017 Honda Accord, 84,210 mi</p><ol class="est-lines"><li class="ok" style="--d:0"><span class="it">Front brake pads and rotors</span><span class="pr">689.00</span><em>fair for this car</em></li><li class="hi" style="--d:1"><span class="it">Brake fluid flush</span><span class="pr">179.00</span><em>usually $100&ndash;150</em></li><li class="hi" style="--d:2"><span class="it">Cabin air filter</span><span class="pr">119.00</span><em>usually $55&ndash;90</em></li><li class="ask" style="--d:3"><span class="it">Fuel system cleaning</span><span class="pr">229.00</span><em>ask why your car needs this</em></li><li class="ok" style="--d:4"><span class="it">Shop supplies</span><span class="pr">45.00</span><em>fair</em></li></ol><div class="est-total"><span>Total</span><span>$1,261.00</span></div></div><div class="rep"><p class="rep-k">Your QuoteGauge result</p><p class="rep-amt"><b>$287</b> worth asking about before you sign</p><ul class="rep-list"><li class="ok"><span>2 lines fair</span><span>$734</span></li><li class="hi"><span>2 lines above market</span><span>$298</span></li><li class="ask"><span>1 line to question</span><span>$229</span></li></ul><div class="rep-say"><p>What to say</p><q>Before I approve this, can you walk me through the brake fluid flush, the cabin filter and the fuel cleaning? I&rsquo;m seeing lower prices for this car.</q></div></div><figcaption>Example estimate with illustrative figures.</figcaption></figure>
       <ul class="proof">
         <li>No app or account</li>
         <li>No shop or contractor pays us</li>
@@ -698,62 +775,28 @@ input[type="text"], input[type="number"], input[type="email"], textarea, select 
     </div>
   </div>
 
-  <section class="how" id="how" aria-labelledby="how-title">
-    <div class="wrap">
-      <h2 id="how-title">From estimate to answer in about a minute.</h2>
-      <ol class="how-steps">
-        <li>
-          <h3>Add the estimate</h3>
-          <p>A photo, a PDF, or what the shop told you on the phone.</p>
-        </li>
-        <li>
-          <h3>Tell us the car and your ZIP code</h3>
-          <p>Fair prices depend on the vehicle and on local labor rates.</p>
-        </li>
-        <li>
-          <h3>See every line priced</h3>
-          <p>Fair, above market, or worth asking about, plus the words to use.</p>
-        </li>
-      </ol>
+  <section class="lift" id="lift" aria-labelledby="lift-title">
+    <div class="lift-pin">
+      <picture class="lift-pic">
+        <source media="(max-width: 700px), (max-width: 1100px) and (orientation: portrait)" srcset="img/lift-m.jpg">
+        <img src="img/lift.jpg" alt="A white car up on a lift in a repair shop, with a mechanic working underneath" width="1800" height="1198" decoding="async">
+      </picture>
+      <div class="lift-shade" aria-hidden="true"></div>
+      <ul class="pins" aria-label="Example estimate, line by line">
+        <li class="pin ok" style="--x:55%;--y:26%;--mx:66%;--my:27%;--i:0"><i aria-hidden="true"></i><span><b>Brake pads and rotors</b><strong>$689</strong><em>Fair for this car</em></span></li>
+        <li class="pin hi flip" style="--x:80%;--y:40%;--mx:28%;--my:53%;--i:1"><i aria-hidden="true"></i><span><b>Brake fluid flush</b><strong>$179</strong><em>Usually $100&ndash;150</em></span></li>
+        <li class="pin hi" style="--x:48%;--y:38%;--mx:42%;--my:38%;--i:2"><i aria-hidden="true"></i><span><b>Cabin air filter</b><strong>$119</strong><em>Usually $55&ndash;90</em></span></li>
+        <li class="pin ask" style="--x:60%;--y:50%;--mx:74%;--my:45%;--i:3"><i aria-hidden="true"></i><span><b>Fuel system cleaning</b><strong>$229</strong><em>Ask why your car needs it</em></span></li>
+      </ul>
+      <div class="lift-copy">
+        <div class="lift-step" data-s="0"><h2 id="lift-title">Your car goes up on the lift.</h2><p>Forty minutes later, the service advisor comes back with a list.</p></div>
+        <div class="lift-step" data-s="1"><h2>The list comes to $1,216.</h2><p>Four lines, one total, and someone waiting for you to sign.</p></div>
+        <div class="lift-step" data-s="2"><h2>QuoteGauge prices every line.</h2><p>One fair, two above market, one you should question. Checked against your car and your area.</p></div>
+        <div class="lift-step" data-s="3"><h2>$287 is worth asking about.</h2><p>You walk back to the counter with the numbers and the exact words to use.</p><div class="lift-cta"><a class="btn" href="#pricing">See pricing</a><a class="btn-quiet" href="#tool" data-start="check">Check my estimate</a></div></div>
+      </div>
+      <div class="lift-meter" aria-hidden="true"><span id="lift-label">Quoted</span><b id="lift-total">$1,216</b></div>
     </div>
   </section>
-
-  <section id="products" aria-labelledby="products-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="products-title">Start with the question you have.</h2>
-        <p>Every check gives you a free first answer. Unlock the full report for one quote, or go Unlimited.</p>
-      </div>
-      <div class="products">
-        <article class="product">
-          <h3>Is this price fair?</h3>
-          <p>Every line of one estimate priced against your car and your area, with what to question and a script.</p>
-          <div class="name"><span>Repair Quote Checker</span><b>$4.99</b></div>
-          <a class="btn-quiet" href="#tool" data-start="check">Check my estimate</a>
-        </article>
-        <article class="product">
-          <h3>Three shops, three prices. Who's right?</h3>
-          <p>Up to five estimates side by side: parts, labor, what each leaves out, and the best value.</p>
-          <div class="name"><span>Repair Quote Comparator</span><b>$14.99</b></div>
-          <a class="btn-quiet" href="#tool" data-start="compare">Compare estimates</a>
-        </article>
-        <article class="product">
-          <h3>Do I really need all of this?</h3>
-          <p>Each recommended repair explained, sorted into now, soon, later or get a second look.</p>
-          <div class="name"><span>Repair Necessity Checker</span><b>$9.99</b></div>
-          <a class="btn-quiet" href="#tool" data-start="need">Check a repair list</a>
-        </article>
-        <article class="product">
-          <h3>$9,000 for a new AC?</h3>
-          <p>HVAC, roofing, plumbing, electrical, appliances, moving and more, priced line by line.</p>
-          <div class="name"><span>Any Quote Checker</span><b>$9.99</b></div>
-          <a class="btn-quiet" href="#tool" data-start="any">Check any quote</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="receipts" id="real-quotes" aria-labelledby="receipts-title"><div class="wrap"><div class="sec-head"><h2 id="receipts-title">Real quotes, reported in the press.</h2><p>Two in three US drivers say they don&rsquo;t trust repair shops, according to <a href="https://newsroom.aaa.com/2016/12/u-s-drivers-leery-auto-repair-shops/" rel="noopener" target="_blank">AAA</a>. These are the quotes behind that number. None of these people had QuoteGauge.</p></div><ol class="ledger"><li><b>$2,584</b><p>Went in for a free oil change on a 2020 Highlander. Came out with $2,584 of "recommended" work, including a $160 cabin air filter and a $289 fuel injector cleaning.</p><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Torque News</a></li><li><b>$4,000 → $223</b><p>Told the AC needed a new compressor for about $4,000. A second company replaced some bad wiring terminals and had it running for $223.</p><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">The Cool Down</a></li><li><b>$7,000 → $75</b><p>Weighing a $7,000 AC replacement. The real fix turned out to be a $75 capacitor.</p><a href="https://www.thecooldown.com/?p=787418" rel="noopener" target="_blank">The Cool Down</a></li><li><b>$1,264 vs $157</b><p>Quoted $1,264.40 for a muffler that, by another mechanic's count, costs a shop $157 and under half an hour.</p><a href="https://www.motor1.com/news/813963/shop-overcharges-muffler/" rel="noopener" target="_blank">Motor1</a></li><li><b>$105 vs $30</b><p>Dealerships quoting $89 to $105 for a cabin air filter that owners later found online for $7 to $30.</p><a href="https://www.motor1.com/news/775153/5-scam-services-dealerships-sell/" rel="noopener" target="_blank">Motor1</a></li></ol><p class="ledger-note">Most shops and contractors are honest. The quote still deserves a second look.</p></div></section>
 
   <section id="pricing" aria-labelledby="pricing-title">
     <div class="wrap">
@@ -941,6 +984,64 @@ input[type="text"], input[type="number"], input[type="email"], textarea, select 
       </div>
     </div>
   </section>
+
+  <section class="how" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <h2 id="how-title">From estimate to answer in about a minute.</h2>
+      <ol class="how-steps">
+        <li>
+          <h3>Add the estimate</h3>
+          <p>A photo, a PDF, or what the shop told you on the phone.</p>
+        </li>
+        <li>
+          <h3>Tell us the car and your ZIP code</h3>
+          <p>Fair prices depend on the vehicle and on local labor rates.</p>
+        </li>
+        <li>
+          <h3>See every line priced</h3>
+          <p>Fair, above market, or worth asking about, plus the words to use.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="products" aria-labelledby="products-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="products-title">Start with the question you have.</h2>
+        <p>Every check gives you a free first answer. Unlock the full report for one quote, or go Unlimited.</p>
+      </div>
+      <div class="products">
+        <article class="product">
+          <h3>Is this price fair?</h3>
+          <p>Every line of one estimate priced against your car and your area, with what to question and a script.</p>
+          <div class="name"><span>Repair Quote Checker</span><b>$4.99</b></div>
+          <a class="btn-quiet" href="#tool" data-start="check">Check my estimate</a>
+        </article>
+        <article class="product">
+          <h3>Three shops, three prices. Who's right?</h3>
+          <p>Up to five estimates side by side: parts, labor, what each leaves out, and the best value.</p>
+          <div class="name"><span>Repair Quote Comparator</span><b>$14.99</b></div>
+          <a class="btn-quiet" href="#tool" data-start="compare">Compare estimates</a>
+        </article>
+        <article class="product">
+          <h3>Do I really need all of this?</h3>
+          <p>Each recommended repair explained, sorted into now, soon, later or get a second look.</p>
+          <div class="name"><span>Repair Necessity Checker</span><b>$9.99</b></div>
+          <a class="btn-quiet" href="#tool" data-start="need">Check a repair list</a>
+        </article>
+        <article class="product">
+          <h3>$9,000 for a new AC?</h3>
+          <p>HVAC, roofing, plumbing, electrical, appliances, moving and more, priced line by line.</p>
+          <div class="name"><span>Any Quote Checker</span><b>$9.99</b></div>
+          <a class="btn-quiet" href="#tool" data-start="any">Check any quote</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="receipts" id="real-quotes" aria-labelledby="receipts-title"><div class="wrap"><div class="sec-head"><h2 id="receipts-title">Real quotes, reported in the press.</h2><p>Two in three US drivers say they don&rsquo;t trust repair shops, according to <a href="https://newsroom.aaa.com/2016/12/u-s-drivers-leery-auto-repair-shops/" rel="noopener" target="_blank">AAA</a>. These are the quotes behind that number. None of these people had QuoteGauge.</p></div><ol class="ledger"><li><b>$2,584</b><p>Went in for a free oil change on a 2020 Highlander. Came out with $2,584 of "recommended" work, including a $160 cabin air filter and a $289 fuel injector cleaning.</p><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Torque News</a></li><li><b>$4,000 → $223</b><p>Told the AC needed a new compressor for about $4,000. A second company replaced some bad wiring terminals and had it running for $223.</p><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">The Cool Down</a></li><li><b>$7,000 → $75</b><p>Weighing a $7,000 AC replacement. The real fix turned out to be a $75 capacitor.</p><a href="https://www.thecooldown.com/?p=787418" rel="noopener" target="_blank">The Cool Down</a></li><li><b>$1,264 vs $157</b><p>Quoted $1,264.40 for a muffler that, by another mechanic's count, costs a shop $157 and under half an hour.</p><a href="https://www.motor1.com/news/813963/shop-overcharges-muffler/" rel="noopener" target="_blank">Motor1</a></li><li><b>$105 vs $30</b><p>Dealerships quoting $89 to $105 for a cabin air filter that owners later found online for $7 to $30.</p><a href="https://www.motor1.com/news/775153/5-scam-services-dealerships-sell/" rel="noopener" target="_blank">Motor1</a></li></ol><p class="ledger-note">Most shops and contractors are honest. The quote still deserves a second look.</p></div></section>
+
 
   <section id="method" aria-labelledby="method-title">
     <div class="wrap">
@@ -1912,6 +2013,36 @@ input[type="text"], input[type="number"], input[type="email"], textarea, select 
       sticky.className = seen["hero-upload"] || seen.tool ? "sticky" : "sticky show";
     });
     io.observe($("tool")); io.observe($("hero-upload"));
+  }
+
+  /* Lift story: as the section scrolls past, the photo zooms, the estimate lines appear on the car,
+     get priced, and the total turns into the amount worth asking about. */
+  var lift = $("lift");
+  if (lift && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    lift.classList.add("live");
+    var liftTotal = $("lift-total"), liftLabel = $("lift-label"), liftStage = -1, liftRaf = 0, shown = 0;
+    var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+    var countTo = function (to) {
+      cancelAnimationFrame(liftRaf);
+      var from = shown, t0 = null;
+      var tick = function (t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 700); shown = from + (to - from) * (1 - Math.pow(1 - k, 3)); liftTotal.textContent = fmt(shown); if (k < 1) liftRaf = requestAnimationFrame(tick); };
+      liftRaf = requestAnimationFrame(tick);
+    };
+    var onLift = function () {
+      var r = lift.getBoundingClientRect(), span = lift.offsetHeight - window.innerHeight;
+      var p = Math.max(0, Math.min(1, -r.top / (span || 1)));
+      lift.style.setProperty("--p", p.toFixed(3));
+      var st = p < 0.2 ? 0 : p < 0.45 ? 1 : p < 0.7 ? 2 : 3;
+      if (st !== liftStage) {
+        liftStage = st; lift.setAttribute("data-stage", st);
+        if (st === 0) { liftLabel.textContent = "Quoted"; countTo(0); }
+        else if (st === 1 || st === 2) { liftLabel.textContent = "Quoted"; countTo(1216); }
+        else { liftLabel.textContent = "Worth asking about"; countTo(287); }
+      }
+    };
+    window.addEventListener("scroll", onLift, { passive: true });
+    window.addEventListener("resize", onLift);
+    onLift();
   }
 })();
 </script>

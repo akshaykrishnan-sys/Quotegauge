@@ -612,4 +612,34 @@
     });
     io.observe($("tool")); io.observe($("hero-upload"));
   }
+
+  /* Lift story: as the section scrolls past, the photo zooms, the estimate lines appear on the car,
+     get priced, and the total turns into the amount worth asking about. */
+  var lift = $("lift");
+  if (lift && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    lift.classList.add("live");
+    var liftTotal = $("lift-total"), liftLabel = $("lift-label"), liftStage = -1, liftRaf = 0, shown = 0;
+    var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+    var countTo = function (to) {
+      cancelAnimationFrame(liftRaf);
+      var from = shown, t0 = null;
+      var tick = function (t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 700); shown = from + (to - from) * (1 - Math.pow(1 - k, 3)); liftTotal.textContent = fmt(shown); if (k < 1) liftRaf = requestAnimationFrame(tick); };
+      liftRaf = requestAnimationFrame(tick);
+    };
+    var onLift = function () {
+      var r = lift.getBoundingClientRect(), span = lift.offsetHeight - window.innerHeight;
+      var p = Math.max(0, Math.min(1, -r.top / (span || 1)));
+      lift.style.setProperty("--p", p.toFixed(3));
+      var st = p < 0.2 ? 0 : p < 0.45 ? 1 : p < 0.7 ? 2 : 3;
+      if (st !== liftStage) {
+        liftStage = st; lift.setAttribute("data-stage", st);
+        if (st === 0) { liftLabel.textContent = "Quoted"; countTo(0); }
+        else if (st === 1 || st === 2) { liftLabel.textContent = "Quoted"; countTo(1216); }
+        else { liftLabel.textContent = "Worth asking about"; countTo(287); }
+      }
+    };
+    window.addEventListener("scroll", onLift, { passive: true });
+    window.addEventListener("resize", onLift);
+    onLift();
+  }
 })();
