@@ -2,13 +2,11 @@
   <div class="wrap">
     <a class="logo" href="#top" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
     <nav class="nav" aria-label="Main">
-      <a href="#products">The checks</a>
+      <a href="#how">How it works</a>
+      <a href="#products">What you can check</a>
       <a href="#pricing">Pricing</a>
       <a href="teams.html">For teams</a>
-      <a href="#method">How we price</a>
-      <a href="#guides">Guides</a>
-      <a href="#faq">Questions</a>
-      <a class="btn keep nav-cta" href="#tool">Start a check</a>
+      <a class="btn keep nav-cta" href="#tool" data-start="check">Check my estimate</a>
       <span class="pro-chip" id="pro-chip" hidden>Unlimited</span>
     </nav>
   </div>
@@ -16,49 +14,42 @@
 
 <main id="top">
   <div class="hero">
-    <div class="wrap hero-grid">
+    <div class="wrap">
       <div class="hero-copy">
         <h1>Don't sign that repair estimate yet.</h1>
-        <p class="lede">Went in for an oil change and came out with a list? Show us the estimate. In about a minute you'll know which lines are fair, which are padded, and exactly what to say at the counter.</p>
+        <p class="lede">Upload the estimate. In about a minute you'll see which lines are fair, which are padded, and what to say at the counter.</p>
         <label class="drop" for="hero-file" id="hero-upload" tabindex="0">
-          <svg class="drop-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="5" width="30" height="38" rx="3"/><path d="M15 15h18M15 21h18M15 27h11"/><path class="pen" d="M30 40l10-10 3 3-10 10h-3z"/></svg>
-          <span class="drop-txt"><b>Upload a photo of your estimate</b><span>Or drop a PDF here. Your first verdict is free.</span></span>
-          <span class="drop-btn">Choose file</span>
+          <svg class="drop-ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3h11l6 6v20H8z"/><path d="M19 3v6h6"/><path d="M12 16h9M12 21h9"/></svg>
+          <span class="drop-txt"><b>Upload your estimate</b><span>A photo or a PDF</span></span>
+          <span class="drop-btn">Choose a photo</span>
         </label>
         <input id="hero-file" type="file" accept="image/*,application/pdf" hidden>
-        <p class="hero-alt"><a href="#tool" data-start="check">No photo? Type what the shop told you</a></p>
-        <ul class="proof">
-          <li>No app or account</li>
-          <li>No shop pays us</li>
-          <li>Full refund if it isn't useful</li>
-        </ul>
-        <p class="source">Cars, AC and furnaces, roofs, plumbing and more. Checking quotes all the time? <a href="#pricing">Unlimited is $26 a month.</a></p>
+        <p class="hero-alt">No photo? <a href="#tool" data-start="check">Type it in instead</a>. The first verdict is free.</p>
       </div>
-
       %%HEROVIS%%
+      <ul class="proof">
+        <li>No app or account</li>
+        <li>No shop or contractor pays us</li>
+        <li>Full refund if it isn't useful</li>
+      </ul>
     </div>
   </div>
 
-  %%PRESS%%
-
-  <section class="how" aria-labelledby="how-title">
+  <section class="how" id="how" aria-labelledby="how-title">
     <div class="wrap">
       <h2 id="how-title">From estimate to answer in about a minute.</h2>
       <ol class="how-steps">
         <li>
-          <div class="how-vis how-v1" aria-hidden="true"><span class="ph"></span><span class="ph s"></span><span class="ph"></span><b>estimate.jpg</b></div>
-          <h3>Snap the estimate</h3>
-          <p>A photo, a PDF, or just type what the shop told you on the phone.</p>
+          <h3>Add the estimate</h3>
+          <p>A photo, a PDF, or what the shop told you on the phone.</p>
         </li>
         <li>
-          <div class="how-vis how-v2" aria-hidden="true"><span>2017 Honda Accord</span><span>ZIP 30301</span></div>
-          <h3>Tell us the car and where you are</h3>
-          <p>Prices depend on the vehicle and on local labor rates, so we ask.</p>
+          <h3>Tell us the car and your ZIP code</h3>
+          <p>Fair prices depend on the vehicle and on local labor rates.</p>
         </li>
         <li>
-          <div class="how-vis how-v3" aria-hidden="true"><i class="g"></i><i class="a"></i><i class="a"></i><i class="r"></i><i class="g"></i></div>
           <h3>See every line priced</h3>
-          <p>Fair, above market, or worth asking about, with the words to use at the counter.</p>
+          <p>Fair, above market, or worth asking about, plus the words to use.</p>
         </li>
       </ol>
     </div>
@@ -67,127 +58,78 @@
   <section id="products" aria-labelledby="products-title">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="products-title">Four checks. Start with the question you have.</h2>
-        <p>Each one gives you a free first answer. Go Unlimited and unlock every one, or pay for a single report.</p>
+        <h2 id="products-title">Start with the question you have.</h2>
+        <p>Every check gives you a free first answer. Unlock the full report for one quote, or go Unlimited.</p>
       </div>
       <div class="products">
-        <article class="product lead">
-          %%IMG_check%%
-          <p class="pain">Is this price for real?</p>
+        <article class="product">
+          <h3>Is this price fair?</h3>
+          <p>Every line of one estimate priced against your car and your area, with what to question and a script.</p>
           <div class="name"><span>Repair Quote Checker</span><b>$4.99</b></div>
-          <ul class="ticks">
-            <li>Line-by-line price analysis</li>
-            <li>Local parts and labor benchmarks</li>
-            <li>Fair, above market or needs verification</li>
-            <li>Potentially questionable charges</li>
-            <li>A negotiation script</li>
-          </ul>
-          <a class="btn block" href="#tool" data-start="check">Check one estimate</a>
+          <a class="btn-quiet" href="#tool" data-start="check">Check my estimate</a>
         </article>
         <article class="product">
-          %%IMG_compare%%
-          <p class="pain">Three shops, three prices. Who's right?</p>
+          <h3>Three shops, three prices. Who's right?</h3>
+          <p>Up to five estimates side by side: parts, labor, what each leaves out, and the best value.</p>
           <div class="name"><span>Repair Quote Comparator</span><b>$14.99</b></div>
-          <ul class="ticks">
-            <li>Up to five estimates, side by side</li>
-            <li>Parts and labor differences</li>
-            <li>What each estimate leaves out</li>
-            <li>Price and value ranking</li>
-            <li>A best-value pick, with caveats</li>
-          </ul>
-          <a class="btn block" href="#tool" data-start="compare">Compare estimates</a>
+          <a class="btn-quiet" href="#tool" data-start="compare">Compare estimates</a>
         </article>
         <article class="product">
-          %%IMG_need%%
-          <p class="pain">Do I really need all this?</p>
+          <h3>Do I really need all of this?</h3>
+          <p>Each recommended repair explained, sorted into now, soon, later or get a second look.</p>
           <div class="name"><span>Repair Necessity Checker</span><b>$9.99</b></div>
-          <ul class="ticks">
-            <li>Each recommended repair explained</li>
-            <li>Urgency: now, soon, later or verify</li>
-            <li>Symptoms you would notice</li>
-            <li>Questions to ask the mechanic</li>
-            <li>When to get a second inspection</li>
-          </ul>
-          <a class="btn block" href="#tool" data-start="need">Check a repair list</a>
+          <a class="btn-quiet" href="#tool" data-start="need">Check a repair list</a>
         </article>
         <article class="product">
-          %%IMG_any%%
-          <p class="pain">$9,000 for an AC? Seriously?</p>
+          <h3>$9,000 for a new AC?</h3>
+          <p>HVAC, roofing, plumbing, electrical, appliances, moving and more, priced line by line.</p>
           <div class="name"><span>Any Quote Checker</span><b>$9.99</b></div>
-          <ul class="ticks">
-            <li>HVAC, roofing, plumbing, electrical and more</li>
-            <li>Appliance, remodeling, moving and auto body</li>
-            <li>Fair range for every line, local benchmarks</li>
-            <li>Vague or padded charges flagged</li>
-            <li>A script for the provider</li>
-          </ul>
-          <a class="btn block" href="#tool" data-start="any">Check any quote</a>
+          <a class="btn-quiet" href="#tool" data-start="any">Check any quote</a>
         </article>
       </div>
     </div>
   </section>
 
-  %%FACE%%
-
   %%RECEIPTS%%
-
-  %%PROOF%%
 
   <section id="pricing" aria-labelledby="pricing-title">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="pricing-title">Every quote. Checked. $26 a month.</h2>
-        <p>The car, the furnace, the roof, the movers. Check any quote that lands on your table, as many as you get, for one flat price. Every check still starts free.</p>
+        <h2 id="pricing-title">Simple pricing.</h2>
+        <p>Every check starts free. Pay only when you want the full report.</p>
       </div>
-      <div class="plans two">
+      <div class="plans">
         <article class="plan best">
-          <span class="badge">Most popular</span>
-          <h3>Check Any Quote Unlimited</h3>
-          <p class="plan-price"><b>$26</b><span>per month · cancel anytime</span></p>
+          <p class="badge">Most popular</p>
+          <h3>Unlimited</h3>
+          <p class="plan-price"><b>$26</b><span>a month, cancel anytime</span></p>
           <ul class="ticks">
-            <li>Unlimited full reports, every check, every quote</li>
-            <li>Car repairs, AC and furnaces, roofs, plumbing, remodels, movers</li>
-            <li>Compare up to five quotes as often as you like</li>
-            <li>Line-by-line fair prices and the exact words to push back</li>
-            <li>One avoided upsell can pay for months of it</li>
+            <li>Every check, every quote, as often as you need</li>
+            <li>Cars, AC and furnaces, roofs, plumbing, remodels, movers</li>
+            <li>Fair prices line by line and the words to push back</li>
           </ul>
-          <button class="btn block" type="button" data-plan="monthly">Get Unlimited · $26/month</button>
+          <button class="btn block" type="button" data-plan="monthly">Get Unlimited</button>
         </article>
         <article class="plan">
-          <h3>Single report</h3>
-          <p class="plan-price"><b>$4.99</b><span>to $14.99, one time</span></p>
+          <h3>One report</h3>
+          <p class="plan-price"><b>$4.99</b><span>to $14.99, paid once</span></p>
           <ul class="ticks">
-            <li>One full report, kept on your device</li>
-            <li>Repair check $4.99 · Necessity $9.99</li>
-            <li>Any quote $9.99 · Compare up to five $14.99</li>
-            <li>No subscription, no account</li>
+            <li>The full report for one quote</li>
+            <li>No subscription and no account</li>
+            <li>Refunded within 7 days if it isn't useful</li>
           </ul>
-          <a class="btn-quiet block" href="#tool">Start a free check</a>
+          <a class="btn-quiet block" href="#tool" data-start="check">Check my estimate</a>
         </article>
       </div>
-      <p class="fine plans-fine">Payments by Dodo Payments, our merchant of record, so US sales tax is handled for you. Not useful? Full refund within 7 days of a single report. <button type="button" class="linkish" id="restore-open">Already on Unlimited? Restore access</button> <button type="button" class="linkish" id="manage-btn" hidden>Manage my subscription</button> Managing properties or a fleet? <a href="teams.html">See QuoteGauge for Teams</a>.</p>
-
-      <div class="versus">
-        <h3>Why QuoteGauge, not another app</h3>
-        <table>
-          <thead><tr><th scope="col"></th><th scope="col">QuoteGauge</th><th scope="col">Typical repair-check app</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Get started</th><td>Open the site and upload. Nothing to install</td><td>Download from an app store</td></tr>
-            <tr><th scope="row">Pay</th><td>Unlimited at $26 a month, or one report at a time</td><td>Subscription, sometimes billed weekly</td></tr>
-            <tr><th scope="row">Covers</th><td>Car repairs, home repairs and contractor quotes</td><td>Car repairs</td></tr>
-            <tr><th scope="row">Before you pay</th><td>A free verdict on your own quote</td><td>Varies</td></tr>
-            <tr><th scope="row">What you walk away with</th><td>Fair range per line, what to question, the words to say</td><td>A score or a range</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <p class="fine plans-fine">Payments are handled by Dodo Payments, our merchant of record, which also takes care of US sales tax. <button type="button" class="linkish" id="restore-open">Already on Unlimited? Restore access</button> <button type="button" class="linkish" id="manage-btn" hidden>Manage my subscription</button> Managing properties or a fleet? <a href="teams.html">See QuoteGauge for Teams</a>.</p>
     </div>
   </section>
 
   <section class="tool-sec" aria-labelledby="tool-title">
     <div class="wrap">
       <div class="sec-head">
-        <h2 id="tool-title">Start a check.</h2>
-        <p>Add the quote, confirm the details, get your answer. The first answer is free, and it takes less time than the shop's coffee machine.</p>
+        <h2 id="tool-title">Check a quote.</h2>
+        <p>Add the quote, confirm the details, get your answer. The first answer is free.</p>
       </div>
       <div class="tool" id="tool">
         <div class="tabs" role="tablist" aria-label="Choose a check">
@@ -337,7 +279,7 @@
     </div>
   </section>
 
-  <section id="method" class="dark on-dark" aria-labelledby="method-title">
+  <section id="method" aria-labelledby="method-title">
     <div class="wrap">
       <div class="sec-head">
         <h2 id="method-title">How we price a repair, and where the estimate stops.</h2>
@@ -367,14 +309,8 @@
     </div>
   </section>
 
-  <div class="promise">
-    <div class="wrap">
-      <p>Not useful? Full refund within 7 days. We'd rather lose $4.99 than your trust.</p>
-      <a class="btn" href="#tool">Start a check</a>
-    </div>
-  </div>
 
-  %%FOUNDER%%
+
 
   <section id="guides" aria-labelledby="guides-title">
     <div class="wrap">
@@ -387,13 +323,6 @@
     <div class="wrap">
       <div class="sec-head"><h2 id="faq-title">Questions, answered plainly.</h2></div>
       %%FAQ%%
-    </div>
-  </section>
-  <section class="final-cta" aria-labelledby="final-title">
-    <div class="wrap">
-      <h2 id="final-title">Got an estimate in your hand right now?</h2>
-      <p>Check it before you say yes. The first verdict is free and takes about a minute.</p>
-      <a class="btn" href="#tool" data-start="check">Check my estimate</a>
     </div>
   </section>
 </main>
@@ -416,7 +345,7 @@
   </div>
 </footer>
 
-<div class="sticky" id="sticky"><a class="btn yellow block" href="#tool" data-start="check">Check my estimate free</a></div>
+<div class="sticky" id="sticky"><a class="btn block" href="#tool" data-start="check">Check my estimate</a></div>
 
 <dialog id="restore-dialog" aria-labelledby="restore-title">
   <h3 id="restore-title">Restore Unlimited on this device</h3>

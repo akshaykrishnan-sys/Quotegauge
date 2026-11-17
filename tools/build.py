@@ -81,7 +81,7 @@ guides_list = ('<div class="guide-list">\n'
 meta = json.loads(read("img/photos.json")) if (ROOT / "img/photos.json").exists() else {}
 has = lambda k: (ROOT / "img" / (k + ".jpg")).exists() and k in meta
 hero_vis = (
-    '<figure class="est" aria-label="Example: a repair estimate marked up by QuoteGauge">'
+    '<figure class="demo" aria-label="Example: a repair estimate checked by QuoteGauge">'
     '<div class="est-paper">'
     '<div class="est-head"><b>Riverside Auto Service</b><span>Estimate 20418</span></div>'
     '<p class="est-car">2017 Honda Accord, 84,210 mi</p>'
@@ -94,16 +94,25 @@ hero_vis = (
     '</ol>'
     '<div class="est-total"><span>Total</span><span>$1,261.00</span></div>'
     '</div>'
-    '<div class="est-verdict"><span>Worth asking about before you sign</span><strong>$287</strong>'
-    '<span class="est-say">&ldquo;Can you walk me through the flush, the filter and the fuel cleaning?&rdquo;</span></div>'
+    '<div class="rep">'
+    '<p class="rep-k">Your QuoteGauge result</p>'
+    '<p class="rep-amt"><b>$287</b> worth asking about before you sign</p>'
+    '<ul class="rep-list">'
+    '<li class="ok"><span>2 lines fair</span><span>$734</span></li>'
+    '<li class="hi"><span>2 lines above market</span><span>$298</span></li>'
+    '<li class="ask"><span>1 line to question</span><span>$229</span></li>'
+    '</ul>'
+    '<div class="rep-say"><p>What to say</p><q>Before I approve this, can you walk me through the brake fluid flush, the cabin filter and the fuel cleaning? I&rsquo;m seeing lower prices for this car.</q></div>'
+    '</div>'
     '<figcaption>Example estimate with illustrative figures.</figcaption>'
     '</figure>')
 card_img = {k: ('<img src="img/%s.jpg" alt="%s" width="900" height="600" loading="lazy" decoding="async">' % (k, html.escape(meta[k])) if has(k) else "") for k in ("check", "compare", "need", "any")}
-receipts = ('<section class="receipts" aria-labelledby="receipts-title"><div class="wrap">'
-            '<div class="sec-head"><h2 id="receipts-title">These are real quotes.</h2>'
-            '<p>All reported in the press. None of these people had QuoteGauge. You will.</p></div><div class="rc-grid">'
-            + "".join('<article class="rc"><b>%s</b><p>%s</p><a href="%s" rel="noopener" target="_blank">Source: %s</a></article>' % (e(n), e(t), u, e(src)) for n, t, src, u in RECEIPTS)
-            + '</div><p class="rc-foot">Most shops and contractors are honest. The quote still deserves a sanity check. <a class="btn" href="#tool" data-start="check">Check mine, free</a></p></div></section>')
+receipts = ('<section class="receipts" id="real-quotes" aria-labelledby="receipts-title"><div class="wrap">'
+            '<div class="sec-head"><h2 id="receipts-title">Real quotes, reported in the press.</h2>'
+            '<p>Two in three US drivers say they don&rsquo;t trust repair shops, according to <a href="%s" rel="noopener" target="_blank">AAA</a>. These are the quotes behind that number. None of these people had QuoteGauge.</p></div>'
+            '<ol class="ledger">' % AAA_URL
+            + "".join('<li><b>%s</b><p>%s</p><a href="%s" rel="noopener" target="_blank">%s</a></li>' % (e(n), e(t), u, e(src)) for n, t, src, u in RECEIPTS)
+            + '</ol><p class="ledger-note">Most shops and contractors are honest. The quote still deserves a second look.</p></div></section>')
 face = ""
 if has("face"):
     face = ('<section class="face-sec" aria-labelledby="face-title"><div class="wrap">'
@@ -145,7 +154,7 @@ press = ('<section class="press" aria-labelledby="press-title"><div class="wrap"
          '<li><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Torque News</a></li>'
          '<li><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">The Cool Down</a></li>'
          '</ul></div></section>') % AAA_URL
-body = (read("src/body.html").replace("%%PRESS%%", press).replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
+body = (read("src/body.html").replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
         .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder).replace("%%FACE%%", face).replace("%%RECEIPTS%%", receipts))
 for k, v in card_img.items():
     body = body.replace("%%IMG_" + k + "%%", v)
