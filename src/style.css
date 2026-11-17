@@ -453,3 +453,4 @@ input[type="text"], input[type="number"], input[type="email"], textarea, select 
 .ledger li { grid-template-columns: 270px minmax(0, 1fr) 130px; }
 .ledger b { white-space: nowrap; font-size: 28px; }
 @media (max-width: 760px) { .ledger li { grid-template-columns: minmax(0, 1fr); } .ledger b { white-space: normal; } }
+.lede { max-width: 50ch; text-wrap: balance; }
