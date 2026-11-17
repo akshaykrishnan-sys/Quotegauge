@@ -404,7 +404,9 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
 
 /* Pricing and Pro */
 .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-@media (max-width: 900px) { .plans { grid-template-columns: minmax(0, 1fr); } }
+.plans.two { grid-template-columns: 1.25fr 1fr; max-width: 900px; }
+.hero-plan { margin-left: 10px; }
+@media (max-width: 900px) { .plans, .plans.two { grid-template-columns: minmax(0, 1fr); } .hero-plan { margin: 10px 0 0; } }
 .plan { position: relative; border: 2px solid var(--ink); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px; background: var(--paper); }
 .plan.best { background: var(--yellow); box-shadow: 8px 8px 0 var(--ink); }
 .plan h3 { font-family: var(--display); font-weight: 800; font-size: 28px; text-transform: uppercase; line-height: 1; }

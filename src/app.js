@@ -293,7 +293,7 @@
     }
     $("unlock-title").textContent = title;
     $("unlock-anchor").textContent = anchor + "Not useful? Full refund within 7 days.";
-    $("unlock-btn").textContent = member() ? "Open my full report · Pro" : "Unlock my full report · " + price;
+    $("unlock-btn").textContent = member() ? "Open my full report · Unlimited" : "Unlock my full report · " + price;
     $("pro-line").hidden = !!member();
     var alt = { check: [["compare", "Got a second quote? Compare them"], ["need", "Not sure you need it all? Check the repairs"]], compare: [["check", "Check one estimate line by line"], ["need", "Check whether the repairs are needed"]], need: [["check", "Check the prices on the estimate"], ["compare", "Compare estimates from other shops"]], any: [["any", "Check another quote"], ["check", "Got a car repair estimate? Check it"]] }[p];
     $("cross").innerHTML = alt.map(function (x) { return "<button type=\"button\" class=\"btn-quiet\" data-go=\"" + x[0] + "\">" + esc(x[1]) + "</button>"; }).join("");
@@ -505,10 +505,10 @@
     b.addEventListener("click", function () {
       var plan = b.getAttribute("data-plan"), label = b.textContent;
       track("pro_clicked");
-      if (inPreview) { $("pay-text").textContent = "Pro isn't switched on in this preview. On the live site this opens a secure checkout for the " + plan + " plan."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
+      if (inPreview) { $("pay-text").textContent = "Unlimited isn't switched on in this preview. On the live site this opens a secure checkout."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
       b.disabled = true; b.textContent = "Opening secure checkout…";
       post("/api/subscribe", { plan: plan }).then(function (j) {
-        if (j.test) { b.disabled = false; b.textContent = label; $("pay-text").textContent = "Payments aren't switched on yet, so Pro can't be bought today. Every full report opens free while the site is in test mode."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
+        if (j.test) { b.disabled = false; b.textContent = label; $("pay-text").textContent = "Payments aren't switched on yet, so Unlimited can't be bought today. Every full report opens free while the site is in test mode."; $("pay-continue").hidden = true; $("pay-dialog").showModal(); return; }
         location.href = j.url;
       }).catch(function () { b.disabled = false; b.textContent = label; toast("Checkout couldn't be opened. Please try again in a moment."); });
     });
@@ -544,7 +544,7 @@
     try { history.replaceState(null, "", location.pathname + location.hash); } catch (e) {}
     var tries = 0;
     (function attempt() {
-      joinPro(sid).then(function () { toast("Welcome to QuoteGauge Pro. Every full report is now unlocked on this device."); track("pro_joined"); })
+      joinPro(sid).then(function () { toast("Welcome to QuoteGauge Unlimited. Every full report is now unlocked on this device."); track("pro_joined"); })
         .catch(function (e) { if (e.code === "inactive" && tries++ < 5) { setTimeout(attempt, 2500); return; } toast("We couldn't confirm your Pro subscription yet. Use Restore access with the ID from your receipt."); });
     })();
   })();

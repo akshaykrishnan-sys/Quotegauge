@@ -50,7 +50,7 @@ serverless functions, built to deploy on Vercel.
    - `DODO_API_KEY`
    - `DODO_MODE`: `test` or `live` (a test key only works in test mode)
    - `DODO_PRODUCT_CHECK`, `DODO_PRODUCT_COMPARE`, `DODO_PRODUCT_NEED`, `DODO_PRODUCT_ANY`: the one-time product IDs (`pdt_...`): $4.99, $14.99, $9.99, $9.99
-   - `DODO_PLAN_MONTHLY`, `DODO_PLAN_YEARLY`: two **subscription** products for QuoteGauge Pro, $12.99 a month and $79 a year
+   - `DODO_PLAN_MONTHLY`, `DODO_PLAN_YEARLY`: `DODO_PLAN_MONTHLY` is the main **subscription** product, Check Any Quote Unlimited at $26 a month (`DODO_PLAN_YEARLY` is optional and not shown on the site)
    - `PAYMENTS_LIVE=true`
    Flow: the unlock button calls `/api/pay`, which creates a checkout tied to that
    report and redirects the buyer. Dodo sends them back to `/?payment_id=...`; the

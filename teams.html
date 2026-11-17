@@ -433,7 +433,9 @@ dialog p { color: var(--muted); margin-bottom: 16px; }
 
 /* Pricing and Pro */
 .plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
-@media (max-width: 900px) { .plans { grid-template-columns: minmax(0, 1fr); } }
+.plans.two { grid-template-columns: 1.25fr 1fr; max-width: 900px; }
+.hero-plan { margin-left: 10px; }
+@media (max-width: 900px) { .plans, .plans.two { grid-template-columns: minmax(0, 1fr); } .hero-plan { margin: 10px 0 0; } }
 .plan { position: relative; border: 2px solid var(--ink); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 16px; background: var(--paper); }
 .plan.best { background: var(--yellow); box-shadow: 8px 8px 0 var(--ink); }
 .plan h3 { font-family: var(--display); font-weight: 800; font-size: 28px; text-transform: uppercase; line-height: 1; }
@@ -542,7 +544,7 @@ select { font: inherit; width: 100%; padding: 12px 12px; border: 2px solid var(-
         <article class="plan best"><span class="badge">For portfolios</span><h3>Portfolio</h3><p class="plan-price"><b>$499</b><span>per month · $249.50 for founding teams</span></p>
           <ul class="ticks"><li>Unlimited people</li><li>600 quote checks a month</li><li>Bid comparisons for every job</li><li>Onboarding call and a monthly review with us</li></ul>
           <a class="btn block" href="mailto:hello@quotegauge.pro?subject=QuoteGauge%20for%20Teams%20demo&body=Company%3A%0AHow%20many%20units%20or%20vehicles%3A%0AQuotes%20approved%20per%20month%20(roughly)%3A%0ABest%20time%20for%20a%2015-minute%20call%20(with%20time%20zone)%3A%0A">Book a demo</a></article>
-        <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$12.99</b><span>per month · QuoteGauge Pro</span></p>
+        <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$26</b><span>per month · Check Any Quote Unlimited</span></p>
           <ul class="ticks"><li>One person</li><li>Every full report unlocked</li><li>Car, home and contractor quotes</li><li>Cancel anytime</li></ul>
           <a class="btn-quiet block" href="index.html#pricing">See Pro</a></article>
       </div>

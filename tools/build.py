@@ -120,10 +120,8 @@ home_graph = [
          {"@type": "Offer", "name": "Repair Necessity Checker full report", "price": "9.99", "priceCurrency": "USD"},
          {"@type": "Offer", "name": "Any Quote Checker full report", "price": "9.99", "priceCurrency": "USD"},
          {"@type": "Offer", "name": "Repair Quote Comparator full report", "price": "14.99", "priceCurrency": "USD"},
-         {"@type": "Offer", "name": "QuoteGauge Pro monthly", "price": "12.99", "priceCurrency": "USD",
-          "priceSpecification": {"@type": "UnitPriceSpecification", "price": "12.99", "priceCurrency": "USD", "billingDuration": "P1M", "unitCode": "MON"}},
-         {"@type": "Offer", "name": "QuoteGauge Pro yearly", "price": "79.00", "priceCurrency": "USD",
-          "priceSpecification": {"@type": "UnitPriceSpecification", "price": "79.00", "priceCurrency": "USD", "billingDuration": "P1Y", "unitCode": "ANN"}},
+         {"@type": "Offer", "name": "Check Any Quote Unlimited", "price": "26.00", "priceCurrency": "USD",
+          "priceSpecification": {"@type": "UnitPriceSpecification", "price": "26.00", "priceCurrency": "USD", "billingDuration": "P1M", "unitCode": "MON"}},
      ]},
     faq_ld(FAQ, SITE + "/#faq"),
 ]
@@ -322,7 +320,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
         <article class="plan best"><span class="badge">For portfolios</span><h3>Portfolio</h3><p class="plan-price"><b>$499</b><span>per month · $249.50 for founding teams</span></p>
           <ul class="ticks"><li>Unlimited people</li><li>600 quote checks a month</li><li>Bid comparisons for every job</li><li>Onboarding call and a monthly review with us</li></ul>
           <a class="btn block" href="{demo}">Book a demo</a></article>
-        <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$12.99</b><span>per month · QuoteGauge Pro</span></p>
+        <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$26</b><span>per month · Check Any Quote Unlimited</span></p>
           <ul class="ticks"><li>One person</li><li>Every full report unlocked</li><li>Car, home and contractor quotes</li><li>Cancel anytime</li></ul>
           <a class="btn-quiet block" href="index.html#pricing">See Pro</a></article>
       </div>
