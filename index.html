@@ -740,6 +740,83 @@ img { border-radius: 8px; }
 .est figcaption { max-width: 38%; } @media (max-width: 900px) { .est figcaption { max-width: none; } }
 .nav a { white-space: nowrap; }
 @media (max-width: 1060px) { .nav a[href="#method"], .nav a[href="#guides"], .nav a[href="#faq"] { display: none; } }
+
+/* ===== v4: night-shift hero, bolder rhythm ===== */
+:root { --night: #0a1122; --night-2: #111b33; --glow: #3d63ff; --mint: #2fd3a5; }
+.top { background: rgba(10, 17, 34, 0.86); border-bottom: 1px solid rgba(255,255,255,.08); }
+.top .logo, .top .nav { color: #fff; }
+.top .nav a:not(.btn) { color: #c7d0e3; }
+.top .nav a:not(.btn):hover { color: #fff; }
+.logo i { background: #fff; } .logo i::after { background: #ffb020; }
+.foot .logo i { background: #fff; }
+
+.hero { position: relative; background: var(--night); color: #fff; padding: 72px 0 96px; border: 0; isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    radial-gradient(600px 420px at 78% 38%, rgba(61, 99, 255, .45), transparent 70%),
+    radial-gradient(520px 380px at 12% 92%, rgba(47, 211, 165, .16), transparent 70%),
+    radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px) 0 0 / 26px 26px; }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 120px; z-index: -1; background: linear-gradient(transparent, var(--night)); }
+.hero h1 { color: #fff; }
+.hero-copy .lede { color: #b9c4da; }
+.drop { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.28); color: #fff; backdrop-filter: blur(6px); }
+.drop:hover, .drop.over { background: rgba(61, 99, 255, .16); border-color: #8ea6ff; }
+.drop-txt span { color: #a9b5cc; }
+.drop-ico { stroke: #fff; } .drop-ico rect { fill: rgba(255,255,255,.08); }
+.drop-btn { background: var(--glow); box-shadow: 0 8px 24px rgba(61, 99, 255, .45); }
+.drop:hover .drop-btn { background: #5576ff; }
+.hero-alt a { color: #a9bcff; }
+.proof { color: #d4dbea; } .proof li::before { border-color: var(--mint); }
+.source { color: #95a2bb; } .source a { color: #fff; }
+.est-paper { box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 40px 80px -20px rgba(0,0,0,.7), 0 0 120px rgba(61,99,255,.25); }
+.est-verdict { background: #fff; color: var(--ink); box-shadow: 0 30px 60px -18px rgba(0,0,0,.6); }
+.est-verdict > span:first-child { color: var(--muted); }
+.est-verdict strong { color: var(--red); }
+.est-say { color: #2d3a50; }
+.est figcaption { color: #8794ad; }
+@media (max-width: 900px) { .hero { padding: 40px 0 64px; } }
+
+/* Source bar */
+.press { background: var(--night); color: #8f9cb6; padding: 8px 0 44px; }
+.press .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 40px; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
+.press-t { font-size: 14px; max-width: 34ch; line-height: 1.45; }
+.press-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px 38px; align-items: center; }
+.press-list a { color: #dfe5f1; text-decoration: none; font-weight: 800; font-size: 24px; letter-spacing: -0.02em; opacity: .85; }
+.press-list a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+
+/* How it works */
+.how { padding: 88px 0 72px; background: #fff; }
+.how h2 { max-width: 18ch; margin-bottom: 40px; }
+.how-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; counter-reset: hs; }
+@media (max-width: 860px) { .how-steps { grid-template-columns: minmax(0, 1fr); } }
+.how-steps li { counter-increment: hs; display: flex; flex-direction: column; gap: 10px; }
+.how-steps h3::before { content: counter(hs); display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 14px; margin-right: 10px; vertical-align: 3px; }
+.how-steps p { color: var(--muted); max-width: 34ch; }
+.how-vis { height: 150px; border-radius: 14px; background: var(--soft); border: 1px solid var(--line); margin-bottom: 8px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.how-v1 { flex-direction: column; align-items: flex-start; padding: 26px 70px; }
+.how-v1 .ph { display: block; height: 9px; width: 100%; border-radius: 5px; background: #cfd7e4; }
+.how-v1 .ph.s { width: 60%; }
+.how-v1 b { position: absolute; right: 16px; bottom: 14px; background: var(--brand); color: #fff; font-size: 13px; padding: 6px 10px; border-radius: 6px; }
+.how-v2 { flex-direction: column; }
+.how-v2 span { background: #fff; border: 1px solid #c9d2e1; border-radius: 8px; padding: 9px 14px; font-weight: 600; font-size: 15px; width: 70%; }
+.how-v3 { flex-direction: column; gap: 9px; padding: 0 60px; }
+.how-v3 i { display: block; height: 12px; width: 100%; border-radius: 6px; }
+.how-v3 .g { background: #bfe6d6; } .how-v3 .a { background: #f4d9a6; } .how-v3 .r { background: #f3b8bf; }
+
+/* Final call to action */
+.final-cta { position: relative; background: var(--night); color: #fff; padding: 96px 0; text-align: center; overflow: hidden; isolation: isolate; }
+.final-cta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(520px 300px at 50% 120%, rgba(61,99,255,.55), transparent 70%); }
+.final-cta h2 { margin: 0 auto 14px; max-width: 18ch; color: #fff; }
+.final-cta p { color: #b9c4da; margin: 0 auto 28px; max-width: 44ch; font-size: 19px; }
+.final-cta .btn { background: var(--glow); font-size: 18px; padding: 16px 28px; box-shadow: 0 12px 30px rgba(61,99,255,.5); }
+
+/* Products: bolder pain headlines, image zoom on hover only where it signals a link */
+.product .pain { font-size: 28px; }
+.product img { transition: transform .4s ease; }
+.product:hover img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) { .product img { transition: none; } .product:hover img { transform: none; } }
+.top { background: var(--night); }
+.product img { aspect-ratio: 16 / 10; height: auto; width: 100%; object-fit: cover; }
 </style>
 </head>
 <body>
@@ -785,50 +862,28 @@ img { border-radius: 8px; }
     </div>
   </div>
 
-  <section class="face-sec" aria-labelledby="face-title"><div class="wrap"><div class="sec-head"><h2 id="face-title">You know this face.</h2><p>It&rsquo;s the &ldquo;we also found a few things&rdquo; face.</p></div><figure class="face"><img src="img/face.jpg" alt="A man staring wide-eyed at the repair bill in his hands" width="1280" height="720" loading="lazy" decoding="async"><figcaption class="cap c-right">&ldquo;&hellip;we also found a few things.&rdquo;</figcaption></figure><div class="face-foot"><p>QuoteGauge wipes that look off your face. Upload the list, see which &ldquo;few things&rdquo; are real and which are padded, and walk back to the counter knowing exactly what to say. <b>Before</b> you sign.</p><a class="btn" href="#tool" data-start="check">Fix my face. It&rsquo;s free</a></div></div></section>
+  <section class="press" aria-labelledby="press-title"><div class="wrap"><p id="press-title" class="press-t">Overcharging on repair quotes is well documented. These outlets reported on it, not on us.</p><ul class="press-list"><li><a href="https://newsroom.aaa.com/2016/12/u-s-drivers-leery-auto-repair-shops/" rel="noopener" target="_blank">AAA</a></li><li><a href="https://www.motor1.com/news/813963/shop-overcharges-muffler/" rel="noopener" target="_blank">Motor1</a></li><li><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Torque News</a></li><li><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">The Cool Down</a></li></ul></div></section>
 
-  <section class="receipts" aria-labelledby="receipts-title"><div class="wrap"><div class="sec-head"><h2 id="receipts-title">These are real quotes.</h2><p>All reported in the press. None of these people had QuoteGauge. You will.</p></div><div class="rc-grid"><article class="rc"><b>$2,584</b><p>Went in for a free oil change on a 2020 Highlander. Came out with $2,584 of "recommended" work, including a $160 cabin air filter and a $289 fuel injector cleaning.</p><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Source: Torque News</a></article><article class="rc"><b>$4,000 → $223</b><p>Told the AC needed a new compressor for about $4,000. A second company replaced some bad wiring terminals and had it running for $223.</p><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">Source: The Cool Down</a></article><article class="rc"><b>$7,000 → $75</b><p>Weighing a $7,000 AC replacement. The real fix turned out to be a $75 capacitor.</p><a href="https://www.thecooldown.com/?p=787418" rel="noopener" target="_blank">Source: The Cool Down</a></article><article class="rc"><b>$1,264 vs $157</b><p>Quoted $1,264.40 for a muffler that, by another mechanic's count, costs a shop $157 and under half an hour.</p><a href="https://www.motor1.com/news/813963/shop-overcharges-muffler/" rel="noopener" target="_blank">Source: Motor1</a></article><article class="rc"><b>$105 vs $30</b><p>Dealerships quoting $89 to $105 for a cabin air filter that owners later found online for $7 to $30.</p><a href="https://www.motor1.com/news/775153/5-scam-services-dealerships-sell/" rel="noopener" target="_blank">Source: Motor1</a></article></div><p class="rc-foot">Most shops and contractors are honest. The quote still deserves a sanity check. <a class="btn" href="#tool" data-start="check">Check mine, free</a></p></div></section>
-
-  <section id="proof" class="proof-sec" aria-labelledby="proof-title">
+  <section class="how" aria-labelledby="how-title">
     <div class="wrap">
-      <div class="sec-head"><h2 id="proof-title">You're not being paranoid.</h2><p>Most drivers feel the same way at the service counter.</p></div>
-      <div class="stats">
-        <div class="stat-card"><b>2 in 3</b><p>US drivers say they do not trust auto repair shops in general.</p></div>
-        <div class="stat-card"><b>76%</b><p>of those drivers point to recommendations for services they did not need.</p></div>
-        <div class="stat-card"><b>73%</b><p>of them point to being overcharged.</p></div>
-      </div>
-      <p class="cite">Source: <a href="https://newsroom.aaa.com/2016/12/u-s-drivers-leery-auto-repair-shops/" rel="noopener">AAA survey of US drivers, 2016</a>.</p>
-    </div>
-  </section>
-
-  <section class="story" id="story" aria-labelledby="story-title">
-    <div class="wrap story-grid">
-      <div class="story-pin">
-        <div class="paper-wrap" aria-hidden="true">
-        <div class="paper">
-          <div class="paper-head">REPAIR ESTIMATE<span>No. 20418</span></div>
-          <div class="paper-car">2017 HONDA ACCORD &nbsp;·&nbsp; 84,210 MI</div>
-          <ul>
-            <li class="fair" style="--i:0"><span><span class="mark">Front brake pads + rotors</span></span><span>689.00</span><em>fair for this car</em></li>
-            <li class="above" style="--i:1"><span><span class="mark">Brake fluid flush</span></span><span>179.00</span><em>above market, typical $100–150</em></li>
-            <li class="above" style="--i:2"><span><span class="mark">Cabin air filter</span></span><span>119.00</span><em>above market, typical $55–90</em></li>
-            <li class="verify" style="--i:3"><span><span class="mark">Fuel system cleaning</span></span><span>229.00</span><em>ask why your car needs this</em></li>
-            <li class="fair" style="--i:4"><span><span class="mark">Shop supplies</span></span><span>45.00</span><em>fair</em></li>
-          </ul>
-          <div class="paper-total"><span>TOTAL</span><span>$1,261.00</span></div>
-          <div class="stamp"><b id="story-amt">$287</b><small>worth asking</small><small>about</small></div>
-          <div class="say"><span class="k">Your script</span>“Before I approve this, can you walk me through the brake fluid flush and the cabin filter? I’m seeing lower prices for this car. And what symptom calls for the fuel system cleaning?”</div>
-        </div>
-        <p class="paper-note">Example estimate with illustrative figures.</p>
-      </div>
-      </div>
-      <div class="story-steps">
-        <div class="sec-head"><h2 id="story-title">Watch what happens to a $1,261 estimate.</h2><p>Scroll to see it checked.</p></div>
-        <div class="step on" data-step="1"><span class="k">Step 1</span><h3>This is what the shop hands you.</h3><p>Five lines, one total, a pen, and someone waiting for you to sign. Most people do, because they have nothing to compare it with.</p></div>
-        <div class="step" data-step="2"><span class="k">Step 2</span><h3>We price every line.</h3><p>Each job is checked against the standard labor time, local labor rates and typical parts cost for your exact car.</p></div>
-        <div class="step" data-step="3"><span class="k">Step 3</span><h3>You see what to question.</h3><p>Two lines are above market and one service needs a reason. That's $287 of &ldquo;we also found a few things&rdquo; worth asking about before you agree to anything.</p></div>
-        <div class="step" data-step="4"><span class="k">Step 4</span><h3>You walk back in with the words.</h3><p>The full report gives you a short, polite script naming the lines and the fair figures. No arguing, no bluffing, no Googling at the counter. You decide what to approve.</p><a class="btn" href="#tool" data-start="check" style="align-self:flex-start">Check my estimate</a></div>
-      </div>
+      <h2 id="how-title">From estimate to answer in about a minute.</h2>
+      <ol class="how-steps">
+        <li>
+          <div class="how-vis how-v1" aria-hidden="true"><span class="ph"></span><span class="ph s"></span><span class="ph"></span><b>estimate.jpg</b></div>
+          <h3>Snap the estimate</h3>
+          <p>A photo, a PDF, or just type what the shop told you on the phone.</p>
+        </li>
+        <li>
+          <div class="how-vis how-v2" aria-hidden="true"><span>2017 Honda Accord</span><span>ZIP 30301</span></div>
+          <h3>Tell us the car and where you are</h3>
+          <p>Prices depend on the vehicle and on local labor rates, so we ask.</p>
+        </li>
+        <li>
+          <div class="how-vis how-v3" aria-hidden="true"><i class="g"></i><i class="a"></i><i class="a"></i><i class="r"></i><i class="g"></i></div>
+          <h3>See every line priced</h3>
+          <p>Fair, above market, or worth asking about, with the words to use at the counter.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -892,6 +947,22 @@ img { border-radius: 8px; }
           <a class="btn block" href="#tool" data-start="any">Check any quote</a>
         </article>
       </div>
+    </div>
+  </section>
+
+  <section class="face-sec" aria-labelledby="face-title"><div class="wrap"><div class="sec-head"><h2 id="face-title">You know this face.</h2><p>It&rsquo;s the &ldquo;we also found a few things&rdquo; face.</p></div><figure class="face"><img src="img/face.jpg" alt="A man staring wide-eyed at the repair bill in his hands" width="1280" height="720" loading="lazy" decoding="async"><figcaption class="cap c-right">&ldquo;&hellip;we also found a few things.&rdquo;</figcaption></figure><div class="face-foot"><p>QuoteGauge wipes that look off your face. Upload the list, see which &ldquo;few things&rdquo; are real and which are padded, and walk back to the counter knowing exactly what to say. <b>Before</b> you sign.</p><a class="btn" href="#tool" data-start="check">Fix my face. It&rsquo;s free</a></div></div></section>
+
+  <section class="receipts" aria-labelledby="receipts-title"><div class="wrap"><div class="sec-head"><h2 id="receipts-title">These are real quotes.</h2><p>All reported in the press. None of these people had QuoteGauge. You will.</p></div><div class="rc-grid"><article class="rc"><b>$2,584</b><p>Went in for a free oil change on a 2020 Highlander. Came out with $2,584 of "recommended" work, including a $160 cabin air filter and a $289 fuel injector cleaning.</p><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Source: Torque News</a></article><article class="rc"><b>$4,000 → $223</b><p>Told the AC needed a new compressor for about $4,000. A second company replaced some bad wiring terminals and had it running for $223.</p><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">Source: The Cool Down</a></article><article class="rc"><b>$7,000 → $75</b><p>Weighing a $7,000 AC replacement. The real fix turned out to be a $75 capacitor.</p><a href="https://www.thecooldown.com/?p=787418" rel="noopener" target="_blank">Source: The Cool Down</a></article><article class="rc"><b>$1,264 vs $157</b><p>Quoted $1,264.40 for a muffler that, by another mechanic's count, costs a shop $157 and under half an hour.</p><a href="https://www.motor1.com/news/813963/shop-overcharges-muffler/" rel="noopener" target="_blank">Source: Motor1</a></article><article class="rc"><b>$105 vs $30</b><p>Dealerships quoting $89 to $105 for a cabin air filter that owners later found online for $7 to $30.</p><a href="https://www.motor1.com/news/775153/5-scam-services-dealerships-sell/" rel="noopener" target="_blank">Source: Motor1</a></article></div><p class="rc-foot">Most shops and contractors are honest. The quote still deserves a sanity check. <a class="btn" href="#tool" data-start="check">Check mine, free</a></p></div></section>
+
+  <section id="proof" class="proof-sec" aria-labelledby="proof-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="proof-title">You're not being paranoid.</h2><p>Most drivers feel the same way at the service counter.</p></div>
+      <div class="stats">
+        <div class="stat-card"><b>2 in 3</b><p>US drivers say they do not trust auto repair shops in general.</p></div>
+        <div class="stat-card"><b>76%</b><p>of those drivers point to recommendations for services they did not need.</p></div>
+        <div class="stat-card"><b>73%</b><p>of them point to being overcharged.</p></div>
+      </div>
+      <p class="cite">Source: <a href="https://newsroom.aaa.com/2016/12/u-s-drivers-leery-auto-repair-shops/" rel="noopener">AAA survey of US drivers, 2016</a>.</p>
     </div>
   </section>
 
@@ -1172,6 +1243,13 @@ img { border-radius: 8px; }
         <details><summary>Does QuoteGauge keep my estimate?</summary><p>No. Your estimate is sent to our AI provider to be analysed, and QuoteGauge does not store it after the report is produced. QuoteGauge does not sell personal data.</p></details>
         <details><summary>Is QuoteGauge connected to any repair shop or contractor?</summary><p>No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships, contractors or parts sellers.</p></details>
       </div>
+    </div>
+  </section>
+  <section class="final-cta" aria-labelledby="final-title">
+    <div class="wrap">
+      <h2 id="final-title">Got an estimate in your hand right now?</h2>
+      <p>Check it before you say yes. The first verdict is free and takes about a minute.</p>
+      <a class="btn" href="#tool" data-start="check">Check my estimate</a>
     </div>
   </section>
 </main>

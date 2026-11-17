@@ -137,7 +137,15 @@ home_graph = [
 ]
 home_desc = ("Check a car repair, home repair or contractor quote before you approve it. QuoteGauge prices every line for your area, "
              "compares estimates, and tells you which repairs are urgent. Free first answer, or Pro for every quote.")
-body = (read("src/body.html").replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
+press = ('<section class="press" aria-labelledby="press-title"><div class="wrap">'
+         '<p id="press-title" class="press-t">Overcharging on repair quotes is well documented. These outlets reported on it, not on us.</p>'
+         '<ul class="press-list">'
+         '<li><a href="%s" rel="noopener" target="_blank">AAA</a></li>'
+         '<li><a href="https://www.motor1.com/news/813963/shop-overcharges-muffler/" rel="noopener" target="_blank">Motor1</a></li>'
+         '<li><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Torque News</a></li>'
+         '<li><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">The Cool Down</a></li>'
+         '</ul></div></section>') % AAA_URL
+body = (read("src/body.html").replace("%%PRESS%%", press).replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
         .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder).replace("%%FACE%%", face).replace("%%RECEIPTS%%", receipts))
 for k, v in card_img.items():
     body = body.replace("%%IMG_" + k + "%%", v)
