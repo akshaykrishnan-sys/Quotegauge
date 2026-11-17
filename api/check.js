@@ -49,7 +49,6 @@ module.exports = async function handler(req, res) {
       body: JSON.stringify({
         model: process.env.ANTHROPIC_MODEL || "claude-sonnet-5-5",
         max_tokens: 4000,
-        temperature: 0,
         messages: [{ role: "user", content }],
       }),
     });
