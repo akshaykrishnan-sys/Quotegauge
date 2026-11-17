@@ -98,9 +98,8 @@ if has("face"):
     face = ('<section class="face-sec" aria-labelledby="face-title"><div class="wrap">'
             '<div class="sec-head"><h2 id="face-title">You know this face.</h2><p>It&rsquo;s the &ldquo;we also found a few things&rdquo; face.</p></div>'
             '<figure class="face"><img src="img/face.jpg" alt="%s" width="1280" height="720" loading="lazy" decoding="async">'
-            '<figcaption class="cap c-left">The shop texts: &ldquo;Your car is ready!&rdquo;</figcaption>'
-            '<figcaption class="cap c-right">&ldquo;&hellip;we also found a few things.&rdquo;</figcaption></figure>'
-            '<div class="face-foot"><p>QuoteGauge gets you back to the first face. Upload the list, see which &ldquo;few things&rdquo; are real and which are padded, and walk back to the counter knowing exactly what to say. <b>Before</b> you sign.</p>'
+                        '<figcaption class="cap c-right">&ldquo;&hellip;we also found a few things.&rdquo;</figcaption></figure>'
+            '<div class="face-foot"><p>QuoteGauge wipes that look off your face. Upload the list, see which &ldquo;few things&rdquo; are real and which are padded, and walk back to the counter knowing exactly what to say. <b>Before</b> you sign.</p>'
             '<a class="btn" href="#tool" data-start="check">Fix my face. It&rsquo;s free</a></div></div></section>') % html.escape(meta["face"])
 founder = ""
 if has("founder"):
