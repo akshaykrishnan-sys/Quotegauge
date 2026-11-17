@@ -54,10 +54,16 @@ module.exports = async function handler(req, res) {
       }),
     });
     if (r.status === 429) return res.status(429).json({ code: "rate_limited" });
-    if (!r.ok) return res.status(502).json({ code: "server" });
+    if (!r.ok) {
+      let why = "";
+      try { const e = await r.json(); why = (e && e.error && (e.error.type + ": " + e.error.message)) || ""; } catch (_) {}
+      console.error("anthropic_error", r.status, why.slice(0, 300));
+      return res.status(502).json({ code: "server" });
+    }
     const data = await r.json();
     reply = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("");
   } catch (err) {
+    console.error("anthropic_fetch_failed", err && err.message);
     return res.status(502).json({ code: "server" });
   }
 
