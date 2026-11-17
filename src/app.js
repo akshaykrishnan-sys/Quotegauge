@@ -616,12 +616,14 @@
   /* Lift story: as the section scrolls past, the photo zooms, the estimate lines appear on the car,
      get priced, and the total turns into the amount worth asking about. */
   var lift = $("lift");
-  if (lift && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (lift) {
+    var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     lift.classList.add("live");
     var liftTotal = $("lift-total"), liftLabel = $("lift-label"), liftStage = -1, liftRaf = 0, shown = 0;
     var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
     var countTo = function (to) {
       cancelAnimationFrame(liftRaf);
+      if (calm) { shown = to; liftTotal.textContent = fmt(to); return; }
       var from = shown, t0 = null;
       var tick = function (t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 700); shown = from + (to - from) * (1 - Math.pow(1 - k, 3)); liftTotal.textContent = fmt(shown); if (k < 1) liftRaf = requestAnimationFrame(tick); };
       liftRaf = requestAnimationFrame(tick);

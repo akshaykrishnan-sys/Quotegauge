@@ -651,6 +651,21 @@ dialog p { color: var(--ink-2); margin-bottom: 16px; }
   .lift.live:is([data-stage="2"], [data-stage="3"]) .pin.hi span { border-left-color: var(--warn); }
   .lift.live:is([data-stage="2"], [data-stage="3"]) .pin.ask span { border-left-color: var(--bad); }
 }
+
+/* Reduce motion: keep the story (fades only), drop zoom and movement */
+@media (prefers-reduced-motion: reduce) {
+  .lift-pic img, .lift-pins, .pins { transform: none !important; }
+  .lift.live .lift-step, .lift.live[data-stage] .lift-step { transform: translateY(-50%) !important; }
+  .lift.live .pin, .lift.live:not([data-stage="0"]) .pin { transform: translate(-11px, -50%); }
+  .lift.live .lift-meter { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 1181px) {
+  .lift.live .pin.flip, .lift.live:not([data-stage="0"]) .pin.flip { transform: translate(calc(-100% + 11px), -50%); }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 1180px) {
+  .lift.live .lift-step, .lift.live[data-stage] .lift-step { transform: none !important; }
+  .lift.live .pin, .lift.live:not([data-stage="0"]) .pin { transform: none; }
+}
 </style>
 </head>
 <body>

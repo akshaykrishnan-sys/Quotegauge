@@ -735,6 +735,21 @@ dialog p { color: var(--ink-2); margin-bottom: 16px; }
   .lift.live:is([data-stage="2"], [data-stage="3"]) .pin.hi span { border-left-color: var(--warn); }
   .lift.live:is([data-stage="2"], [data-stage="3"]) .pin.ask span { border-left-color: var(--bad); }
 }
+
+/* Reduce motion: keep the story (fades only), drop zoom and movement */
+@media (prefers-reduced-motion: reduce) {
+  .lift-pic img, .lift-pins, .pins { transform: none !important; }
+  .lift.live .lift-step, .lift.live[data-stage] .lift-step { transform: translateY(-50%) !important; }
+  .lift.live .pin, .lift.live:not([data-stage="0"]) .pin { transform: translate(-11px, -50%); }
+  .lift.live .lift-meter { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 1181px) {
+  .lift.live .pin.flip, .lift.live:not([data-stage="0"]) .pin.flip { transform: translate(calc(-100% + 11px), -50%); }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 1180px) {
+  .lift.live .lift-step, .lift.live[data-stage] .lift-step { transform: none !important; }
+  .lift.live .pin, .lift.live:not([data-stage="0"]) .pin { transform: none; }
+}
 </style>
 </head>
 <body>
@@ -794,7 +809,7 @@ dialog p { color: var(--ink-2); margin-bottom: 16px; }
         <div class="lift-step" data-s="2"><h2>QuoteGauge prices every line.</h2><p>One fair, two above market, one you should question. Checked against your car and your area.</p></div>
         <div class="lift-step" data-s="3"><h2>$287 is worth asking about.</h2><p>You walk back to the counter with the numbers and the exact words to use.</p><div class="lift-cta"><a class="btn" href="#pricing">See pricing</a><a class="btn-quiet" href="#tool" data-start="check">Check my estimate</a></div></div>
       </div>
-      <div class="lift-meter" aria-hidden="true"><span id="lift-label">Quoted</span><b id="lift-total">$1,216</b></div>
+      <div class="lift-meter" aria-hidden="true"><span id="lift-label">Worth asking about</span><b id="lift-total">$287</b></div>
     </div>
   </section>
 
@@ -2018,12 +2033,14 @@ dialog p { color: var(--ink-2); margin-bottom: 16px; }
   /* Lift story: as the section scrolls past, the photo zooms, the estimate lines appear on the car,
      get priced, and the total turns into the amount worth asking about. */
   var lift = $("lift");
-  if (lift && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (lift) {
+    var calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     lift.classList.add("live");
     var liftTotal = $("lift-total"), liftLabel = $("lift-label"), liftStage = -1, liftRaf = 0, shown = 0;
     var fmt = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
     var countTo = function (to) {
       cancelAnimationFrame(liftRaf);
+      if (calm) { shown = to; liftTotal.textContent = fmt(to); return; }
       var from = shown, t0 = null;
       var tick = function (t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 700); shown = from + (to - from) * (1 - Math.pow(1 - k, 3)); liftTotal.textContent = fmt(shown); if (k < 1) liftRaf = requestAnimationFrame(tick); };
       liftRaf = requestAnimationFrame(tick);
