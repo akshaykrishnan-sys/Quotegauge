@@ -200,6 +200,7 @@ for g in GUIDES:
     <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p>
   </div>
 </footer>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 """
@@ -249,6 +250,7 @@ hwp = head("How QuoteGauge Prices a Quote | QuoteGauge", hwp_desc, hwp_url,
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a></div></div>
 <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p></div></footer>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 """
@@ -338,6 +340,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
 <p class="small">© 2026 QuoteGauge. AI estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
 """
