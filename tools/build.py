@@ -14,7 +14,7 @@ SITE = "https://quotegauge.pro"
 TODAY = "2026-11-15"
 PRODUCT_NAME = {"check": "Repair Quote Checker", "compare": "Repair Quote Comparator", "need": "Repair Necessity Checker", "any": "Any Quote Checker"}
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">')
 ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "QuoteGauge", "url": SITE + "/",
        "description": "QuoteGauge checks car repair, home repair and contractor quotes against typical local prices so people know what is fair before approving work.",
        "email": "hello@quotegauge.pro"}
@@ -80,13 +80,24 @@ guides_list = ('<div class="guide-list">\n'
 # {"hero": "what the photo shows", "check": "...", "founder": {"alt": "...", "name": "...", "quote": "..."}}
 meta = json.loads(read("img/photos.json")) if (ROOT / "img/photos.json").exists() else {}
 has = lambda k: (ROOT / "img" / (k + ".jpg")).exists() and k in meta
-hero_vis = ""
-if has("hero"):
-    hero_vis = ('<div class="shot"><img src="img/hero.jpg" alt="%s" width="1280" height="853">'
-                '<div class="chip c1" aria-hidden="true"><i class="fair"></i>Brake pads + rotors · $689 · fair</div>'
-                '<div class="chip c2" aria-hidden="true"><i class="above"></i>Brake fluid flush · $179 · above market</div>'
-                '<div class="chip c3" aria-hidden="true"><i class="verify"></i>Fuel system cleaning · ask why</div>'
-                '<p class="paper-note">Example labels with illustrative figures.</p></div>') % html.escape(meta["hero"])
+hero_vis = (
+    '<figure class="est" aria-label="Example: a repair estimate marked up by QuoteGauge">'
+    '<div class="est-paper">'
+    '<div class="est-head"><b>Riverside Auto Service</b><span>Estimate 20418</span></div>'
+    '<p class="est-car">2017 Honda Accord, 84,210 mi</p>'
+    '<ol class="est-lines">'
+    '<li class="ok" style="--d:0"><span class="it">Front brake pads and rotors</span><span class="pr">689.00</span><em>fair for this car</em></li>'
+    '<li class="hi" style="--d:1"><span class="it">Brake fluid flush</span><span class="pr">179.00</span><em>usually $100&ndash;150</em></li>'
+    '<li class="hi" style="--d:2"><span class="it">Cabin air filter</span><span class="pr">119.00</span><em>usually $55&ndash;90</em></li>'
+    '<li class="ask" style="--d:3"><span class="it">Fuel system cleaning</span><span class="pr">229.00</span><em>ask why your car needs this</em></li>'
+    '<li class="ok" style="--d:4"><span class="it">Shop supplies</span><span class="pr">45.00</span><em>fair</em></li>'
+    '</ol>'
+    '<div class="est-total"><span>Total</span><span>$1,261.00</span></div>'
+    '</div>'
+    '<div class="est-verdict"><span>Worth asking about before you sign</span><strong>$287</strong>'
+    '<span class="est-say">&ldquo;Can you walk me through the flush, the filter and the fuel cleaning?&rdquo;</span></div>'
+    '<figcaption>Example estimate with illustrative figures.</figcaption>'
+    '</figure>')
 card_img = {k: ('<img src="img/%s.jpg" alt="%s" width="900" height="600" loading="lazy" decoding="async">' % (k, html.escape(meta[k])) if has(k) else "") for k in ("check", "compare", "need", "any")}
 receipts = ('<section class="receipts" aria-labelledby="receipts-title"><div class="wrap">'
             '<div class="sec-head"><h2 id="receipts-title">These are real quotes.</h2>'

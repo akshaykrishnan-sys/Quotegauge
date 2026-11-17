@@ -353,12 +353,15 @@
     $("next-btn").click();
   });
   /* Uploading from the top of the page drops the file straight into the check */
-  $("hero-file").addEventListener("change", function () {
-    var f = $("hero-file").files[0];
+  function heroTake(f) {
     if (!f) return;
     setProduct("check"); $("tool").scrollIntoView({ block: "start" }); track("hero_upload");
     take($("check-photo"), f, 3).then(function () { if (($("check-photo")._blobs || []).length) { $("car-hint").hidden = false; setStep(2); } });
-  });
+  }
+  $("hero-file").addEventListener("change", function () { heroTake($("hero-file").files[0]); });
+  ["dragenter", "dragover"].forEach(function (ev) { $("hero-upload").addEventListener(ev, function (e) { e.preventDefault(); $("hero-upload").classList.add("over"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { $("hero-upload").addEventListener(ev, function () { $("hero-upload").classList.remove("over"); }); });
+  $("hero-upload").addEventListener("drop", function (e) { e.preventDefault(); var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f && /^(image\/|application\/pdf)/.test(f.type)) heroTake(f); });
   $("hero-upload").addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("hero-file").click(); } });
   $("cross").addEventListener("click", function (e) {
     var go = e.target && e.target.getAttribute && e.target.getAttribute("data-go");

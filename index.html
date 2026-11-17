@@ -17,7 +17,7 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -637,6 +637,109 @@ img { border-radius: 12px; }
 .versus thead th { font-size: 14px; letter-spacing: 0.06em; }
 .ticks li::before { border-left: 2px solid var(--brand); border-bottom: 2px solid var(--brand); }
 @media (max-width: 640px) { h1 { font-size: 40px; } .hero { padding-top: 28px; } .hero-copy .lede { font-size: 18px; } }
+
+/* ===== Shop-counter identity (v3) =====
+   The memorable thing: the estimate itself, marked up in pen. Everything else stays quiet.
+   Shop floor #eef2f6, paper #ffffff, ink #101a2b, pen blue #2448e0 (actions),
+   red pen #cf2a3c (questioned), fair green #0f7b5b, amber #a86200 (above market). */
+:root {
+  --ink: #101a2b; --muted: #566174; --line: #dde3eb; --soft: #eef2f6;
+  --brand: #2448e0; --brand-dark: #1a36b0; --red: #cf2a3c; --good: #0f7b5b; --warn: #a86200;
+  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+}
+body { font-size: 17px; }
+h1 { font-size: clamp(42px, 6.4vw, 76px); font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; }
+h2 { font-size: clamp(30px, 4.2vw, 48px); font-weight: 800; letter-spacing: -0.03em; }
+.btn { border-radius: 8px; box-shadow: none; font-weight: 700; }
+.kicker { text-transform: none; letter-spacing: 0; font-size: 16px; color: var(--muted); font-weight: 500; }
+
+/* Header */
+.top { background: rgba(255,255,255,.94); }
+.logo i { background: var(--ink); } .logo i::after { background: #ffb020; }
+
+/* Hero */
+.hero { background: var(--soft); padding: 56px 0 72px; border-bottom: 1px solid var(--line); }
+@media (min-width: 901px) { .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr); gap: 56px; align-items: center; } }
+.hero-copy { gap: 20px; }
+.hero-copy h1 { max-width: 11ch; }
+.hero-copy .lede { font-size: 19px; line-height: 1.5; max-width: 38ch; color: #2d3a50; }
+.drop { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; background: #fff; border: 2px dashed #b9c4d6; border-radius: 14px; padding: 18px 18px 18px 16px; cursor: pointer; max-width: 560px; transition: border-color .15s, background .15s; }
+.drop:hover, .drop.over { border-color: var(--brand); background: #f6f8ff; }
+.drop:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+.drop-ico { width: 44px; height: 44px; fill: none; stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.drop-ico rect { fill: #f3f5f9; }
+.drop-ico .pen { fill: var(--red); stroke: var(--red); }
+.drop-txt { display: flex; flex-direction: column; gap: 2px; }
+.drop-txt b { font-size: 18px; letter-spacing: -0.01em; }
+.drop-txt span { font-size: 15px; color: var(--muted); }
+.drop-btn { background: var(--brand); color: #fff; font-weight: 700; font-size: 16px; padding: 12px 18px; border-radius: 8px; white-space: nowrap; }
+.drop:hover .drop-btn { background: var(--brand-dark); }
+.hero-alt { font-size: 16px; font-weight: 600; margin-top: -6px; }
+.hero-alt a { color: var(--brand); text-underline-offset: 3px; }
+.proof { gap: 6px 20px; font-size: 15px; font-weight: 500; color: #2d3a50; }
+.proof li::before { content: ""; display: inline-block; width: 7px; height: 12px; border: solid var(--good); border-width: 0 2px 2px 0; transform: rotate(45deg) translateY(-2px); margin-right: 9px; }
+.source { border: 0; padding: 0; font-size: 15px; color: var(--muted); max-width: 48ch; }
+.source a { color: var(--ink); font-weight: 600; }
+@media (max-width: 560px) {
+  .drop { grid-template-columns: auto 1fr; } .drop-btn { grid-column: 1 / -1; text-align: center; }
+  .hero { padding: 32px 0 48px; }
+}
+
+/* The estimate */
+.est { position: relative; margin: 0; padding: 0 0 0 0; max-width: 560px; justify-self: center; width: 100%; }
+.est-paper { background: #fff; border: 1px solid #d6dce6; border-radius: 4px; padding: 26px 28px 22px; transform: rotate(-1.2deg); box-shadow: 0 1px 0 #d6dce6, 0 30px 60px -20px rgba(16, 26, 43, .35); font-family: var(--type); color: #26303f; }
+.est-head { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; border-bottom: 2px solid #26303f; padding-bottom: 10px; }
+.est-head b { font-family: var(--body); font-weight: 800; font-size: 17px; letter-spacing: -0.01em; color: var(--ink); }
+.est-car { font-size: 14px; margin: 10px 0 6px; color: #5a6476; }
+.est-lines { list-style: none; padding: 0; margin: 0; }
+.est-lines li { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; padding: 10px 0 8px; border-bottom: 1px dashed #c9d0db; font-size: 15px; position: relative; }
+.est-lines .it { position: relative; justify-self: start; }
+.est-lines .pr { text-align: right; }
+.est-lines em { grid-column: 1 / -1; font-family: var(--hand); font-style: normal; font-weight: 700; font-size: 21px; line-height: 1.1; margin-top: 2px; }
+.est-lines .ok em { color: var(--good); }
+.est-lines .hi em { color: var(--warn); }
+.est-lines .ask em { color: var(--red); }
+.est-lines .it::after { content: ""; position: absolute; left: -4px; right: -4px; bottom: -1px; height: 2px; border-radius: 2px; }
+.est-lines .hi .it::after { background: var(--warn); }
+.est-lines .ask .it::after { background: var(--red); }
+.est-lines .ask .pr { border: 2px solid var(--red); border-radius: 50%; padding: 0 6px; margin: -4px -8px -4px 0; }
+.est-lines .ok .it::after { display: none; }
+.est-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 17px; padding-top: 12px; color: var(--ink); }
+.est-verdict { position: absolute; right: -14px; bottom: -40px; width: min(300px, 70%); background: var(--ink); color: #fff; border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 20px 40px -12px rgba(16, 26, 43, .55); transform: rotate(1.5deg); }
+.est-verdict > span:first-child { font-size: 14px; color: #c4cee0; }
+.est-verdict strong { font-size: 42px; line-height: 1; letter-spacing: -0.03em; color: #ff8f9c; }
+.est-say { font-size: 14px; line-height: 1.4; color: #e8edf6; }
+.est figcaption { font-size: 13px; color: var(--muted); margin-top: 56px; }
+@media (max-width: 900px) { .est-verdict { position: relative; right: auto; bottom: auto; width: auto; margin: -18px 14px 0; transform: none; } .est figcaption { margin-top: 12px; } }
+@media (max-width: 560px) { .est-paper { padding: 18px 16px 16px; } .est-lines li { font-size: 13.5px; } .est-lines em { font-size: 18px; } .est-head { font-size: 13px; } }
+
+/* One orchestrated moment: the pen marks the estimate after load */
+@media (prefers-reduced-motion: no-preference) {
+  .est-lines em { opacity: 0; transform: translateY(4px); animation: mark-note .35s ease-out forwards; animation-delay: calc(0.6s + var(--d) * 0.45s); }
+  .est-lines .it::after { transform: scaleX(0); transform-origin: left; animation: mark-line .35s ease-out forwards; animation-delay: calc(0.45s + var(--d) * 0.45s); }
+  .est-lines .ask .pr { border-color: transparent; animation: mark-ring .3s ease-out forwards; animation-delay: calc(0.5s + 3 * 0.45s); }
+  .est-verdict { opacity: 0; animation: verdict-in .45s cubic-bezier(.2,1.2,.4,1) forwards; animation-delay: 2.9s; }
+}
+@keyframes mark-note { to { opacity: 1; transform: none; } }
+@keyframes mark-line { to { transform: scaleX(1); } }
+@keyframes mark-ring { to { border-color: var(--red); } }
+@keyframes verdict-in { from { opacity: 0; transform: translateY(12px) rotate(1.5deg); } to { opacity: 1; transform: rotate(1.5deg); } }
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) { @keyframes verdict-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } } }
+
+/* Quieter, varied surfaces below the hero (not one card kit) */
+.product { box-shadow: none; border: 1px solid var(--line); border-radius: 10px; }
+.product.lead { background: #fff; border: 2px solid var(--ink); }
+.plan { border-radius: 10px; box-shadow: none; }
+.plan.best { background: #fff; border: 2px solid var(--brand); box-shadow: 0 24px 48px -24px rgba(36, 72, 224, .45); }
+.rc { border-radius: 10px; }
+.receipts { background: var(--ink); }
+.promise { background: var(--soft); }
+.answer { background: var(--soft); }
+img { border-radius: 8px; }
+.est figcaption { max-width: 52%; } @media (max-width: 900px) { .est figcaption { max-width: none; } }
+.nav a { white-space: nowrap; }
+@media (max-width: 1060px) { .nav a[href="#method"], .nav a[href="#guides"], .nav a[href="#faq"] { display: none; } }
 </style>
 </head>
 <body>
@@ -651,7 +754,7 @@ img { border-radius: 12px; }
       <a href="#method">How we price</a>
       <a href="#guides">Guides</a>
       <a href="#faq">Questions</a>
-      <a class="btn keep nav-cta" style="font-size:19px;padding:9px 16px" href="#tool">Start a check</a>
+      <a class="btn keep nav-cta" href="#tool">Start a check</a>
       <span class="pro-chip" id="pro-chip" hidden>Unlimited</span>
     </nav>
   </div>
@@ -661,24 +764,24 @@ img { border-radius: 12px; }
   <div class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="kicker">A sanity check for your repair quote</p>
         <h1>Don't sign that repair estimate yet.</h1>
-        <p class="lede">Went in for an oil change, came out with a list? Upload it. In about a minute you'll see which lines are fair, which are padded, and exactly what to say. Cars, AC units, roofs, plumbing.</p>
-        <div class="cta-row">
-          <label class="btn" for="hero-file" id="hero-upload" tabindex="0">Upload my estimate</label>
-          <input id="hero-file" type="file" accept="image/*,application/pdf" hidden>
-          <a class="btn-quiet hero-plan" href="#pricing">Unlimited quote checks · $26/mo</a>
-          <span><a href="#tool" data-start="check">or type what the shop told you</a> · Free verdict</span>
-        </div>
+        <p class="lede">Went in for an oil change and came out with a list? Show us the estimate. In about a minute you'll know which lines are fair, which are padded, and exactly what to say at the counter.</p>
+        <label class="drop" for="hero-file" id="hero-upload" tabindex="0">
+          <svg class="drop-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="5" width="30" height="38" rx="3"/><path d="M15 15h18M15 21h18M15 27h11"/><path class="pen" d="M30 40l10-10 3 3-10 10h-3z"/></svg>
+          <span class="drop-txt"><b>Upload a photo of your estimate</b><span>Or drop a PDF here. Your first verdict is free.</span></span>
+          <span class="drop-btn">Choose file</span>
+        </label>
+        <input id="hero-file" type="file" accept="image/*,application/pdf" hidden>
+        <p class="hero-alt"><a href="#tool" data-start="check">No photo? Type what the shop told you</a></p>
         <ul class="proof">
-          <li>No app, no account</li>
-          <li>No shop or contractor pays us</li>
-          <li>Not useful? Full refund</li>
+          <li>No app or account</li>
+          <li>No shop pays us</li>
+          <li>Full refund if it isn't useful</li>
         </ul>
-        <p class="source">Nearly 9 in 10 US drivers say a repair shop has overcharged them, or may have. Source: Jerry driver survey.</p>
+        <p class="source">Cars, AC and furnaces, roofs, plumbing and more. Checking quotes all the time? <a href="#pricing">Unlimited is $26 a month.</a></p>
       </div>
 
-      <div class="shot"><img src="img/hero.jpg" alt="A customer holding a tablet with a repair estimate, talking it through with a mechanic beside her car" width="1280" height="853"><div class="chip c1" aria-hidden="true"><i class="fair"></i>Brake pads + rotors · $689 · fair</div><div class="chip c2" aria-hidden="true"><i class="above"></i>Brake fluid flush · $179 · above market</div><div class="chip c3" aria-hidden="true"><i class="verify"></i>Fuel system cleaning · ask why</div><p class="paper-note">Example labels with illustrative figures.</p></div>
+      <figure class="est" aria-label="Example: a repair estimate marked up by QuoteGauge"><div class="est-paper"><div class="est-head"><b>Riverside Auto Service</b><span>Estimate 20418</span></div><p class="est-car">2017 Honda Accord, 84,210 mi</p><ol class="est-lines"><li class="ok" style="--d:0"><span class="it">Front brake pads and rotors</span><span class="pr">689.00</span><em>fair for this car</em></li><li class="hi" style="--d:1"><span class="it">Brake fluid flush</span><span class="pr">179.00</span><em>usually $100&ndash;150</em></li><li class="hi" style="--d:2"><span class="it">Cabin air filter</span><span class="pr">119.00</span><em>usually $55&ndash;90</em></li><li class="ask" style="--d:3"><span class="it">Fuel system cleaning</span><span class="pr">229.00</span><em>ask why your car needs this</em></li><li class="ok" style="--d:4"><span class="it">Shop supplies</span><span class="pr">45.00</span><em>fair</em></li></ol><div class="est-total"><span>Total</span><span>$1,261.00</span></div></div><div class="est-verdict"><span>Worth asking about before you sign</span><strong>$287</strong><span class="est-say">&ldquo;Can you walk me through the flush, the filter and the fuel cleaning?&rdquo;</span></div><figcaption>Example estimate with illustrative figures.</figcaption></figure>
     </div>
   </div>
 
@@ -1714,12 +1817,15 @@ img { border-radius: 12px; }
     $("next-btn").click();
   });
   /* Uploading from the top of the page drops the file straight into the check */
-  $("hero-file").addEventListener("change", function () {
-    var f = $("hero-file").files[0];
+  function heroTake(f) {
     if (!f) return;
     setProduct("check"); $("tool").scrollIntoView({ block: "start" }); track("hero_upload");
     take($("check-photo"), f, 3).then(function () { if (($("check-photo")._blobs || []).length) { $("car-hint").hidden = false; setStep(2); } });
-  });
+  }
+  $("hero-file").addEventListener("change", function () { heroTake($("hero-file").files[0]); });
+  ["dragenter", "dragover"].forEach(function (ev) { $("hero-upload").addEventListener(ev, function (e) { e.preventDefault(); $("hero-upload").classList.add("over"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { $("hero-upload").addEventListener(ev, function () { $("hero-upload").classList.remove("over"); }); });
+  $("hero-upload").addEventListener("drop", function (e) { e.preventDefault(); var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if (f && /^(image\/|application\/pdf)/.test(f.type)) heroTake(f); });
   $("hero-upload").addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("hero-file").click(); } });
   $("cross").addEventListener("click", function (e) {
     var go = e.target && e.target.getAttribute && e.target.getAttribute("data-go");
