@@ -14,7 +14,7 @@ SITE = "https://quotegauge.pro"
 TODAY = "2026-11-15"
 PRODUCT_NAME = {"check": "Repair Quote Checker", "compare": "Repair Quote Comparator", "need": "Repair Necessity Checker", "any": "Any Quote Checker"}
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">')
 ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "QuoteGauge", "url": SITE + "/",
        "description": "QuoteGauge checks car repair, home repair and contractor quotes against typical local prices so people know what is fair before approving work.",
        "email": "hello@quotegauge.pro"}
@@ -52,8 +52,8 @@ def head(title, desc, url, graph, og_title):
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ffd60a'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%23111'/%3E%3Cpath d='M32 32 L43 17' stroke='%23ffd60a' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#ffd60a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f4fd8'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%23fff'/%3E%3Cpath d='M32 32 L43 17' stroke='%23f5a524' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff">
 {FONTS}
 <script type="application/ld+json">
 {ld}
