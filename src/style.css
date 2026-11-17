@@ -547,3 +547,21 @@ dialog p { color: var(--ink-2); margin-bottom: 16px; }
   .lift.live .lift-step, .lift.live[data-stage] .lift-step { transform: none !important; }
   .lift.live .pin, .lift.live:not([data-stage="0"]) .pin { transform: none; }
 }
+
+/* ===== Static, compact, capital headings ===== */
+section { padding: 76px 0; }
+@media (max-width: 720px) { section { padding: 56px 0; } }
+.hero + section { padding-top: 0; }
+.sec-head { margin-bottom: 32px; gap: 10px; }
+h1, h2 { text-transform: uppercase; letter-spacing: -0.015em; }
+h1 { font-size: clamp(44px, 7.6vw, 104px); line-height: 0.92; }
+h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
+.hero h1 { max-width: 14ch; }
+.hero { padding: 64px 0 56px; }
+.lift { height: auto !important; }
+.lift-pin { height: min(78vh, 720px); min-height: 520px; position: relative !important; }
+.lift-pic img, .pins { transform: none !important; }
+.lift-step h2 { font-size: clamp(30px, 3.8vw, 48px); }
+@media (max-width: 1180px) { .lift-pin { height: 720px; } }
+@media (max-width: 560px) { h1 { font-size: 44px; } .lift-pin { height: 700px; } }
+.hero h1 { max-width: 18ch; font-size: clamp(44px, 6.6vw, 88px); }
