@@ -18,11 +18,20 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel
          '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">')
 ORG = {"@type": "Organization", "@id": SITE + "/#org", "name": "QuoteGauge", "url": SITE + "/",
        "description": "QuoteGauge checks car repair, home repair and contractor quotes against typical local prices so people know what is fair before approving work.",
-       "email": "hello@quotegauge.pro"}
+       "email": "hello@quotegauge.pro",
+       "founder": {"@type": "Person", "name": "Akshay Krishnan"},
+       "address": {"@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN"},
+       "areaServed": "US"}
 
 e = lambda s: html.escape(s, quote=False)
 read = lambda p: (ROOT / p).read_text()
 css = read("src/style.css")
+import hashlib as _h
+ASSET_V = _h.sha1((css + read("lib/core.js") + read("src/app.js")).encode()).hexdigest()[:8]
+(ROOT / "assets").mkdir(exist_ok=True)
+(ROOT / "assets" / "site.css").write_text(css)
+(ROOT / "assets" / "core.js").write_text(read("lib/core.js"))
+(ROOT / "assets" / "app.js").write_text(read("src/app.js"))
 
 
 def faq_ld(pairs, ident):
@@ -61,8 +70,7 @@ def head(title, desc, url, graph, og_title):
 <script type="application/ld+json">
 {ld}
 </script>
-<style>
-{css}</style>
+<link rel="stylesheet" href="/assets/site.css?v={ASSET_V}">
 </head>
 <body>
 """
@@ -176,7 +184,7 @@ for k, v in card_img.items():
     body = body.replace("%%IMG_" + k + "%%", v)
 home = (head("Is My Car Repair Quote Fair? Check, Compare, Verify | QuoteGauge", home_desc, SITE + "/", home_graph,
              "Don't sign that repair estimate yet")
-        + "\n" + body + "\n<script>\n" + read("lib/core.js") + "</script>\n<script>\n" + read("src/app.js") + "</script>\n</body>\n</html>\n")
+        + "\n" + body + ('\n<script src="/assets/core.js?v=%s"></script>\n<script src="/assets/app.js?v=%s"></script>\n</body>\n</html>\n' % (ASSET_V, ASSET_V)))
 (ROOT / "index.html").write_text(home)
 
 # ---------- Guides ----------
@@ -236,7 +244,7 @@ for g in GUIDES:
   <div class="wrap">
     <div class="foot-row">
       <a class="logo" href="../index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-      <div class="foot-links"><a href="../how-we-price.html">How we price</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refunds.html">Refunds</a></div>
+      <div class="foot-links"><a href="/about">About</a><a href="../how-we-price.html">How we price</a><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a><a href="../refunds.html">Refunds</a></div>
     </div>
     <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p>
   </div>
@@ -289,7 +297,7 @@ hwp = head("How QuoteGauge Prices a Quote | QuoteGauge", hwp_desc, hwp_url,
   </article>
 </main>
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-<div class="foot-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a></div></div>
+<div class="foot-links"><a href="/about">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a></div></div>
 <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p></div></footer>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
@@ -379,7 +387,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
   <div class="promise"><div class="wrap"><p>Three of your quotes. Fifteen minutes. See what we find.</p><a class="btn" href="{demo}">Book a demo</a></div></div>
 </main>
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-<div class="foot-links"><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
+<div class="foot-links"><a href="/about">About</a><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
 <p class="small">© 2026 QuoteGauge. AI estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
@@ -394,7 +402,7 @@ COST_FOOT = """<footer class="foot">
   <div class="wrap">
     <div class="foot-row">
       <a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-      <div class="foot-links"><a href="/repair-costs">Repair costs</a><a href="/how-we-price">How we price</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refunds">Refunds</a></div>
+      <div class="foot-links"><a href="/about">About</a><a href="/repair-costs">Repair costs</a><a href="/how-we-price">How we price</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refunds">Refunds</a></div>
     </div>
     <p class="small">© 2026 QuoteGauge. Price ranges are typical US figures from the sources listed; your local price can differ. Not affiliated with any repair shop, contractor or manufacturer.</p>
   </div>
@@ -500,6 +508,37 @@ hub = head("Repair and Home Job Costs in 2026: Fair Price Guides | QuoteGauge", 
 (ROOT / "repair-costs.html").write_text(hub)
 
 
+
+# ---------- About ----------
+about_url = SITE + "/about"
+about_desc = "Who runs QuoteGauge, how it prices repair and contractor quotes, what it costs, where its numbers come from, and the refund policy."
+about_graph = [ORG, {"@type": "AboutPage", "@id": about_url, "url": about_url, "name": "About QuoteGauge", "description": about_desc, "about": {"@id": SITE + "/#org"}}]
+about = head("About QuoteGauge: Who We Are, How We Price, Plans and Refunds", about_desc, about_url, about_graph, "About QuoteGauge") + COST_TOP % ("check", "Check my estimate") + """
+<main>
+  <article class="article">
+    <p class="crumbs"><a href="/">QuoteGauge</a> / About</p>
+    <h1>About QuoteGauge</h1>
+    <p class="answer">QuoteGauge is an online tool that checks car repair, home repair and contractor quotes against typical US prices, line by line, and tells you what to question before you approve the work. It is operated by Akshay Krishnan in Bengaluru, India, and serves customers in the United States.</p>
+    <h2>Who runs it</h2>
+    <p>QuoteGauge is run by Akshay Krishnan, Bengaluru, India. It is independent: it is not owned by, paid by or affiliated with any repair shop, dealership, contractor, parts seller or manufacturer, and no shop pays to be recommended. Contact: <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a>. We usually reply within one business day.</p>
+    <h2>What it does</h2>
+    <ul><li>Reads a photo, PDF or typed copy of your estimate.</li><li>Prices each line against the typical range for that job on your vehicle or home, in your area.</li><li>Flags lines that look high, unclear or possibly unnecessary, and gives you questions and a short script to use with the shop.</li><li>Compares up to five quotes side by side.</li></ul>
+    <h2>How it prices a quote</h2>
+    <p>Each check uses an AI model (Anthropic's Claude) guided by standard repair labor times, typical US hourly labor rates by area and shop type, and typical parts prices. Results are estimates, not an inspection or a binding price. The full method, including what QuoteGauge cannot know, is on <a href="/how-we-price">How we price</a>. Our published <a href="/repair-costs">cost guides</a> list the outside sources behind each price range.</p>
+    <h2>Plans and prices</h2>
+    <ul><li>Every check starts with a free first answer: the overall verdict.</li><li>A single full report costs $4.99 to $14.99 depending on the type of check.</li><li>Check Any Quote Unlimited costs $26 a month for every report on every quote. Cancel anytime.</li></ul>
+    <p>Payments are processed by Dodo Payments, which acts as our merchant of record and handles billing, receipts and sales tax.</p>
+    <h2>Refunds</h2>
+    <p>If a single full report was not useful, email us within 7 days and we refund it. Unlimited can be cancelled at any time. Full details: <a href="/refunds">Refund policy</a>.</p>
+    <h2>Privacy</h2>
+    <p>Quotes you upload are sent to our AI provider (Anthropic) only to produce your report, are not kept afterwards, and are never sold or shared with shops. Details: <a href="/privacy">Privacy policy</a> and <a href="/terms">Terms of use</a>.</p>
+    <h2>What QuoteGauge is not</h2>
+    <p>It is not a mechanic, contractor, inspector, insurer or lender, and it cannot see your vehicle or property. For large or safety-critical repairs, get at least two itemized quotes and ask the shop to show you the worn or failed part.</p>
+  </article>
+</main>
+""" + COST_FOOT
+(ROOT / "about.html").write_text(about)
+
 # ---------- 404 ----------
 nf = head("Page not found | QuoteGauge", "This page does not exist. Check a repair or contractor quote, or browse fair-price guides.", SITE + "/404", [ORG], "Page not found").replace('<link rel="canonical" href="https://quotegauge.pro/404">', '<meta name="robots" content="noindex">') + COST_TOP % ("check", "Check my estimate") + """
 <main>
@@ -513,7 +552,7 @@ nf = head("Page not found | QuoteGauge", "This page does not exist. Check a repa
 (ROOT / "404.html").write_text(nf)
 
 # ---------- Sitemap ----------
-urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(hub_url, "0.9")] + [(u, "0.8") for u in cost_urls] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
+urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(hub_url, "0.9"), (about_url, "0.7")] + [(u, "0.8") for u in cost_urls] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                   + "".join("  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (u, TODAY, p) for u, p in urls)
                                   + "</urlset>\n")
