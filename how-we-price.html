@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0f3b2e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Caveat:wght@700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
@@ -646,15 +646,28 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 /* Logo mark */
 .logo i, .top .logo i, .foot .logo i { width: 30px; height: 30px; border: 0; border-radius: 0; background: url(/img/logo-mark-light.svg) center/contain no-repeat; }
 .logo i::after { display: none; }
+
+/* Cost pages */
+.table-wrap { overflow-x: auto; margin: 8px 0 12px; }
+.price-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.price-table th, .price-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.price-table thead th { background: var(--green); color: #fff; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .04em; }
+.price-table tbody th { font-weight: 500; color: var(--ink-2); }
+.price-table td { font-weight: 700; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.article ul { margin: 0 0 16px; padding-left: 22px; color: var(--ink-2); }
+.article li { margin: 6px 0; }
+.article .sources li { font-size: 15px; }
+.top-cta { white-space: nowrap; font-size: 17px; padding: 9px 16px; }
+@media (max-width: 480px) { .top-cta { font-size: 14px; padding: 8px 12px; } .cost h1, .article h1 { font-size: 34px; } }
 </style>
 </head>
 <body>
 
-<header class="top"><div class="wrap"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-<nav class="nav" aria-label="Main"><a class="btn keep" style="font-size:19px;padding:9px 16px" href="index.html#tool">Start a check</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<nav class="nav" aria-label="Main"><a class="btn keep" style="font-size:19px;padding:9px 16px" href="#tool">Start a check</a></nav></div></header>
 <main>
   <article class="article">
-    <p class="crumbs"><a href="index.html">QuoteGauge</a> / How we price</p>
+    <p class="crumbs"><a href="/">QuoteGauge</a> / How we price</p>
     <h1>How QuoteGauge prices a quote</h1>
     <p class="answer">Every fair range is an estimate built from the standard labor time for the job, typical labor rates for your area and type of provider, and typical parts or materials cost from economy to premium. It is a starting point for a better conversation, not an inspection or a guarantee.</p>
     <h2>What goes into a range</h2>
@@ -682,11 +695,11 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
     <p>Your quote is sent to our AI provider to be analysed and is not stored by QuoteGauge after the report is produced. No shop, dealership or contractor pays us, and we don't sell personal data.</p>
     <h2>When we get it wrong</h2>
     <p>Every report has a "Was this right?" button, and every flagged mistake is reviewed to improve future checks. If a single report wasn't useful, email <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a> within 7 days for a full refund.</p>
-    <div class="cta-box"><h3>Check your quote</h3><p>The first answer is free.</p><a class="btn" href="index.html#tool">Start a check</a></div>
+    <div class="cta-box"><h3>Check your quote</h3><p>The first answer is free.</p><a class="btn" href="#tool">Start a check</a></div>
   </article>
 </main>
-<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-<div class="foot-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a></div></div>
+<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<div class="foot-links"><a href="privacy">Privacy</a><a href="terms">Terms</a><a href="refunds">Refunds</a></div></div>
 <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p></div></footer>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>

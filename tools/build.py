@@ -8,6 +8,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
+from costs import COSTS, LABOR_NOTE  # noqa: E402
 from content import AAA_URL, FAQ, GUIDES, PROOF, PROOF_SOURCE, RECEIPTS, REVIEWS  # noqa: E402
 
 SITE = "https://quotegauge.pro"
@@ -55,7 +56,7 @@ def head(title, desc, url, graph, og_title):
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0f3b2e">
 {FONTS}
 <script type="application/ld+json">
 {ld}
@@ -76,6 +77,7 @@ proof = ('<section id="proof" class="proof-sec" aria-labelledby="proof-title">\n
 
 guides_list = ('<div class="guide-list">\n'
                + "\n".join('        <a href="guides/%s.html"><span>%s</span><span aria-hidden="true">→</span></a>' % (g["slug"], e(g["title"])) for g in GUIDES)
+               + '\n        <a href="/repair-costs"><span>Repair and home job costs: 20 fair-price guides</span><span aria-hidden="true">→</span></a>'
                + "\n      </div>")
 
 # Optional photos: img/hero.jpg, check.jpg, compare.jpg, need.jpg, founder.jpg, described in img/photos.json:
@@ -385,9 +387,152 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 """
 (ROOT / "teams.html").write_text(teams_page)
 
+
+# ---------- Cost pages ----------
+COST_DATE = "2026-11-19"
+COST_FOOT = """<footer class="foot">
+  <div class="wrap">
+    <div class="foot-row">
+      <a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+      <div class="foot-links"><a href="/repair-costs">Repair costs</a><a href="/how-we-price">How we price</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refunds">Refunds</a></div>
+    </div>
+    <p class="small">© 2026 QuoteGauge. Price ranges are typical US figures from the sources listed; your local price can differ. Not affiliated with any repair shop, contractor or manufacturer.</p>
+  </div>
+</footer>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
+"""
+COST_TOP = """<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+    <nav class="nav" aria-label="Main"><a class="btn keep top-cta" href="/#%s">%s</a></nav>
+  </div>
+</header>"""
+ul = lambda items: "<ul>" + "".join("<li>%s</li>" % e(x) for x in items) + "</ul>"
+cost_urls = []
+for c in COSTS:
+    url = "%s/cost/%s" % (SITE, c["slug"])
+    cost_urls.append(url)
+    cta = "Check my estimate" if c["kind"] == "car" else "Check my quote"
+    graph = [
+        ORG,
+        {"@type": "Article", "@id": url + "#article", "headline": c["title"], "description": c["desc"],
+         "datePublished": COST_DATE, "dateModified": COST_DATE, "mainEntityOfPage": url,
+         "author": {"@id": SITE + "/#org"}, "publisher": {"@id": SITE + "/#org"},
+         "citation": [u for _, u in c["sources"]]},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "QuoteGauge", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Repair costs", "item": SITE + "/repair-costs"},
+            {"@type": "ListItem", "position": 3, "name": c["job"] + " cost", "item": url}]},
+        faq_ld(c["faq"], url + "#faq"),
+    ]
+    rows = "".join("<tr><th scope=\"row\">%s</th><td>%s</td></tr>" % (e(a), e(b)) for a, b in c["table"])
+    same = [o for o in COSTS if o["kind"] == c["kind"] and o is not c][:6]
+    related = "".join('<a href="/cost/%s"><span>%s cost</span><span aria-hidden="true">→</span></a>' % (o["slug"], e(o["job"])) for o in same)
+    srcs = "".join('<li><a href="%s" rel="noopener nofollow">%s</a></li>' % (u, e(n)) for n, u in c["sources"])
+    labor = ("<p>%s</p>" % e(LABOR_NOTE)) if c["kind"] == "car" else ""
+    page = head(c["title"] + " | QuoteGauge", c["desc"], url, graph, c["title"]) + COST_TOP % (c["product"], cta) + f"""
+<main>
+  <article class="article cost">
+    <p class="crumbs"><a href="/">QuoteGauge</a> / <a href="/repair-costs">Repair costs</a></p>
+    <h1>{e(c["title"])}</h1>
+    <p class="answer">{e(c["answer"])}</p>
+    <h2>Typical prices in 2026</h2>
+    <div class="table-wrap"><table class="price-table"><thead><tr><th scope="col">Job</th><th scope="col">Typical US price</th></tr></thead><tbody>{rows}</tbody></table></div>
+    <p class="fine">Typical ranges from the published sources below, checked {COST_DATE}. Taxes, shop fees and your local labor rate can move the total.</p>
+    <h2>What a fair quote includes</h2>
+    {ul(c["includes"])}
+    <h2>What pushes the price up</h2>
+    {ul(c["drivers"])}
+    {labor}
+    <h2>Red flags on a quote</h2>
+    {ul(c["flags"])}
+    <h2>Questions to ask before you approve</h2>
+    {ul(c["ask"])}
+    <div class="cta-box">
+      <h3>Have a quote in hand?</h3>
+      <p>Upload a photo or type the lines in. QuoteGauge prices each line for your {"car" if c["kind"] == "car" else "home"} and area, and flags what to question. The first answer is free.</p>
+      <a class="btn" href="/#{c["product"]}">{cta}</a>
+    </div>
+    <h2>Common questions</h2>
+    {faq_html(c["faq"], "    ")}
+    <h2>Sources</h2>
+    <ul class="sources">{srcs}</ul>
+    <h2>More cost guides</h2>
+    <div class="guide-list one">{related}<a href="/repair-costs"><span>All cost guides</span><span aria-hidden="true">→</span></a></div>
+    <p class="fine" style="margin-top:28px">General price information, not a quote or professional advice. Updated {COST_DATE}.</p>
+  </article>
+</main>
+""" + COST_FOOT
+    (ROOT / "cost").mkdir(exist_ok=True)
+    (ROOT / "cost" / (c["slug"] + ".html")).write_text(page)
+
+# Hub
+hub_url = SITE + "/repair-costs"
+hub_desc = "Fair 2026 US price ranges for 20 common car repairs and home jobs, from brake pads to a new AC, with sources and what to question on a quote."
+def hub_list(kind):
+    return "".join('<a href="/cost/%s"><span>%s</span><span aria-hidden="true">→</span></a>' % (c["slug"], e(c["job"] + " cost")) for c in COSTS if c["kind"] == kind)
+hub_graph = [ORG,
+             {"@type": "CollectionPage", "@id": hub_url, "name": "Repair and home job costs", "description": hub_desc, "url": hub_url,
+              "hasPart": [{"@type": "Article", "url": u} for u in cost_urls]},
+             {"@type": "BreadcrumbList", "itemListElement": [
+                 {"@type": "ListItem", "position": 1, "name": "QuoteGauge", "item": SITE + "/"},
+                 {"@type": "ListItem", "position": 2, "name": "Repair costs", "item": hub_url}]}]
+hub = head("Repair and Home Job Costs in 2026: Fair Price Guides | QuoteGauge", hub_desc, hub_url, hub_graph, "Repair and home job costs in 2026") + COST_TOP % ("check", "Check my estimate") + f"""
+<main>
+  <article class="article">
+    <p class="crumbs"><a href="/">QuoteGauge</a> / Repair costs</p>
+    <h1>What should this cost?</h1>
+    <p class="answer">Fair 2026 US price ranges for common car repairs and home jobs. Each guide shows the typical price, what a fair quote includes, the red flags, and the sources behind the numbers.</p>
+    <h2>Car repairs</h2>
+    <div class="guide-list one">{hub_list("car")}</div>
+    <h2>Home and contractor jobs</h2>
+    <div class="guide-list one">{hub_list("home")}</div>
+    <div class="cta-box">
+      <h3>Got a quote that looks high?</h3>
+      <p>Upload a photo or type it in. QuoteGauge prices every line for your area. The first answer is free.</p>
+      <a class="btn" href="/#check">Check my estimate</a>
+    </div>
+  </article>
+</main>
+""" + COST_FOOT
+(ROOT / "repair-costs.html").write_text(hub)
+
+
+# ---------- 404 ----------
+nf = head("Page not found | QuoteGauge", "This page does not exist. Check a repair or contractor quote, or browse fair-price guides.", SITE + "/404", [ORG], "Page not found").replace('<link rel="canonical" href="https://quotegauge.pro/404">', '<meta name="robots" content="noindex">') + COST_TOP % ("check", "Check my estimate") + """
+<main>
+  <article class="article">
+    <h1>That page doesn't exist.</h1>
+    <p class="answer">The link may be old or mistyped. Here is where you probably wanted to go.</p>
+    <div class="guide-list one"><a href="/"><span>Check a repair or contractor quote</span><span aria-hidden="true">→</span></a><a href="/repair-costs"><span>Repair and home job cost guides</span><span aria-hidden="true">→</span></a><a href="/#faq"><span>Common questions</span><span aria-hidden="true">→</span></a></div>
+  </article>
+</main>
+""" + COST_FOOT
+(ROOT / "404.html").write_text(nf)
+
 # ---------- Sitemap ----------
-urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
+urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(hub_url, "0.9")] + [(u, "0.8") for u in cost_urls] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                   + "".join("  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (u, TODAY, p) for u, p in urls)
                                   + "</urlset>\n")
 print("built index.html (%d bytes), %d guides, sitemap with %d urls, photos: %s" % (len(home), len(GUIDES), len(urls), ", ".join(k for k in ("hero", "check", "compare", "need", "founder") if has(k)) or "none"))
+
+# ---------- Clean internal links (Vercel cleanUrls would otherwise 308-redirect every .html link) ----------
+import re as _re
+def _clean(m):
+    q, href = m.group(1), m.group(2)
+    if href.startswith(("http", "mailto:", "#", "/_vercel", "data:")):
+        return m.group(0)
+    h = _re.sub(r'(^|/)index\.html', r'\1', href)
+    h = _re.sub(r'\.html(?=($|[#?]))', '', h)
+    if h in ("", "../"): h = "/"
+    if h.startswith("#"): pass
+    return 'href=%s%s%s' % (q, h if h else "/", q)
+for f in list(ROOT.glob("*.html")) + list(ROOT.glob("guides/*.html")) + list(ROOT.glob("cost/*.html")):
+    t = f.read_text()
+    t2 = _re.sub(r'href=(["\'])([^"\']+)\1', _clean, t)
+    if t2 != t:
+        f.write_text(t2)
+print("cost pages: %d, hub: /repair-costs" % len(COSTS))

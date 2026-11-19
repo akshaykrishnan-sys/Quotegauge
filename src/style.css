@@ -599,3 +599,16 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 /* Logo mark */
 .logo i, .top .logo i, .foot .logo i { width: 30px; height: 30px; border: 0; border-radius: 0; background: url(/img/logo-mark-light.svg) center/contain no-repeat; }
 .logo i::after { display: none; }
+
+/* Cost pages */
+.table-wrap { overflow-x: auto; margin: 8px 0 12px; }
+.price-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+.price-table th, .price-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.price-table thead th { background: var(--green); color: #fff; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .04em; }
+.price-table tbody th { font-weight: 500; color: var(--ink-2); }
+.price-table td { font-weight: 700; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.article ul { margin: 0 0 16px; padding-left: 22px; color: var(--ink-2); }
+.article li { margin: 6px 0; }
+.article .sources li { font-size: 15px; }
+.top-cta { white-space: nowrap; font-size: 17px; padding: 9px 16px; }
+@media (max-width: 480px) { .top-cta { font-size: 14px; padding: 8px 12px; } .cost h1, .article h1 { font-size: 34px; } }
