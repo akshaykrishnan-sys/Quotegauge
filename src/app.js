@@ -613,4 +613,13 @@
     io.observe($("tool")); io.observe($("hero-upload"));
   }
 
+  /* Contact form: compose an email to us in the visitor's own mail app */
+  var cf = $("contact-form");
+  if (cf) cf.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var n = $("c-name").value.trim(), m = $("c-email").value.trim(), t = $("c-msg").value.trim();
+    var body = t + (n || m ? "\n\n" + n + (m ? " <" + m + ">" : "") : "");
+    window.location.href = "mailto:hello@quotegauge.pro?subject=" + encodeURIComponent("QuoteGauge question" + (n ? " from " + n : "")) + "&body=" + encodeURIComponent(body);
+    track("contact_send");
+  });
 })();

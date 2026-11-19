@@ -24,6 +24,10 @@ RECEIPTS = [
      "Motor1", "https://www.motor1.com/news/775153/5-scam-services-dealerships-sell/"),
 ]
 
+# Real customer reviews only, added with the customer's permission. The section stays hidden while this is empty.
+# Format: (first name and last initial, US state, what they checked, amount saved in USD or None, their words)
+REVIEWS = []
+
 FAQ = [
     ("How do I know if my car repair quote is fair?",
      "Compare each line of the quote with the typical price for your vehicle, your area and the type of shop. QuoteGauge does this in about a minute: add the estimate and it marks every line as fair, above market or needs verification, and totals the amount above market."),

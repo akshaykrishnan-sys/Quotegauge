@@ -13,7 +13,9 @@
 <meta property="og:url" content="https://quotegauge.pro/teams">
 <meta property="og:image" content="https://quotegauge.pro/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f4fd8'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%23fff'/%3E%3Cpath d='M32 32 L43 17' stroke='%23f5a524' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -684,6 +686,40 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 @media (max-width: 1180px) { .lift-pin { height: 720px; } }
 @media (max-width: 560px) { h1 { font-size: 44px; } .lift-pin { height: 700px; } }
 .hero h1 { max-width: 18ch; font-size: clamp(44px, 6.6vw, 88px); }
+
+/* Contact */
+.contact { background: var(--canvas); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; background: #fff; border-radius: var(--r-l); padding: 48px; box-shadow: 0 20px 50px -30px rgba(10,44,34,.35); }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: minmax(0, 1fr); padding: 28px 22px; gap: 32px; } }
+.contact-lede { color: var(--muted); margin-top: 14px; max-width: 42ch; }
+.contact-list { list-style: none; padding: 0; margin-top: 28px; display: flex; flex-direction: column; gap: 18px; }
+.contact-list li { display: flex; gap: 14px; align-items: flex-start; }
+.contact-list svg { flex: none; width: 44px; height: 44px; padding: 11px; border-radius: 12px; background: var(--canvas); fill: none; stroke: var(--green); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.contact-list span { display: flex; flex-direction: column; gap: 2px; color: var(--muted); }
+.contact-list b { color: var(--ink); }
+.contact-list a { color: var(--green); font-weight: 600; text-decoration: none; }
+.contact-list a:hover { text-decoration: underline; }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.contact-form input, .contact-form textarea { background: var(--canvas); border-color: transparent; font-family: var(--body); }
+.contact-form input:focus, .contact-form textarea:focus { background: #fff; border-color: var(--green); }
+.contact-form textarea { min-height: 130px; }
+
+/* Reviews (shown only when real reviews exist) */
+.rv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .rv-grid { grid-template-columns: minmax(0, 1fr); } }
+.rv { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 26px; display: flex; flex-direction: column; gap: 16px; }
+.rv-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.rv-what { font-size: 14px; font-weight: 600; color: var(--muted); }
+.rv-saved { font-size: 13px; font-weight: 700; color: var(--good); background: var(--good-bg); padding: 4px 10px; border-radius: 99px; }
+.rv blockquote { margin: 0; font-size: 17px; line-height: 1.55; color: var(--ink); flex: 1; }
+.rv-who { display: flex; gap: 12px; align-items: center; border-top: 1px solid var(--line); padding-top: 16px; }
+.rv-who i { width: 40px; height: 40px; border-radius: 50%; background: var(--green); color: var(--brass-2); font-style: normal; font-weight: 800; display: grid; place-items: center; }
+.rv-who span { display: flex; flex-direction: column; font-size: 14px; color: var(--muted); }
+.rv-who b { color: var(--ink); font-size: 15px; }
+
+/* Logo mark */
+.logo i, .top .logo i, .foot .logo i { width: 30px; height: 30px; border: 0; border-radius: 0; background: url(/img/logo-mark-light.svg) center/contain no-repeat; }
+.logo i::after { display: none; }
 </style>
 </head>
 <body>

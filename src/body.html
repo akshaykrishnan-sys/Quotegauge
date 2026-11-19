@@ -6,6 +6,7 @@
       <a href="#products">What you can check</a>
       <a href="#pricing">Pricing</a>
       <a href="teams.html">For teams</a>
+      <a href="#contact">Contact</a>
       <a class="btn keep nav-cta" href="#tool" data-start="check">Check my estimate</a>
       <span class="pro-chip" id="pro-chip" hidden>Unlimited</span>
     </nav>
@@ -301,6 +302,8 @@
 
   %%RECEIPTS%%
 
+  %%REVIEWS%%
+
 
   <section id="method" aria-labelledby="method-title">
     <div class="wrap">
@@ -346,6 +349,26 @@
     <div class="wrap">
       <div class="sec-head"><h2 id="faq-title">Questions, answered plainly.</h2></div>
       %%FAQ%%
+    </div>
+  </section>
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <h2 id="contact-title">Talk to us.</h2>
+        <p class="contact-lede">Questions about a report, a refund, or using QuoteGauge for your team. We usually reply within one business day.</p>
+        <ul class="contact-list">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><b>Email</b><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Hours</b>Monday to Friday, 9am to 6pm Eastern</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/></svg><span><b>Refunds</b><a href="refunds.html">Full refund within 7 days if a report isn't useful</a></span></li>
+        </ul>
+      </div>
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="field"><label for="c-name">Full name</label><input type="text" id="c-name" name="name" autocomplete="name" placeholder="Your name"></div>
+        <div class="field"><label for="c-email">Email</label><input type="email" id="c-email" name="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" name="message" rows="5" placeholder="How can we help?"></textarea></div>
+        <button class="btn block" type="submit">Send message</button>
+        <p class="fine">This opens your email app with the message ready to send.</p>
+      </form>
     </div>
   </section>
 </main>

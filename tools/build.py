@@ -8,7 +8,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
-from content import AAA_URL, FAQ, GUIDES, PROOF, PROOF_SOURCE, RECEIPTS  # noqa: E402
+from content import AAA_URL, FAQ, GUIDES, PROOF, PROOF_SOURCE, RECEIPTS, REVIEWS  # noqa: E402
 
 SITE = "https://quotegauge.pro"
 TODAY = "2026-11-15"
@@ -52,7 +52,9 @@ def head(title, desc, url, graph, og_title):
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f4fd8'/%3E%3Ccircle cx='32' cy='32' r='20' fill='%23fff'/%3E%3Cpath d='M32 32 L43 17' stroke='%23f5a524' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
 {FONTS}
 <script type="application/ld+json">
@@ -154,7 +156,19 @@ press = ('<section class="press" aria-labelledby="press-title"><div class="wrap"
          '<li><a href="https://www.torquenews.com/1084/i-took-my-2020-highlander-its-free-5k-oil-change-and-toyota-came-back-2584-recommended" rel="noopener" target="_blank">Torque News</a></li>'
          '<li><a href="https://www.thecooldown.com/?p=768121" rel="noopener" target="_blank">The Cool Down</a></li>'
          '</ul></div></section>') % AAA_URL
-body = (read("src/body.html").replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
+def reviews_html(items):
+    if not items:
+        return ""
+    cards = "".join(
+        '<article class="rv"><div class="rv-top"><span class="rv-what">%s</span>%s</div><blockquote>%s</blockquote>'
+        '<p class="rv-who"><i aria-hidden="true">%s</i><span><b>%s</b>%s</span></p></article>'
+        % (e(what), ('<span class="rv-saved">Saved $%s</span>' % e(str(saved))) if saved else "", e(words), e(name[:1]), e(name), e(state))
+        for name, state, what, saved, words in items)
+    return ('<section class="reviews" id="reviews" aria-labelledby="reviews-title"><div class="wrap">'
+            '<div class="sec-head"><h2 id="reviews-title">What people found.</h2><p>From people who checked a quote with QuoteGauge, shared with their permission.</p></div>'
+            '<div class="rv-grid">' + cards + '</div></div></section>')
+reviews = reviews_html(REVIEWS)
+body = (read("src/body.html").replace("%%REVIEWS%%", reviews).replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
         .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder).replace("%%FACE%%", face).replace("%%RECEIPTS%%", receipts))
 for k, v in card_img.items():
     body = body.replace("%%IMG_" + k + "%%", v)
