@@ -66,3 +66,18 @@
 - [Denver, CO repair and HVAC costs](https://quotegauge.pro/cost/city/denver): 2026 ranges adjusted with BLS May 2025 local wages
 - [Charlotte, NC repair and HVAC costs](https://quotegauge.pro/cost/city/charlotte): 2026 ranges adjusted with BLS May 2025 local wages
 - [Tampa, FL repair and HVAC costs](https://quotegauge.pro/cost/city/tampa): 2026 ranges adjusted with BLS May 2025 local wages
+
+## Data
+- [Repair labor cost index by city](https://quotegauge.pro/data/repair-labor-by-city): mechanic and HVAC wages in 10 US metros vs national, BLS May 2025, free CSV (CC BY 4.0)
+
+## Is my quote too high?
+- [Is $800 too much for brake pads?](https://quotegauge.pro/cost/is-800-too-much-for-brake-pads)
+- [Is $1,200 too much for brakes and rotors?](https://quotegauge.pro/cost/is-1200-too-much-for-brakes-and-rotors)
+- [Is $1,000 too much for an alternator?](https://quotegauge.pro/cost/is-1000-too-much-for-alternator)
+- [Is $1,500 too much for a timing belt?](https://quotegauge.pro/cost/is-1500-too-much-for-timing-belt)
+- [Is $3,000 too much for a catalytic converter?](https://quotegauge.pro/cost/is-3000-too-much-for-catalytic-converter)
+- [Is $500 too much for a car AC recharge?](https://quotegauge.pro/cost/is-500-too-much-for-car-ac-recharge)
+- [Is $12,000 too much for a new AC unit?](https://quotegauge.pro/cost/is-12000-too-much-for-new-ac-unit)
+- [Is $3,000 too much for a water heater?](https://quotegauge.pro/cost/is-3000-too-much-for-water-heater)
+- [Is $500 too much for an AC capacitor?](https://quotegauge.pro/cost/is-500-too-much-for-ac-capacitor)
+- [Is $20,000 too much for a new roof?](https://quotegauge.pro/cost/is-20000-too-much-for-new-roof)

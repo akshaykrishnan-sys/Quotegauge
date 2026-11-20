@@ -1,6 +1,7 @@
 """Builds index.html, guides/*.html and sitemap.xml from src/, lib/core.js and tools/content.py.
 Run: python3 tools/build.py
 Optional photo: put img/hero.jpg and img/hero.txt (one line describing the photo) in the project."""
+import re
 import html
 import json
 import pathlib
@@ -579,6 +580,131 @@ for m in METROS:
     (ROOT / "cost" / "city").mkdir(parents=True, exist_ok=True)
     (ROOT / "cost" / "city" / (m["slug"] + ".html")).write_text(page)
 
+# ---------- "Is $X too much" pages ----------
+TOO = [("brake-pad-replacement-cost", 800, "brake pads"), ("brake-pads-and-rotors-cost", 1200, "brakes and rotors"),
+       ("alternator-replacement-cost", 1000, "an alternator"), ("timing-belt-replacement-cost", 1500, "a timing belt"),
+       ("catalytic-converter-replacement-cost", 3000, "a catalytic converter"), ("car-ac-recharge-cost", 500, "a car AC recharge"),
+       ("ac-replacement-cost", 12000, "a new AC unit"), ("water-heater-replacement-cost", 3000, "a water heater"),
+       ("ac-capacitor-replacement-cost", 500, "an AC capacitor"), ("roof-replacement-cost", 20000, "a new roof")]
+def verdict(price, txt):
+    import re as _re
+    n = [float(x.replace(",", "")) for x in _re.findall(r"\$([\d,]+)", txt)]
+    lo, hi = n[0], n[1]
+    if txt.strip().endswith("+") and price > hi: return "Possible for this job, but ask why"
+    if price < lo: return "Below typical"
+    if price <= hi: return "Within typical range"
+    if price <= hi * 1.25: return "Slightly above typical"
+    return "Well above typical"
+too_urls = []
+for slug, price, what in TOO:
+    c = next(x for x in COSTS if x["slug"] == slug)
+    pslug = "is-%d-too-much-for-%s" % (price, re.sub(r"[^a-z0-9]+", "-", what.lower().replace("a new ", "new ").replace("an ", "").replace("a ", "")).strip("-"))
+    url = "%s/cost/%s" % (SITE, pslug)
+    too_urls.append(url)
+    pm = money(price)
+    title = "Is %s Too Much for %s%s? (2026)" % (pm, what[0].upper(), what[1:])
+    rows_v = [(a, b, verdict(price, b)) for a, b in c["table"] if "DIY" not in a and "per square foot" not in a and "alone" not in a]
+    within = [a for a, b, v in rows_v if v == "Within typical range"]
+    above = [a for a, b, v in rows_v if v.startswith("Well above") or v.startswith("Slightly")]
+    if within and not above: short = "Usually no."
+    elif within: short = "It depends on the job."
+    else: short = "Usually yes."
+    ans = "%s %s for %s is %s. %s" % (short, pm, what, ("within the typical 2026 US range for " + within[0].lower()) if within else "above the typical 2026 US range for most versions of this job",
+          ("It is high for " + above[0].lower() + ", where the usual price is " + dict((a, b) for a, b, _ in rows_v)[above[0]] + ".") if above else "")
+    desc = "%s for %s: how it compares with typical 2026 US prices, when it can be fair, and what to ask the shop or contractor." % (pm, what)
+    faq = [("Is %s too much for %s?" % (pm, what), ans),
+           ("What is a normal price?", c["answer"]),
+           ("How can I check my own quote?", "Upload a photo of the quote or type in the lines on QuoteGauge. It prices each line for your car or home and ZIP code and flags what to question. The first answer is free.")]
+    graph = [ORG,
+        {"@type": "Article", "@id": url + "#article", "headline": title, "description": desc, "datePublished": "2026-11-20", "dateModified": "2026-11-20",
+         "mainEntityOfPage": url, "author": {"@id": SITE + "/#org"}, "publisher": {"@id": SITE + "/#org"}, "citation": [u for _, u in c["sources"]]},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "QuoteGauge", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Repair costs", "item": SITE + "/repair-costs"},
+            {"@type": "ListItem", "position": 3, "name": title, "item": url}]},
+        faq_ld(faq, url + "#faq")]
+    vrows = "".join('<tr><th scope="row">%s</th><td>%s</td><td>%s</td></tr>' % (e(a), e(b), e(v)) for a, b, v in rows_v)
+    srcs = "".join('<li><a href="%s" rel="noopener nofollow">%s</a></li>' % (u, e(n)) for n, u in c["sources"])
+    page = head(title + " | QuoteGauge", desc, url, graph, title) + COST_TOP % (c["product"], "Check my quote") + f"""
+<main>
+  <article class="article cost">
+    <p class="crumbs"><a href="/">QuoteGauge</a> / <a href="/repair-costs">Repair costs</a> / <a href="/cost/{slug}">{e(c["job"])}</a></p>
+    <h1>{e(title)}</h1>
+    <p class="answer">{e(ans)}</p>
+    <h2>{pm} compared with typical prices</h2>
+    <div class="table-wrap"><table class="price-table"><thead><tr><th scope="col">Version of the job</th><th scope="col">Typical US price</th><th scope="col">{pm} is</th></tr></thead><tbody>{vrows}</tbody></table></div>
+    <h2>When {pm} can be fair</h2>
+    {ul(c["drivers"])}
+    <h2>Signs {pm} is padded</h2>
+    {ul(c["flags"])}
+    <h2>What to ask before you pay</h2>
+    {ul(c["ask"])}
+    <div class="cta-box">
+      <h3>Is your quote {pm} or close to it?</h3>
+      <p>Upload it and QuoteGauge checks every line against fair prices for your {"car" if c["kind"] == "car" else "home"} and ZIP code. The first answer is free.</p>
+      <a class="btn" href="/#{c["product"]}">Check my quote</a>
+    </div>
+    <h2>Common questions</h2>
+    {faq_html(faq, "    ")}
+    <h2>Prices in your city</h2>
+    <div class="guide-list one">{CITY_LINKS}</div>
+    <h2>Sources</h2>
+    <ul class="sources">{srcs}</ul>
+    <p class="fine" style="margin-top:28px">Full price guide: <a href="/cost/{slug}">{e(c["title"])}</a>. General price information, not a quote or professional advice. Updated 2026-11-20.</p>
+  </article>
+</main>
+""" + COST_FOOT
+    (ROOT / "cost" / (pslug + ".html")).write_text(page)
+
+# ---------- Data page (original dataset) ----------
+data_url = SITE + "/data/repair-labor-by-city"
+csv = "metro,state,bls_area_code,auto_tech_mean_hourly,auto_index,hvac_tech_mean_hourly,hvac_index\n" + "US national,,0000000,%.2f,1.000,%.2f,1.000\n" % (NATIONAL["auto"], NATIONAL["hvac"]) + "".join(
+    "%s,%s,%s,%.2f,%.3f,%.2f,%.3f\n" % (m["city"], m["st"], m["code"], m["auto"], m["auto"] / NATIONAL["auto"], m["hvac"], m["hvac"] / NATIONAL["hvac"]) for m in METROS)
+(ROOT / "data").mkdir(exist_ok=True)
+(ROOT / "data" / "repair-labor-by-city.csv").write_text(csv)
+srt = sorted(METROS, key=lambda m: -m["hvac"])
+drows = "".join('<tr><th scope="row"><a href="/cost/city/%s">%s, %s</a></th><td>$%.2f</td><td>%+d%%</td><td>$%.2f</td><td>%+d%%</td></tr>' % (
+    m["slug"], e(m["city"]), m["st"], m["auto"], round((m["auto"] / NATIONAL["auto"] - 1) * 100), m["hvac"], round((m["hvac"] / NATIONAL["hvac"] - 1) * 100)) for m in srt)
+dtitle = "Repair Labor Cost Index by City, 2026: Mechanic and HVAC Wages in 10 US Metros"
+ddesc = "How mechanic and HVAC technician wages in 10 large US metros compare with the national average, from BLS May 2025 data. Free CSV download."
+top_h, low_h = srt[0], srt[-1]
+dans = ("HVAC technicians earn the most in %s ($%.2f an hour, %+d%% vs the US mean of $%.2f) and the least in %s ($%.2f). Auto technicians earn the most in %s ($%.2f) and the least in %s ($%.2f), against a US mean of $%.2f (BLS OEWS, %s).") % (
+    top_h["city"], top_h["hvac"], round((top_h["hvac"] / NATIONAL["hvac"] - 1) * 100), NATIONAL["hvac"], low_h["city"], low_h["hvac"],
+    max(METROS, key=lambda m: m["auto"])["city"], max(m["auto"] for m in METROS), min(METROS, key=lambda m: m["auto"])["city"], min(m["auto"] for m in METROS), NATIONAL["auto"], BLS_DATE)
+dgraph = [ORG,
+    {"@type": "Dataset", "@id": data_url + "#dataset", "name": dtitle, "description": ddesc, "url": data_url, "license": "https://creativecommons.org/licenses/by/4.0/",
+     "creator": {"@id": SITE + "/#org"}, "dateModified": "2026-11-20", "temporalCoverage": "2025-05", "spatialCoverage": "United States",
+     "isBasedOn": "https://www.bls.gov/oes/", "variableMeasured": ["Mean hourly wage, automotive service technicians (49-3023)", "Mean hourly wage, HVAC mechanics and installers (49-9021)"],
+     "distribution": {"@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": SITE + "/data/repair-labor-by-city.csv"}},
+    {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "QuoteGauge", "item": SITE + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Repair labor by city", "item": data_url}]}]
+dpage = head(dtitle + " | QuoteGauge", ddesc, data_url, dgraph, dtitle) + COST_TOP % ("check", "Check my estimate") + f"""
+<main>
+  <article class="article cost">
+    <p class="crumbs"><a href="/">QuoteGauge</a> / Data</p>
+    <h1>{e(dtitle)}</h1>
+    <p class="answer">{e(dans)}</p>
+    <h2>The index</h2>
+    <div class="table-wrap"><table class="price-table"><thead><tr><th scope="col">Metro</th><th scope="col">Auto tech wage</th><th scope="col">vs US</th><th scope="col">HVAC tech wage</th><th scope="col">vs US</th></tr></thead><tbody>{drows}
+      <tr><th scope="row">US national</th><td>${NATIONAL["auto"]:.2f}</td><td>0%</td><td>${NATIONAL["hvac"]:.2f}</td><td>0%</td></tr></tbody></table></div>
+    <p class="fine">Mean hourly wages, BLS Occupational Employment and Wage Statistics, {BLS_DATE}. Sorted by HVAC wage.</p>
+    <h2>What it means for your quote</h2>
+    <ul><li>Labor is roughly half of a typical car repair bill and 30 to 50 percent of an HVAC or contractor job, so a metro with wages 15 percent above average should run about 6 to 8 percent above national prices overall.</li>
+    <li>Parts and equipment prices vary much less by city than labor does.</li>
+    <li>Shop and contractor hourly rates are well above technician wages because they cover overhead, but they move with local wages.</li></ul>
+    <h2>Method</h2>
+    <p>We took the mean hourly wage for automotive service technicians and mechanics (SOC 49-3023) and for heating, air conditioning and refrigeration mechanics and installers (SOC 49-9021) in each metro area, and divided by the national mean. The city pages apply that ratio to the labor share of each national price range.</p>
+    <h2>Download and reuse</h2>
+    <p><a href="/data/repair-labor-by-city.csv">Download the CSV</a>. Free to reuse under CC BY 4.0. Please credit "QuoteGauge, from BLS OEWS data" with a link to this page.</p>
+    <h2>Sources</h2>
+    <ul class="sources"><li><a href="https://www.bls.gov/oes/" rel="noopener nofollow">U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, {BLS_DATE}</a></li></ul>
+    <p class="fine" style="margin-top:28px">Updated 2026-11-20. Contact hello@quotegauge.pro with questions about the data.</p>
+  </article>
+</main>
+""" + COST_FOOT
+(ROOT / "data" / "repair-labor-by-city.html").write_text(dpage)
+
 # Hub
 hub_url = SITE + "/repair-costs"
 hub_desc = "Fair 2026 US price ranges for 20 common car repairs and home jobs, from brake pads to a new AC, with sources and what to question on a quote."
@@ -586,10 +712,11 @@ def hub_list(kind):
     return "".join('<a href="/cost/%s"><span>%s</span><span aria-hidden="true">→</span></a>' % (c["slug"], e(c["job"] + " cost")) for c in COSTS if c["kind"] == kind)
 hub_graph = [ORG,
              {"@type": "CollectionPage", "@id": hub_url, "name": "Repair and home job costs", "description": hub_desc, "url": hub_url,
-              "hasPart": [{"@type": "Article", "url": u} for u in cost_urls + city_urls]},
+              "hasPart": [{"@type": "Article", "url": u} for u in cost_urls + city_urls + too_urls]},
              {"@type": "BreadcrumbList", "itemListElement": [
                  {"@type": "ListItem", "position": 1, "name": "QuoteGauge", "item": SITE + "/"},
                  {"@type": "ListItem", "position": 2, "name": "Repair costs", "item": hub_url}]}]
+TOO_LINKS = "".join('<a href="%s"><span>Is %s too much for %s?</span><span aria-hidden="true">→</span></a>' % (u.replace(SITE, ''), money(pr), e(w)) for u, (_, pr, w) in zip(too_urls, TOO))
 hub = head("Repair and Home Job Costs in 2026: Fair Price Guides | QuoteGauge", hub_desc, hub_url, hub_graph, "Repair and home job costs in 2026") + COST_TOP % ("check", "Check my estimate") + f"""
 <main>
   <article class="article">
@@ -602,6 +729,10 @@ hub = head("Repair and Home Job Costs in 2026: Fair Price Guides | QuoteGauge", 
     <div class="guide-list one">{hub_list("home")}</div>
     <h2>Prices by city</h2>
     <div class="guide-list one">{CITY_LINKS}</div>
+    <h2>Is my quote too high?</h2>
+    <div class="guide-list one">{TOO_LINKS}</div>
+    <h2>Data</h2>
+    <div class="guide-list one"><a href="/data/repair-labor-by-city"><span>Repair labor cost index by city (free CSV)</span><span aria-hidden="true">→</span></a></div>
     <div class="cta-box">
       <h3>Got a quote that looks high?</h3>
       <p>Upload a photo or type it in. QuoteGauge prices every line for your area. The first answer is free.</p>
@@ -657,7 +788,7 @@ nf = head("Page not found | QuoteGauge", "This page does not exist. Check a repa
 (ROOT / "404.html").write_text(nf)
 
 # ---------- Sitemap ----------
-urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(hub_url, "0.9"), (about_url, "0.7")] + [(u, "0.8") for u in cost_urls + city_urls] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
+urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(hub_url, "0.9"), (about_url, "0.7")] + [(u, "0.8") for u in cost_urls + city_urls + too_urls] + [(data_url, "0.8")] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                   + "".join("  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (u, TODAY, p) for u, p in urls)
                                   + "</urlset>\n")
@@ -674,7 +805,7 @@ def _clean(m):
     if h in ("", "../"): h = "/"
     if h.startswith("#"): pass
     return 'href=%s%s%s' % (q, h if h else "/", q)
-for f in list(ROOT.glob("*.html")) + list(ROOT.glob("guides/*.html")) + list(ROOT.glob("cost/*.html")) + list(ROOT.glob("cost/city/*.html")):
+for f in list(ROOT.glob("*.html")) + list(ROOT.glob("guides/*.html")) + list(ROOT.glob("cost/*.html")) + list(ROOT.glob("cost/city/*.html")) + list(ROOT.glob("data/*.html")):
     t = f.read_text()
     t2 = _re.sub(r'href=(["\'])([^"\']+)\1', _clean, t)
     if t2 != t:

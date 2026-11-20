@@ -1,0 +1,12 @@
+metro,state,bls_area_code,auto_tech_mean_hourly,auto_index,hvac_tech_mean_hourly,hvac_index
+US national,,0000000,27.13,1.000,31.14,1.000
+Houston,TX,0026420,26.39,0.973,29.03,0.932
+Dallas-Fort Worth,TX,0019100,26.81,0.988,29.69,0.953
+Phoenix,AZ,0038060,27.56,1.016,29.91,0.961
+Atlanta,GA,0012060,28.55,1.052,29.07,0.934
+Los Angeles,CA,0031080,30.61,1.128,35.88,1.152
+Chicago,IL,0016980,28.52,1.051,38.14,1.225
+Miami,FL,0033100,26.85,0.990,28.85,0.926
+Denver,CO,0019740,31.44,1.159,35.72,1.147
+Charlotte,NC,0016740,27.88,1.028,28.82,0.925
+Tampa,FL,0045300,25.83,0.952,26.89,0.864
