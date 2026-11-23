@@ -699,3 +699,16 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 .qgg-needle{transform-origin:300px 300px;animation:qgneedle 7s cubic-bezier(.5,0,.2,1) infinite}
 @keyframes qgneedle{0%{transform:rotate(-78deg)}35%{transform:rotate(-62deg)}55%{transform:rotate(58deg)}70%{transform:rotate(50deg)}100%{transform:rotate(-78deg)}}
 @media(prefers-reduced-motion:reduce){.qgg-needle{animation:none;transform:rotate(50deg)}}
+
+/* hero v4: authority */
+.qgh{background:radial-gradient(900px 420px at 50% 0%,#1d5a46 0%,rgba(29,90,70,0) 70%),radial-gradient(1px 1px at 1px 1px,rgba(255,255,255,.09) 1px,transparent 0) 0 0/28px 28px,#0d3328;color:#fff}
+.qgh h1,.qgh .lede,.qgh .hero-alt,.qgh .hero-alt a{color:#fff}.qgh .lede{opacity:.86}
+.qgh h1{text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.qgh-badges li{background:rgba(255,255,255,.1);color:#e9f5ee;border:1px solid rgba(255,255,255,.18);box-shadow:none}
+.qgg{opacity:.22}.qgg-ticks line,.qgg-needle line{stroke:#c4a243}.qgg-needle circle{fill:#c4a243}
+.qgh-chips button{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.22)}.qgh-chips button:hover{border-color:#c4a243}
+.qgh .qgr,.qgh .qgc,.qgh .drop{box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.qgsrc{background:#0a2a21;color:#cfe3d6;font-size:14px;padding:14px 0}.qgsrc .wrap{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}.qgsrc b{color:#fff}
+.qgv{aspect-ratio:16/9;background:#dff3e4}.qgv video{width:100%;height:100%;display:block;object-fit:cover}
+.qgv-cap{position:static!important;max-width:none!important;box-shadow:none!important;border-radius:0!important;background:none!important;padding:10px 4px 0!important;font-size:14px;color:#3d4a44}
+.qgf-band.qgv{overflow:visible}.qgv video{border-radius:28px}
