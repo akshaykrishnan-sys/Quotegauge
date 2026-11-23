@@ -438,7 +438,7 @@ _h = pm_page.index('pm-hero">'); _c = pm_page.index('</span></div>', _h) + len('
 _e = pm_page.index('</div>', _c) + len('</div>')
 pm_page = pm_page[:_h] + pm_page[_h:].replace('<div class="wrap">\n      <p class="kicker">', '<div class="wrap"><div>\n      <p class="kicker">', 1)
 _c = pm_page.index('</span></div>', _h) + len('</span></div>')
-pm_page = pm_page[:_c] + '</div>\n      <figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="Technician repairing an air conditioning unit" width="800" height="1000" onerror="this.parentNode.remove()"></figure>' + pm_page[_c:]
+pm_page = pm_page[:_c] + '</div>\n      <figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="HVAC technician servicing an apartment air conditioner" width="800" height="1000" onerror="this.parentNode.remove()"></figure>' + pm_page[_c:]
 (ROOT / "property-managers.html").write_text(pm_page)
 
 
