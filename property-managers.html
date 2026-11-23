@@ -164,19 +164,20 @@
 .pm-row b{font-size:16px}.pm-row .ok{color:#1f7a4d}.pm-row .bad{color:#c0392b}
 .pm-card-n{font-size:11px;opacity:.5;margin:8px 0 0}
 @media(max-width:860px){.pm-card{position:static;width:auto;margin-top:-40px;margin-inline:16px}}
+.pm-start{background:#dff3e4}.pm-mail{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:#fff;border-radius:16px;padding:16px 18px;max-width:640px}.pm-mail span{font-weight:700;font-size:20px;flex:1;min-width:220px}
 </style>
 </head>
 <body class="pm">
 
 <header class="top"><div class="wrap"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-<nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Start the free check</a></nav></div></header>
+<nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="#start">Start the free check</a></nav></div></header>
 <main>
   <div class="hero pm-hero">
     <div class="wrap"><div>
       <p class="kicker">For property managers and maintenance teams</p>
       <h1>Know every vendor quote is fair before you sign.</h1>
       <p class="lede">HVAC, plumbing, roofing, appliances, turnovers. Forward any quote and get each line checked against fair local prices, with padded charges flagged and the exact words to push back.</p>
-      <div class="cta-row"><a class="btn" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Check 3 quotes free</a><span>Results in one business day. No sign-up.</span></div>
+      <div class="cta-row"><a class="btn" href="#start">Check 3 quotes free</a><span>Results in one business day. No sign-up.</span></div>
       <ul class="pm-trust"><li>Local labor data for 10+ US metros</li><li>Line-by-line, not a ballpark</li><li>Independent of every vendor</li></ul>
     </div>
       <div class="pm-visual"><figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="HVAC technician servicing an apartment air conditioner" width="800" height="1000"></figure>
@@ -227,13 +228,13 @@
       <div class="plans">
         <article class="plan"><h3>Team</h3><p class="plan-price"><b>$199</b><span>per month · $99.50 for founding teams</span></p>
           <ul class="ticks"><li>Up to 5 people</li><li>150 quote checks a month</li><li>All four checks, every trade</li><li>Email support, same business day</li></ul>
-          <a class="btn block" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Start the free check</a></article>
+          <button class="btn block" type="button" data-plan="team">Start Team</button></article>
         <article class="plan best"><span class="badge">For portfolios</span><h3>Portfolio</h3><p class="plan-price"><b>$499</b><span>per month · $249.50 for founding teams</span></p>
           <ul class="ticks"><li>Unlimited people</li><li>600 quote checks a month</li><li>Bid comparisons for every job</li><li>Onboarding call and a monthly review with us</li></ul>
-          <a class="btn block" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Start the free check</a></article>
+          <button class="btn block" type="button" data-plan="portfolio">Start Portfolio</button></article>
         <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$26</b><span>per month · Check Any Quote Unlimited</span></p>
           <ul class="ticks"><li>One person</li><li>Every full report unlocked</li><li>Car, home and contractor quotes</li><li>Cancel anytime</li></ul>
-          <a class="btn-quiet block" href="#pricing">See Pro</a></article>
+          <a class="btn-quiet block" href="/#pricing">See Pro</a></article>
       </div>
     </div>
   </section>
@@ -249,12 +250,19 @@
     </div>
   </section>
 
-  <div class="promise"><div class="wrap"><p>Three of your quotes. One business day. See what we find.</p><a class="btn" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Start the free check</a></div></div>
+  <section id="start" class="pm-start" aria-labelledby="start-title"><div class="wrap">
+    <div class="sec-head"><h2 id="start-title">Start your free 3-quote check.</h2><p>Email us three recent vendor quotes (photos or PDFs). We send each one back checked within one business day.</p></div>
+    <div class="pm-mail"><span id="pm-addr">hello@quotegauge.pro</span><button type="button" class="btn" id="pm-copy">Copy email</button><a class="btn-quiet" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check">Open my email app</a></div>
+    <p class="fine">Just one quote right now? <a href="/#tool">Check it on the spot</a>.</p>
+  </div></section>
+  <div class="promise"><div class="wrap"><p>Three of your quotes. One business day. See what we find.</p><a class="btn" href="#start">Start the free check</a></div></div>
 </main>
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="/about">About</a><a href="how-we-price">How we price</a><a href="privacy">Privacy</a><a href="terms">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
 <p class="small">US mailing address: 123 Main St, STE 200 #456, San Francisco, CA 94105</p>
 <p class="small">© 2026 QuoteGauge. Automated estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>(function(){var c=document.getElementById('pm-copy');if(c)c.onclick=function(){navigator.clipboard.writeText('hello@quotegauge.pro').then(function(){c.textContent='Copied'})};
+document.querySelectorAll('[data-plan]').forEach(function(b){b.onclick=function(){var t=b.textContent;b.textContent='Opening checkout…';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:b.dataset.plan})}).then(function(r){return r.json()}).then(function(d){if(d.url)location.href=d.url;else{b.textContent=t;b.disabled=false;location.hash='start'}}).catch(function(){b.textContent=t;b.disabled=false;location.hash='start'})}})})();</script>
 </body>
 </html>

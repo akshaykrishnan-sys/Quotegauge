@@ -14,12 +14,12 @@ module.exports = async function handler(req, res) {
   }
   res.setHeader("Cache-Control", "no-store");
   const body = req.body && typeof req.body === "object" ? req.body : {};
-  const plan = body.plan === "monthly" || body.plan === "yearly" ? body.plan : null;
+  const plan = ["monthly", "yearly", "team", "portfolio"].includes(body.plan) ? body.plan : null;
   if (!plan) return res.status(400).json({ code: "bad_input" });
   if (process.env.PAYMENTS_LIVE !== "true") return res.status(200).json({ test: true });
-  if (!dodo.plansConfigured()) return res.status(503).json({ code: "not_configured" });
+  if (!dodo.plansConfigured() || !dodo.planId(plan)) return res.status(503).json({ code: "not_configured" });
   try {
-    const url = await dodo.createSubscriptionCheckout({ plan, returnUrl: siteUrl(req) + "/?pro=1" });
+    const url = await dodo.createSubscriptionCheckout({ plan, returnUrl: siteUrl(req) + (plan === "team" || plan === "portfolio" ? "/property-managers?subscribed=1" : "/?pro=1") });
     return res.status(200).json({ url });
   } catch (err) {
     return res.status(502).json({ code: "server" });

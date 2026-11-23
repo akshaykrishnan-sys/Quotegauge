@@ -267,11 +267,11 @@ hwp_desc = "How QuoteGauge builds each fair price range, what it can and cannot 
 hwp = head("How QuoteGauge Prices a Quote | QuoteGauge", hwp_desc, hwp_url,
            [ORG, {"@type": "WebPage", "@id": hwp_url, "name": "How QuoteGauge prices a quote", "description": hwp_desc, "publisher": {"@id": SITE + "/#org"}}],
            "How QuoteGauge prices a quote") + """
-<header class="top"><div class="wrap"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-<nav class="nav" aria-label="Main"><a class="btn keep" style="font-size:19px;padding:9px 16px" href="index.html#tool">Start a check</a></nav></div></header>
+<header class="top"><div class="wrap"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<nav class="nav" aria-label="Main"><a class="btn keep" style="font-size:19px;padding:9px 16px" href="/#tool">Start a check</a></nav></div></header>
 <main>
   <article class="article">
-    <p class="crumbs"><a href="index.html">QuoteGauge</a> / How we price</p>
+    <p class="crumbs"><a href="/">QuoteGauge</a> / How we price</p>
     <h1>How QuoteGauge prices a quote</h1>
     <p class="answer">Every fair range is an estimate built from the standard labor time for the job, typical labor rates for your area and type of provider, and typical parts or materials cost from economy to premium. It is a starting point for a better conversation, not an inspection or a guarantee.</p>
     <h2>What goes into a range</h2>
@@ -299,10 +299,10 @@ hwp = head("How QuoteGauge Prices a Quote | QuoteGauge", hwp_desc, hwp_url,
     <p>Your quote is sent to our processing provider to be analysed and is not stored by QuoteGauge after the report is produced. No shop, dealership or contractor pays us, and we don't sell personal data.</p>
     <h2>When we get it wrong</h2>
     <p>Every report has a \"Was this right?\" button, and every flagged mistake is reviewed to improve future checks. If a single report wasn't useful, email <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a> within 7 days for a full refund.</p>
-    <div class="cta-box"><h3>Check your quote</h3><p>The first answer is free.</p><a class="btn" href="index.html#tool">Start a check</a></div>
+    <div class="cta-box"><h3>Check your quote</h3><p>The first answer is free.</p><a class="btn" href="/#tool">Start a check</a></div>
   </article>
 </main>
-<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="/about">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refunds.html">Refunds</a></div></div>
 <p class="small">© 2026 QuoteGauge. Not affiliated with any repair shop, dealership, contractor or manufacturer.</p></div></footer>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -331,7 +331,7 @@ teams_graph = [ORG, {"@type": "WebPage", "@id": teams_url, "name": "QuoteGauge f
                faq_ld(teams_faq, teams_url + "#faq")]
 demo = "mailto:hello@quotegauge.pro?subject=QuoteGauge%20for%20Teams%20demo&body=Company%3A%0AHow%20many%20units%20or%20vehicles%3A%0AQuotes%20approved%20per%20month%20(roughly)%3A%0ABest%20time%20for%20a%2015-minute%20call%20(with%20time%20zone)%3A%0A"
 teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge", teams_desc, teams_url, teams_graph, "Stop approving padded vendor quotes") + f"""
-<header class="top"><div class="wrap"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<header class="top"><div class="wrap"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="{demo}">Book a demo</a></nav></div></header>
 <main>
   <div class="hero">
@@ -379,7 +379,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
           <a class="btn block" href="{demo}">Book a demo</a></article>
         <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$26</b><span>per month · Check Any Quote Unlimited</span></p>
           <ul class="ticks"><li>One person</li><li>Every full report unlocked</li><li>Car, home and contractor quotes</li><li>Cancel anytime</li></ul>
-          <a class="btn-quiet block" href="index.html#pricing">See Pro</a></article>
+          <a class="btn-quiet block" href="/#pricing">See Pro</a></article>
       </div>
     </div>
   </section>
@@ -392,7 +392,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 
   <div class="promise"><div class="wrap"><p>Three of your quotes. Fifteen minutes. See what we find.</p><a class="btn" href="{demo}">Book a demo</a></div></div>
 </main>
-<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
+<footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="/about">About</a><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
 <p class="small">US mailing address: 123 Main St, STE 200 #456, San Francisco, CA 94105</p>
 <p class="small">© 2026 QuoteGauge. Automated estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
@@ -489,6 +489,19 @@ pm_page = pm_page.replace("</style>", """.pm-hero h1{max-width:620px}
 .pm-card-n{font-size:11px;opacity:.5;margin:8px 0 0}
 @media(max-width:860px){.pm-card{position:static;width:auto;margin-top:-40px;margin-inline:16px}}
 </style>""",1)
+pm_page = pm_page.replace(pilot, "#start")
+pm_page = pm_page.replace('<a class="btn block" href="#start">Start the free check</a></article>\n        <article class="plan best">', '<button class="btn block" type="button" data-plan="team">Start Team</button></article>\n        <article class="plan best">',1)
+pm_page = pm_page.replace('<a class="btn block" href="#start">Start the free check</a></article>\n        <article class="plan">', '<button class="btn block" type="button" data-plan="portfolio">Start Portfolio</button></article>\n        <article class="plan">',1)
+pm_page = pm_page.replace('<div class="promise">', """<section id="start" class="pm-start" aria-labelledby="start-title"><div class="wrap">
+    <div class="sec-head"><h2 id="start-title">Start your free 3-quote check.</h2><p>Email us three recent vendor quotes (photos or PDFs). We send each one back checked within one business day.</p></div>
+    <div class="pm-mail"><span id="pm-addr">hello@quotegauge.pro</span><button type="button" class="btn" id="pm-copy">Copy email</button><a class="btn-quiet" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check">Open my email app</a></div>
+    <p class="fine">Just one quote right now? <a href="/#tool">Check it on the spot</a>.</p>
+  </div></section>
+  <div class="promise">""",1)
+pm_page = pm_page.replace("</body>", """<script>(function(){var c=document.getElementById('pm-copy');if(c)c.onclick=function(){navigator.clipboard.writeText('hello@quotegauge.pro').then(function(){c.textContent='Copied'})};
+document.querySelectorAll('[data-plan]').forEach(function(b){b.onclick=function(){var t=b.textContent;b.textContent='Opening checkout…';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:b.dataset.plan})}).then(function(r){return r.json()}).then(function(d){if(d.url)location.href=d.url;else{b.textContent=t;b.disabled=false;location.hash='start'}}).catch(function(){b.textContent=t;b.disabled=false;location.hash='start'})}})})();</script>
+</body>""",1)
+pm_page = pm_page.replace("</style>", ".pm-start{background:#dff3e4}.pm-mail{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:#fff;border-radius:16px;padding:16px 18px;max-width:640px}.pm-mail span{font-weight:700;font-size:20px;flex:1;min-width:220px}\n</style>",1)
 (ROOT / "property-managers.html").write_text(pm_page)
 
 
