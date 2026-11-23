@@ -691,3 +691,11 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 .qgr-t{border-top:1px solid #e7eeea;margin-top:10px}.qgr-t b{font-size:16px}
 .qgr-o b{font-size:22px;color:#c0392b;font-variant-numeric:tabular-nums}.qgr-o span{color:#c0392b;font-weight:600}
 @media(max-width:900px){.qgh-stage{flex-direction:column}.qgr{transform:none;width:100%;max-width:440px}}
+
+.qgh{background:radial-gradient(1200px 500px at 50% -10%,#ffffff 0%,rgba(255,255,255,0) 60%),linear-gradient(180deg,#dff3e4 0%,#d3eddb 100%)}
+.qgg{position:absolute;left:50%;top:40px;width:min(980px,96vw);transform:translateX(-50%);opacity:.13;pointer-events:none}
+.qgg-ticks line{stroke:#0f3b2e;stroke-width:4;stroke-linecap:round}
+.qgg-needle line{stroke:#0f3b2e;stroke-width:9;stroke-linecap:round}.qgg-needle circle{fill:#0f3b2e}
+.qgg-needle{transform-origin:300px 300px;animation:qgneedle 7s cubic-bezier(.5,0,.2,1) infinite}
+@keyframes qgneedle{0%{transform:rotate(-78deg)}35%{transform:rotate(-62deg)}55%{transform:rotate(58deg)}70%{transform:rotate(50deg)}100%{transform:rotate(-78deg)}}
+@media(prefers-reduced-motion:reduce){.qgg-needle{animation:none;transform:rotate(50deg)}}
