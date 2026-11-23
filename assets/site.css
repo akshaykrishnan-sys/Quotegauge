@@ -674,3 +674,10 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 .qgc{margin-top:26px}.qgh-chips{margin-top:18px}
 .qgf{padding:48px 0 24px}.qgf-band{margin-top:36px}
 .qgp{padding:64px 0}
+
+.qgd{opacity:.28;stroke-width:1.5;transition:translate .6s cubic-bezier(.2,.7,.2,1)}
+.qgd:nth-child(3n){stroke:#b98d12;opacity:.34}
+.qgd:nth-child(4n){animation-name:qgfloat2}
+@keyframes qgfloat2{0%,100%{transform:translate(0,0) rotate(0) scale(1)}33%{transform:translate(-16px,18px) rotate(-10deg) scale(1.08)}66%{transform:translate(14px,-12px) rotate(8deg) scale(.94)}}
+@keyframes qgfloat{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(16px,-20px) rotate(9deg)}50%{transform:translate(-10px,-34px) rotate(-6deg)}75%{transform:translate(-18px,-10px) rotate(5deg)}}
+@media(max-width:860px){.qgd{opacity:.16}}
