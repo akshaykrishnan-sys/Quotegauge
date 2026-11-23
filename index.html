@@ -212,7 +212,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/assets/site.css?v=2ee32818">
+<link rel="stylesheet" href="/assets/site.css?v=689e5b84">
 </head>
 <body>
 
@@ -270,6 +270,15 @@
   if(q<=hi&&q>=lo*.85){v.textContent='Within fair range';v.className='ok'}else if(q<lo*.85){v.textContent='Below typical. Ask what is included';v.className='mid'}else{var p=Math.round((q-hi)/hi*100);v.textContent=p+'% above fair. Worth questioning';v.className='bad'}}
   [j,c,a].forEach(function(e){e.addEventListener('input',go);e.addEventListener('change',go)});
   ['Brake pad replacement','Central AC replacement','Roof replacement','Water heater replacement','Alternator replacement','Car battery replacement'].forEach(function(n){var i=D.jobs.findIndex(function(x){return x[0].indexOf(n.split(' ')[0])==0&&x[0]==n});if(i<0)i=D.jobs.findIndex(function(x){return x[0].indexOf(n.split(' ')[0])>-1});if(i<0)return;var b=document.createElement('button');b.type='button';b.textContent=D.jobs[i][0].replace(' replacement','');b.onclick=function(){j.value=i;go();a.focus()};ch.appendChild(b)});go()})();</script>
+
+  <section class="qgf" aria-label="Why QuoteGauge">
+    <div class="wrap qgf-grid">
+      <div><span class="qgf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><h3>Independent, always</h3><p>No shop, dealer or contractor pays us, and none can pay to look fair. We only work for the person paying the bill.</p></div>
+      <div><span class="qgf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15v-4M12 15V8M16 15v-6"/></svg></span><h3>Priced from real data</h3><p>Standard labor times, typical parts prices and local wage data from the U.S. Bureau of Labor Statistics, line by line.</p></div>
+      <div><span class="qgf-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v4h4"/></svg></span><h3>Refund if it isn't useful</h3><p>The first verdict is free. If a paid report doesn't help, email us within 7 days for a full refund.</p></div>
+    </div>
+    <div class="wrap"><figure class="qgf-band"><img src="/img/home-band.jpg" alt="Woman checking a repair estimate on her phone at a repair shop counter" width="1536" height="864" loading="lazy"><figcaption><b>Walk back to the counter with numbers, not a hunch.</b><span>Know what's fair before you sign.</span></figcaption></figure></div>
+  </section>
 
   <section class="qgp" aria-labelledby="qgp-title">
     <div class="wrap qgp-grid">
@@ -700,7 +709,7 @@
   </div>
 </dialog>
 
-<script src="/assets/core.js?v=2ee32818"></script>
-<script src="/assets/app.js?v=2ee32818"></script>
+<script src="/assets/core.js?v=689e5b84"></script>
+<script src="/assets/app.js?v=689e5b84"></script>
 </body>
 </html>
