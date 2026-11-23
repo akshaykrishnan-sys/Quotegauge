@@ -23,6 +23,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ url });
   } catch (err) {
     console.error("subscribe_fail", plan, err.status, err.detail);
-    return res.status(502).json({ code: "server" });
+    return res.status(502).json({ code: "server", s: err.status, d: err.detail, m: String(err.message).slice(0,120) });
   }
 };
