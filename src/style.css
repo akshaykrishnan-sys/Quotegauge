@@ -613,16 +613,16 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 .top-cta { white-space: nowrap; font-size: 17px; padding: 9px 16px; }
 @media (max-width: 480px) { .top-cta { font-size: 14px; padding: 8px 12px; } .cost h1, .article h1 { font-size: 34px; } }
 
-.proof{padding:96px 0;background:#f6f4ee}
-.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.proof h2{font-size:clamp(30px,3.2vw,42px);line-height:1.1;text-transform:none;letter-spacing:-.01em;margin:0 0 16px}
-.proof-lede{font-size:18px;line-height:1.6;opacity:.85;margin:0 0 24px}
-.proof-points{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:12px;font-size:16px;line-height:1.5}
-.proof-points li{padding-left:22px;position:relative}.proof-points li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--brass)}
-.proof-links{font-size:15px}.proof-links a{font-weight:600}
-.proof-card{background:#fff;border:1px solid rgba(15,59,46,.12);border-radius:16px;padding:22px 22px 14px;box-shadow:0 12px 30px rgba(15,59,46,.08)}
-.proof-k{font-size:13px;font-weight:600;opacity:.6;margin:0 0 10px}
-.proof-table th span{display:block;font-weight:400}
-.proof-table td:last-child{text-align:right;font-size:13px}
+.qgp{padding:96px 0;background:#f6f4ee}
+.qgp-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.qgp h2{font-size:clamp(30px,3.2vw,42px);line-height:1.1;text-transform:none;letter-spacing:-.01em;margin:0 0 16px}
+.qgp-lede{font-size:18px;line-height:1.6;opacity:.85;margin:0 0 24px}
+.qgp-points{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:12px;font-size:16px;line-height:1.5}
+.qgp-points li{padding-left:22px;position:relative}.qgp-points li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:2px;background:var(--brass)}
+.qgp-links{font-size:15px}.qgp-links a{font-weight:600}
+.qgp-card{background:#fff;border:1px solid rgba(15,59,46,.12);border-radius:16px;padding:22px 22px 14px;box-shadow:0 12px 30px rgba(15,59,46,.08)}
+.qgp-k{font-size:13px;font-weight:600;opacity:.6;margin:0 0 10px}
+.qgp-table th span{display:block;font-weight:400}
+.qgp-table td:last-child{text-align:right;font-size:13px}
 .hero h1{text-transform:none;letter-spacing:-.015em}
-@media(max-width:860px){.proof-grid{grid-template-columns:1fr;gap:32px}}
+@media(max-width:860px){.qgp-grid{grid-template-columns:1fr;gap:32px}}
