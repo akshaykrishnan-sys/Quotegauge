@@ -42,7 +42,7 @@ FAQ = [
     ("How do I know if I really need the repairs my mechanic recommended?",
      "Add the inspection report or repair list to the Repair Necessity Checker. It explains each repair in plain language, sorts it into do now, do soon, can wait or verify first, lists the symptoms you would notice and the questions to ask, and says when an independent inspection is worth getting. It cannot inspect your car, so safety items are never marked as able to wait."),
     ("How accurate are QuoteGauge's price ranges?",
-     "They are AI estimates built from standard labor times and typical regional labor rates. They are closest on routine jobs such as filters, fluid services and brake pads, and wider on large repairs, where honest shops can differ by hundreds of dollars. Use them to ask better questions, not as a guarantee."),
+     "They are Automated estimates built from standard labor times and typical regional labor rates. They are closest on routine jobs such as filters, fluid services and brake pads, and wider on large repairs, where honest shops can differ by hundreds of dollars. Use them to ask better questions, not as a guarantee."),
     ("Does QuoteGauge work for dealership quotes?",
      "Yes. You say whether the estimate is from a dealership, an independent shop or a national chain. Dealerships usually charge more, so QuoteGauge compares a dealership estimate with dealership prices."),
     ("What should I do if my repair quote is too high?",
@@ -52,7 +52,7 @@ FAQ = [
     ("What if the report isn't useful?",
      "Email hello@quotegauge.pro within 7 days of buying a single report and say what was wrong. You get a full refund, with no forms."),
     ("Does QuoteGauge keep my estimate?",
-     "No. Your estimate is sent to our AI provider to be analysed, and QuoteGauge does not store it after the report is produced. QuoteGauge does not sell personal data."),
+     "No. Your estimate is sent to our processing provider to be analysed, and QuoteGauge does not store it after the report is produced. QuoteGauge does not sell personal data."),
     ("Is QuoteGauge connected to any repair shop or contractor?",
      "No. QuoteGauge is independent. It takes no referral fees or commissions from repair shops, dealerships, contractors or parts sellers."),
 ]

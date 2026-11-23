@@ -292,7 +292,7 @@ hwp = head("How QuoteGauge Prices a Quote | QuoteGauge", hwp_desc, hwp_url,
     </ul>
     <p>That is why some lines come back as needs verification, and why the report never claims a provider acted dishonestly. Use it to ask better questions: most honest shops and contractors welcome them.</p>
     <h2>What happens to your quote</h2>
-    <p>Your quote is sent to our AI provider to be analysed and is not stored by QuoteGauge after the report is produced. No shop, dealership or contractor pays us, and we don't sell personal data.</p>
+    <p>Your quote is sent to our processing provider to be analysed and is not stored by QuoteGauge after the report is produced. No shop, dealership or contractor pays us, and we don't sell personal data.</p>
     <h2>When we get it wrong</h2>
     <p>Every report has a \"Was this right?\" button, and every flagged mistake is reviewed to improve future checks. If a single report wasn't useful, email <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a> within 7 days for a full refund.</p>
     <div class="cta-box"><h3>Check your quote</h3><p>The first answer is free.</p><a class="btn" href="index.html#tool">Start a check</a></div>
@@ -391,7 +391,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="/about">About</a><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
 <p class="small">US mailing address: 123 Main St, STE 200 #456, San Francisco, CA 94105</p>
-<p class="small">© 2026 QuoteGauge. AI estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
+<p class="small">© 2026 QuoteGauge. Automated estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
@@ -850,14 +850,14 @@ about = head("About QuoteGauge: Who We Are, How We Price, Plans and Refunds", ab
     <h2>What it does</h2>
     <ul><li>Reads a photo, PDF or typed copy of your estimate.</li><li>Prices each line against the typical range for that job on your vehicle or home, in your area.</li><li>Flags lines that look high, unclear or possibly unnecessary, and gives you questions and a short script to use with the shop.</li><li>Compares up to five quotes side by side.</li></ul>
     <h2>How it prices a quote</h2>
-    <p>Each check uses an AI model (Anthropic's Claude) guided by standard repair labor times, typical US hourly labor rates by area and shop type, and typical parts prices. Results are estimates, not an inspection or a binding price. The full method, including what QuoteGauge cannot know, is on <a href="/how-we-price">How we price</a>. Our published <a href="/repair-costs">cost guides</a> list the outside sources behind each price range.</p>
+    <p>Each check uses an language model (Anthropic's Claude) guided by standard repair labor times, typical US hourly labor rates by area and shop type, and typical parts prices. Results are estimates, not an inspection or a binding price. The full method, including what QuoteGauge cannot know, is on <a href="/how-we-price">How we price</a>. Our published <a href="/repair-costs">cost guides</a> list the outside sources behind each price range.</p>
     <h2>Plans and prices</h2>
     <ul><li>Every check starts with a free first answer: the overall verdict.</li><li>A single full report costs $4.99 to $14.99 depending on the type of check.</li><li>Check Any Quote Unlimited costs $26 a month for every report on every quote. Cancel anytime.</li></ul>
     <p>Payments are processed by Dodo Payments, which acts as our merchant of record and handles billing, receipts and sales tax.</p>
     <h2>Refunds</h2>
     <p>If a single full report was not useful, email us within 7 days and we refund it. Unlimited can be cancelled at any time. Full details: <a href="/refunds">Refund policy</a>.</p>
     <h2>Privacy</h2>
-    <p>Quotes you upload are sent to our AI provider (Anthropic) only to produce your report, are not kept afterwards, and are never sold or shared with shops. Details: <a href="/privacy">Privacy policy</a> and <a href="/terms">Terms of use</a>.</p>
+    <p>Quotes you upload are sent to our processing provider (Anthropic) only to produce your report, are not kept afterwards, and are never sold or shared with shops. Details: <a href="/privacy">Privacy policy</a> and <a href="/terms">Terms of use</a>.</p>
     <h2>What QuoteGauge is not</h2>
     <p>It is not a mechanic, contractor, inspector, insurer or lender, and it cannot see your vehicle or property. For large or safety-critical repairs, get at least two itemized quotes and ask the shop to show you the worn or failed part.</p>
   </article>
