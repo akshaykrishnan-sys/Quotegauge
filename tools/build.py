@@ -180,7 +180,11 @@ def reviews_html(items):
             '<div class="sec-head"><h2 id="reviews-title">What people found.</h2><p>From people who checked a quote with QuoteGauge, shared with their permission.</p></div>'
             '<div class="rv-grid">' + cards + '</div></div></section>')
 reviews = reviews_html(REVIEWS)
-body = (read("src/body.html").replace("%%REVIEWS%%", reviews).replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
+_REP = {"brake-pad-replacement-cost":0,"brake-pads-and-rotors-cost":0,"alternator-replacement-cost":1,"starter-replacement-cost":1,"water-pump-replacement-cost":1,"timing-belt-replacement-cost":1,"car-battery-replacement-cost":0,"car-ac-recharge-cost":1,"catalytic-converter-replacement-cost":1,"wheel-alignment-cost":1,"spark-plug-replacement-cost":0,"serpentine-belt-replacement-cost":0,"oxygen-sensor-replacement-cost":1,"radiator-replacement-cost":0,"transmission-fluid-change-cost":0,"ac-replacement-cost":1,"furnace-replacement-cost":0,"water-heater-replacement-cost":0,"roof-replacement-cost":2,"ac-capacitor-replacement-cost":0}
+def _nums(t): return [int(x.replace(",","")) for x in re.findall(r"\$([\d,]+)", t)][:2]
+QG_DATA = json.dumps({"jobs": [[c["job"], c["kind"], *_nums(c["table"][_REP[c["slug"]]][1]), c["slug"]] for c in COSTS],
+  "cities": [["United States (typical)", 1, 1]] + [["%s, %s" % (m["city"], m["st"]), round(m["auto"]/NATIONAL["auto"],3), round(m["hvac"]/NATIONAL["hvac"],3)] for m in METROS]}, separators=(",",":"))
+body = (read("src/body.html").replace("%%QGDATA%%", QG_DATA).replace("%%REVIEWS%%", reviews).replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
         .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder).replace("%%FACE%%", face).replace("%%RECEIPTS%%", receipts))
 for k, v in card_img.items():
     body = body.replace("%%IMG_" + k + "%%", v)

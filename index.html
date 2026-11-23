@@ -212,7 +212,7 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="/assets/site.css?v=567ee0ae">
+<link rel="stylesheet" href="/assets/site.css?v=2ee32818">
 </head>
 <body>
 
@@ -232,27 +232,44 @@
 </header>
 
 <main id="top">
-  <div class="hero">
+  <div class="hero qgh">
     <div class="wrap">
-      <div class="hero-copy">
-        <h1>Is this quote fair? Know before you pay.</h1>
-        <p class="lede">Upload any car repair or home contractor estimate. In about a minute, every line is checked against fair prices for your area, with padded charges flagged and the exact words to push back.</p>
+      <ul class="qgh-badges"><li>First check free</li><li>Full refund within 7 days</li><li>No shop pays us</li></ul>
+      <h1>Is this quote fair?</h1>
+      <p class="lede">Check any car repair or home contractor quote against fair local prices, line by line, before you pay.</p>
+      <div class="qgh-cta">
         <label class="drop" for="hero-file" id="hero-upload" tabindex="0">
           <svg class="drop-ico" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3h11l6 6v20H8z"/><path d="M19 3v6h6"/><path d="M12 16h9M12 21h9"/></svg>
           <span class="drop-txt"><b>Upload your estimate</b><span>A photo or a PDF</span></span>
           <span class="drop-btn">Choose a photo</span>
         </label>
         <input id="hero-file" type="file" accept="image/*,application/pdf" hidden>
-        <p class="hero-alt">No photo? <a href="#tool" data-start="check">Type it in instead</a>. The first verdict is free.</p>
+        <p class="hero-alt">No photo? <a href="#tool" data-start="check">Type it in instead</a>.</p>
       </div>
-      <ul class="proof">
-        <li>No app or account</li>
-        <li>Local labor data, 10+ US metros</li>
-        <li>No shop or contractor pays us</li>
-        <li>Full refund if it isn't useful</li>
-      </ul>
+      <div class="qgc" id="qgc">
+        <p class="qgc-title">Quick price check</p>
+        <label class="qgc-f"><span>Job</span><select id="qgc-job"></select></label>
+        <label class="qgc-f"><span>Where</span><select id="qgc-city"></select></label>
+        <label class="qgc-f qgc-amt"><span>You were quoted</span><b>$</b><input id="qgc-amt" inputmode="numeric" placeholder="e.g. 800"></label>
+        <div class="qgc-out">
+          <div class="qgc-row"><span>Fair range here</span><b id="qgc-range">–</b></div>
+          <div class="qgc-row"><span>Verdict</span><b id="qgc-verdict">Enter your quote</b></div>
+        </div>
+        <a class="qgc-btn" href="#tool" data-start="check">Check every line of my quote</a>
+        <p class="qgc-note">Typical ranges from our <a href="/repair-costs">sourced cost guides</a>, adjusted with BLS labor data. Your full report prices your exact quote.</p>
+      </div>
+      <div class="qgh-chips" id="qgc-chips"></div>
     </div>
   </div>
+
+  <script>(function(){var D={"jobs":[["Brake pad replacement","car",150,300,"brake-pad-replacement-cost"],["Brake pads and rotors","car",250,600,"brake-pads-and-rotors-cost"],["Alternator replacement","car",450,800,"alternator-replacement-cost"],["Starter replacement","car",350,650,"starter-replacement-cost"],["Water pump replacement","car",600,1000,"water-pump-replacement-cost"],["Timing belt replacement","car",600,1000,"timing-belt-replacement-cost"],["Car battery replacement","car",150,250,"car-battery-replacement-cost"],["Car AC recharge","car",250,450,"car-ac-recharge-cost"],["Catalytic converter replacement","car",1000,2500,"catalytic-converter-replacement-cost"],["Wheel alignment","car",90,160,"wheel-alignment-cost"],["Spark plug replacement","car",100,250,"spark-plug-replacement-cost"],["Serpentine belt replacement","car",100,200,"serpentine-belt-replacement-cost"],["Oxygen sensor replacement","car",250,500,"oxygen-sensor-replacement-cost"],["Radiator replacement","car",250,600,"radiator-replacement-cost"],["Transmission fluid change","car",80,250,"transmission-fluid-change-cost"],["Central AC replacement","home",5500,9500,"ac-replacement-cost"],["Furnace replacement","home",3000,5500,"furnace-replacement-cost"],["Water heater replacement","home",900,1800,"water-heater-replacement-cost"],["Roof replacement","home",8000,16000,"roof-replacement-cost"],["AC capacitor replacement","home",150,250,"ac-capacitor-replacement-cost"]],"cities":[["United States (typical)",1,1],["Houston, TX",0.973,0.932],["Dallas-Fort Worth, TX",0.988,0.953],["Phoenix, AZ",1.016,0.961],["Atlanta, GA",1.052,0.934],["Los Angeles, CA",1.128,1.152],["Chicago, IL",1.051,1.225],["Miami, FL",0.99,0.926],["Denver, CO",1.159,1.147],["Charlotte, NC",1.028,0.925],["Tampa, FL",0.952,0.864]]},j=document.getElementById('qgc-job'),c=document.getElementById('qgc-city'),a=document.getElementById('qgc-amt'),r=document.getElementById('qgc-range'),v=document.getElementById('qgc-verdict'),ch=document.getElementById('qgc-chips');
+  D.jobs.forEach(function(x,i){j.add(new Option(x[0],i))});D.cities.forEach(function(x,i){c.add(new Option(x[0],i))});
+  function rd(n){var s=n<200?5:n<1000?10:n<10000?50:100;return Math.round(n/s)*s}function f(n){return '$'+n.toLocaleString('en-US')}
+  function go(){var J=D.jobs[j.value],C=D.cities[c.value],ix=J[1]=='car'?C[1]:C[2],sh=J[1]=='car'?.5:.4,k=sh*ix+(1-sh),lo=rd(J[2]*k),hi=rd(J[3]*k);r.textContent=f(lo)+' – '+f(hi);
+  var q=parseFloat((a.value||'').replace(/[^0-9.]/g,''));v.className='';if(!q){v.textContent='Enter your quote';return}
+  if(q<=hi&&q>=lo*.85){v.textContent='Within fair range';v.className='ok'}else if(q<lo*.85){v.textContent='Below typical. Ask what is included';v.className='mid'}else{var p=Math.round((q-hi)/hi*100);v.textContent=p+'% above fair. Worth questioning';v.className='bad'}}
+  [j,c,a].forEach(function(e){e.addEventListener('input',go);e.addEventListener('change',go)});
+  ['Brake pad replacement','Central AC replacement','Roof replacement','Water heater replacement','Alternator replacement','Car battery replacement'].forEach(function(n){var i=D.jobs.findIndex(function(x){return x[0].indexOf(n.split(' ')[0])==0&&x[0]==n});if(i<0)i=D.jobs.findIndex(function(x){return x[0].indexOf(n.split(' ')[0])>-1});if(i<0)return;var b=document.createElement('button');b.type='button';b.textContent=D.jobs[i][0].replace(' replacement','');b.onclick=function(){j.value=i;go();a.focus()};ch.appendChild(b)});go()})();</script>
 
   <section class="qgp" aria-labelledby="qgp-title">
     <div class="wrap qgp-grid">
@@ -683,7 +700,7 @@
   </div>
 </dialog>
 
-<script src="/assets/core.js?v=567ee0ae"></script>
-<script src="/assets/app.js?v=567ee0ae"></script>
+<script src="/assets/core.js?v=2ee32818"></script>
+<script src="/assets/app.js?v=2ee32818"></script>
 </body>
 </html>
