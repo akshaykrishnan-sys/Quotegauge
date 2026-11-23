@@ -390,6 +390,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 </main>
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="index.html" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="/about">About</a><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
+<p class="small">US mailing address: 123 Main St, STE 200 #456, San Francisco, CA 94105</p>
 <p class="small">© 2026 QuoteGauge. AI estimates for information only; not an inspection. Not affiliated with any vendor, contractor or manufacturer.</p></div></footer>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
@@ -816,7 +817,7 @@ about = head("About QuoteGauge: Who We Are, How We Price, Plans and Refunds", ab
     <h1>About QuoteGauge</h1>
     <p class="answer">QuoteGauge is an online tool that checks car repair, home repair and contractor quotes against typical US prices, line by line, and tells you what to question before you approve the work. It is operated by Akshay Krishnan in Bengaluru, India, and serves customers in the United States.</p>
     <h2>Who runs it</h2>
-    <p>QuoteGauge is run by Akshay Krishnan, Bengaluru, India. It is independent: it is not owned by, paid by or affiliated with any repair shop, dealership, contractor, parts seller or manufacturer, and no shop pays to be recommended. Contact: <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a>. We usually reply within one business day.</p>
+    <p>QuoteGauge is run by Akshay Krishnan, Bengaluru, India. It is independent: it is not owned by, paid by or affiliated with any repair shop, dealership, contractor, parts seller or manufacturer, and no shop pays to be recommended. Contact: <a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a>. We usually reply within one business day. US mailing address: 123 Main St, STE 200 #456, San Francisco, CA 94105.</p>
     <h2>What it does</h2>
     <ul><li>Reads a photo, PDF or typed copy of your estimate.</li><li>Prices each line against the typical range for that job on your vehicle or home, in your area.</li><li>Flags lines that look high, unclear or possibly unnecessary, and gives you questions and a short script to use with the shop.</li><li>Compares up to five quotes side by side.</li></ul>
     <h2>How it prices a quote</h2>
