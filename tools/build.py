@@ -397,6 +397,32 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 """
 (ROOT / "teams.html").write_text(teams_page)
 
+# ---------- Property managers page ----------
+pm_url = SITE + "/property-managers"
+pilot = "mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A"
+pm_desc = "A second opinion on every vendor quote your property team approves. Send 3 recent HVAC, plumbing, roofing or appliance quotes and get a free line-by-line fairness check within a day."
+pm_graph = [ORG, {"@type": "WebPage", "@id": pm_url, "name": "QuoteGauge for Property Managers", "description": pm_desc, "publisher": {"@id": SITE + "/#org"}}, faq_ld(teams_faq, pm_url + "#faq")]
+pm_page = teams_page.replace(teams_url, pm_url).replace("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge", "QuoteGauge for Property Managers: Free 3-Quote Check | QuoteGauge")
+pm_page = pm_page.replace(teams_desc, pm_desc).replace(demo, pilot)
+pm_page = pm_page.replace("QuoteGauge for property managers and fleets", "For property managers and maintenance directors")
+pm_page = pm_page.replace("You approve 40 vendor quotes a month. How many were padded?", "The AC is down, the resident is calling, and there's no time for three bids.")
+pm_page = pm_page.replace("Your team signs off on HVAC calls, plumbing, roofs, appliance swaps, turnovers and van repairs every week, mostly on trust.", "So you approve the vendor's number and hope it was fair, then explain the invoice to the owner later.")
+pm_page = pm_page.replace("Book a 15-minute demo", "Send us 3 quotes, free").replace("Send us 3 real quotes. See what we find.", "Results within one business day. No sign-up, no sales call.")
+pm_page = pm_page.replace(">Book a demo<", ">Start the free check<")
+pm_page = pm_page.replace('<section aria-labelledby="math-title">', """<section aria-labelledby="pilot-title">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="pilot-title">The free 3-quote check.</h2><p>Try it on your real quotes before you decide anything.</p></div>
+      <div class="cols three">
+        <div class="col"><h3>1. Email 3 recent quotes</h3><p>Photos or PDFs of any HVAC, plumbing, roofing, appliance or turnover quotes you approved or are about to approve.</p></div>
+        <div class="col"><h3>2. Get them back marked up</h3><p>Within one business day: each line marked fair, high or unclear for your city, with the fair range and what to ask the vendor.</p></div>
+        <div class="col"><h3>3. Show your owners</h3><p>All fair? You have it in writing. Something padded? You have the numbers to push back. Either way, you keep the report.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="math-title">""",1)
+(ROOT / "property-managers.html").write_text(pm_page)
+
 
 # ---------- Cost pages ----------
 COST_DATE = "2026-11-19"
@@ -788,7 +814,7 @@ nf = head("Page not found | QuoteGauge", "This page does not exist. Check a repa
 (ROOT / "404.html").write_text(nf)
 
 # ---------- Sitemap ----------
-urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (hwp_url, "0.6")] + [(hub_url, "0.9"), (about_url, "0.7")] + [(u, "0.8") for u in cost_urls + city_urls + too_urls] + [(data_url, "0.8")] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
+urls = [(SITE + "/", "1.0")] + [("%s/guides/%s" % (SITE, g["slug"]), "0.8") for g in GUIDES] + [(teams_url, "0.8"), (pm_url, "0.9"), (hwp_url, "0.6")] + [(hub_url, "0.9"), (about_url, "0.7")] + [(u, "0.8") for u in cost_urls + city_urls + too_urls] + [(data_url, "0.8")] + [(SITE + "/" + p, "0.2") for p in ("privacy", "terms", "refunds")]
 (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                   + "".join("  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>\n" % (u, TODAY, p) for u, p in urls)
                                   + "</urlset>\n")
