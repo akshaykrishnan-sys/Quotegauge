@@ -332,7 +332,7 @@ teams_graph = [ORG, {"@type": "WebPage", "@id": teams_url, "name": "QuoteGauge f
 demo = "mailto:hello@quotegauge.pro?subject=QuoteGauge%20for%20Teams%20demo&body=Company%3A%0AHow%20many%20units%20or%20vehicles%3A%0AQuotes%20approved%20per%20month%20(roughly)%3A%0ABest%20time%20for%20a%2015-minute%20call%20(with%20time%20zone)%3A%0A"
 teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge", teams_desc, teams_url, teams_graph, "Stop approving padded vendor quotes") + f"""
 <header class="top"><div class="wrap"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
-<nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="{demo}">Book a demo</a></nav></div></header>
+<nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="#plans">See plans</a></nav></div></header>
 <main>
   <div class="hero">
     <div class="wrap">
@@ -373,10 +373,10 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
       <div class="plans">
         <article class="plan"><h3>Team</h3><p class="plan-price"><b>$199</b><span>per month · $99.50 for founding teams</span></p>
           <ul class="ticks"><li>Up to 5 people</li><li>150 quote checks a month</li><li>All four checks, every trade</li><li>Email support, same business day</li></ul>
-          <a class="btn block" href="{demo}">Book a demo</a></article>
+          <button class="btn block" data-plan="team">Subscribe</button></article>
         <article class="plan best"><span class="badge">For portfolios</span><h3>Portfolio</h3><p class="plan-price"><b>$499</b><span>per month · $249.50 for founding teams</span></p>
           <ul class="ticks"><li>Unlimited people</li><li>600 quote checks a month</li><li>Bid comparisons for every job</li><li>Onboarding call and a monthly review with us</li></ul>
-          <a class="btn block" href="{demo}">Book a demo</a></article>
+          <button class="btn block" data-plan="portfolio">Subscribe</button></article>
         <article class="plan"><h3>Just you?</h3><p class="plan-price"><b>$26</b><span>per month · Check Any Quote Unlimited</span></p>
           <ul class="ticks"><li>One person</li><li>Every full report unlocked</li><li>Car, home and contractor quotes</li><li>Cancel anytime</li></ul>
           <a class="btn-quiet block" href="/#pricing">See Pro</a></article>
@@ -390,7 +390,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
     </div>
   </section>
 
-  <div class="promise"><div class="wrap"><p>Three of your quotes. Fifteen minutes. See what we find.</p><a class="btn" href="{demo}">Book a demo</a></div></div>
+  <div class="promise"><div class="wrap"><p>Three of your quotes. Fifteen minutes. See what we find.</p><a class="btn" href="#plans">See plans</a></div></div>
 </main>
 <footer class="foot"><div class="wrap"><div class="foot-row"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <div class="foot-links"><a href="/about">About</a><a href="how-we-price.html">How we price</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:hello@quotegauge.pro">hello@quotegauge.pro</a></div></div>
@@ -400,7 +400,8 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 </body>
 </html>
 """
-(ROOT / "teams.html").write_text(teams_page)
+PAYJS = """<script>document.querySelectorAll('[data-plan]').forEach(function(b){b.onclick=function(){var t=b.textContent;b.textContent='Opening checkout…';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:b.dataset.plan})}).then(function(r){return r.json()}).then(function(d){if(d.url)location.href=d.url;else{b.textContent='Try again';b.disabled=false}}).catch(function(){b.textContent='Try again';b.disabled=false})}})</script>"""
+(ROOT / "teams.html").write_text(teams_page.replace("</body>", PAYJS + "</body>", 1))
 
 # ---------- Property managers page ----------
 pm_url = SITE + "/property-managers"

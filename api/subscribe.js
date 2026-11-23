@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
   const plan = ["monthly", "yearly", "team", "portfolio"].includes(body.plan) ? body.plan : null;
   if (!plan) return res.status(400).json({ code: "bad_input" });
   if (process.env.PAYMENTS_LIVE !== "true") return res.status(200).json({ test: true });
-  if (!dodo.plansConfigured() || !dodo.planId(plan)) return res.status(503).json({ code: "not_configured" });
+  if (!process.env.DODO_API_KEY || (!dodo.planId(plan) && !["team","portfolio"].includes(plan))) return res.status(503).json({ code: "not_configured" });
   try {
     const url = await dodo.createSubscriptionCheckout({ plan, returnUrl: siteUrl(req) + (plan === "team" || plan === "portfolio" ? "/property-managers?subscribed=1" : "/?pro=1") });
     return res.status(200).json({ url });
