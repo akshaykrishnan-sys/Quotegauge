@@ -4,6 +4,8 @@ Optional photo: put img/hero.jpg and img/hero.txt (one line describing the photo
 import re
 import html
 import json
+import sys as _s; _s.path.insert(0, __import__("os").path.dirname(__file__))
+from press import press_html, PRESS_CSS
 import pathlib
 import sys
 
@@ -184,7 +186,7 @@ _REP = {"brake-pad-replacement-cost":0,"brake-pads-and-rotors-cost":0,"alternato
 def _nums(t): return [int(x.replace(",","")) for x in re.findall(r"\$([\d,]+)", t)][:2]
 QG_DATA = json.dumps({"jobs": [[c["job"], c["kind"], *_nums(c["table"][_REP[c["slug"]]][1]), c["slug"]] for c in COSTS],
   "cities": [["United States (typical)", 1, 1]] + [["%s, %s" % (m["city"], m["st"]), round(m["auto"]/NATIONAL["auto"],3), round(m["hvac"]/NATIONAL["hvac"],3)] for m in METROS]}, separators=(",",":"))
-body = (read("src/body.html").replace("%%QGDATA%%", QG_DATA).replace("%%REVIEWS%%", reviews).replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
+body = (read("src/body.html").replace('  <section class="qgf"', PRESS_CSS + press_html() + '\n  <section class="qgf"', 1).replace("%%QGDATA%%", QG_DATA).replace("%%REVIEWS%%", reviews).replace("%%FAQ%%", faq_html(FAQ)).replace("%%PROOF%%", proof)
         .replace("%%GUIDES%%", guides_list).replace("%%HEROVIS%%", hero_vis).replace("%%FOUNDER%%", founder).replace("%%FACE%%", face).replace("%%RECEIPTS%%", receipts))
 for k, v in card_img.items():
     body = body.replace("%%IMG_" + k + "%%", v)
@@ -402,7 +404,7 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 """
 PAYJS = """<script>document.querySelectorAll('[data-plan]').forEach(function(b){b.onclick=function(){var t=b.textContent;b.textContent='Opening checkout…';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:b.dataset.plan})}).then(function(r){return r.json()}).then(function(d){if(d.url)location.href=d.url;else{b.textContent='Try again';b.disabled=false}}).catch(function(){b.textContent='Try again';b.disabled=false})}})</script>"""
 from pm_page import pm_body as _pb, PM_CSS as _pc
-(ROOT / "teams.html").write_text(head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge", teams_desc, teams_url, teams_graph, "Approve vendor quotes with proof, not trust").replace("</head>", _pc + "</head>", 1) + _pb("hello@quotegauge.pro"))
+(ROOT / "teams.html").write_text(head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge", teams_desc, teams_url, teams_graph, "Approve vendor quotes with proof, not trust").replace("</head>", _pc + PRESS_CSS + "</head>", 1) + _pb("hello@quotegauge.pro").replace('<section class="x-sec" id="roi">', press_html() + '<section class="x-sec" id="roi">', 1))
 
 # ---------- Property managers page ----------
 pm_url = SITE + "/property-managers"
@@ -506,7 +508,7 @@ document.querySelectorAll('[data-plan]').forEach(function(b){b.onclick=function(
 pm_page = pm_page.replace("</style>", ".pm-start{background:#dff3e4}.pm-mail{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:#fff;border-radius:16px;padding:16px 18px;max-width:640px}.pm-mail span{font-weight:700;font-size:20px;flex:1;min-width:220px}\n</style>",1)
 from pm_page import pm_body, PM_CSS
 _h = head("QuoteGauge for Property Managers: Check Every Vendor Quote | QuoteGauge", pm_desc, pm_url, pm_graph, "Approve vendor quotes with proof, not trust")
-(ROOT / "property-managers.html").write_text(_h.replace("</head>", PM_CSS + "</head>", 1) + pm_body("hello@quotegauge.pro"))
+(ROOT / "property-managers.html").write_text(_h.replace("</head>", PM_CSS + PRESS_CSS + "</head>", 1) + pm_body("hello@quotegauge.pro").replace('<section class="x-sec" id="roi">', press_html() + '<section class="x-sec" id="roi">', 1))
 
 
 # ---------- Cost pages ----------
