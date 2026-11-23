@@ -456,6 +456,35 @@ pm_page = pm_page[:_h] + pm_page[_h:].replace('<div class="wrap">\n      <p clas
 _c = pm_page.index('</span></div>', _h) + len('</span></div>')
 pm_page = pm_page[:_c] + '</div>\n      <figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="HVAC technician servicing an apartment air conditioner" width="800" height="1000" onerror="this.parentNode.remove()"></figure>' + pm_page[_c:]
 pm_page = pm_page.replace("Three of your quotes. Fifteen minutes. See what we find.", "Three of your quotes. One business day. See what we find.").replace("QuoteGauge for Teams for?", "QuoteGauge for?").replace("Book a 15-minute call. Send two or three recent quotes beforehand and we will show you what the report finds on your own numbers.", "Email us three recent quotes. We send each one back checked within one business day, free. If it helps, we set your team up on a plan.")
+_hs = pm_page.index('<div class="hero pm-hero">'); _he = pm_page.index('<section aria-labelledby="pilot-title">')
+pm_page = pm_page[:_hs] + """<div class="hero pm-hero">
+    <div class="wrap"><div>
+      <p class="kicker">For property managers and maintenance teams</p>
+      <h1>Know every vendor quote is fair before you sign.</h1>
+      <p class="lede">HVAC, plumbing, roofing, appliances, turnovers. Forward any quote and get each line checked against fair local prices, with padded charges flagged and the exact words to push back.</p>
+      <div class="cta-row"><a class="btn" href=\"""" + pilot + """\">Check 3 quotes free</a><span>Results in one business day. No sign-up.</span></div>
+      <ul class="pm-trust"><li>Local labor data for 10+ US metros</li><li>Line-by-line, not a ballpark</li><li>Independent of every vendor</li></ul>
+    </div>
+      <div class="pm-visual"><figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="HVAC technician servicing an apartment air conditioner" width="800" height="1000"></figure>
+      <div class="pm-card" aria-label="Example result"><p class="pm-card-k">Example check · HVAC repair · Dallas</p>
+        <div class="pm-row"><span>Quoted</span><b>$1,850</b></div><div class="pm-row"><span>Fair range</span><b class="ok">$1,100–1,400</b></div>
+        <div class="pm-row"><span>Lines flagged</span><b class="bad">2 of 6</b></div><p class="pm-card-n">Illustrative example</p></div></div>
+    </div>
+  </div>
+
+  """ + pm_page[_he:]
+pm_page = pm_page.replace("</style>", """.pm-hero h1{max-width:620px}
+.pm-hero .lede{margin-top:18px;opacity:.9}
+.pm-trust{list-style:none;padding:0;margin:28px 0 0;display:flex;gap:10px 22px;flex-wrap:wrap;font-size:14px;opacity:.85}
+.pm-trust li::before{content:"✓";color:var(--brass);margin-right:8px;font-weight:700}
+.pm-visual{position:relative}
+.pm-card{position:absolute;left:-36px;bottom:28px;background:#fff;color:#14231d;border-radius:14px;padding:16px 18px;width:270px;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.pm-card-k{font-size:12px;font-weight:600;opacity:.65;margin:0 0 10px}
+.pm-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-top:1px solid #eee;font-size:14px}
+.pm-row b{font-size:16px}.pm-row .ok{color:#1f7a4d}.pm-row .bad{color:#c0392b}
+.pm-card-n{font-size:11px;opacity:.5;margin:8px 0 0}
+@media(max-width:860px){.pm-card{position:static;width:auto;margin-top:-40px;margin-inline:16px}}
+</style>""",1)
 (ROOT / "property-managers.html").write_text(pm_page)
 
 

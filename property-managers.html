@@ -153,6 +153,17 @@
 .pm .promise p{font-size:26px;font-weight:700}
 .pm .faq{max-width:820px}
 @media(max-width:860px){.pm-hero .wrap{grid-template-columns:1fr}.pm-photo{aspect-ratio:16/10}}
+.pm-hero h1{max-width:620px}
+.pm-hero .lede{margin-top:18px;opacity:.9}
+.pm-trust{list-style:none;padding:0;margin:28px 0 0;display:flex;gap:10px 22px;flex-wrap:wrap;font-size:14px;opacity:.85}
+.pm-trust li::before{content:"✓";color:var(--brass);margin-right:8px;font-weight:700}
+.pm-visual{position:relative}
+.pm-card{position:absolute;left:-36px;bottom:28px;background:#fff;color:#14231d;border-radius:14px;padding:16px 18px;width:270px;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+.pm-card-k{font-size:12px;font-weight:600;opacity:.65;margin:0 0 10px}
+.pm-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-top:1px solid #eee;font-size:14px}
+.pm-row b{font-size:16px}.pm-row .ok{color:#1f7a4d}.pm-row .bad{color:#c0392b}
+.pm-card-n{font-size:11px;opacity:.5;margin:8px 0 0}
+@media(max-width:860px){.pm-card{position:static;width:auto;margin-top:-40px;margin-inline:16px}}
 </style>
 </head>
 <body class="pm">
@@ -162,11 +173,16 @@
 <main>
   <div class="hero pm-hero">
     <div class="wrap"><div>
-      <p class="kicker">For property managers and maintenance directors</p>
-      <h1>The AC is down, the resident is calling, and there's no time for three bids.</h1>
-      <p class="lede" style="max-width:780px;font-size:21px;margin-top:18px">So you approve the vendor's number and hope it was fair, then explain the invoice to the owner later. QuoteGauge checks every quote line by line against local prices, flags the padded and vague lines, and gives your team the exact words to push back. In about a minute, from a phone.</p>
-      <div class="cta-row"><a class="btn" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Send us 3 quotes, free</a><span>Results within one business day. No sign-up, no sales call.</span></div></div>
-      <figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="HVAC technician servicing an apartment air conditioner" width="800" height="1000" onerror="this.parentNode.remove()"></figure>
+      <p class="kicker">For property managers and maintenance teams</p>
+      <h1>Know every vendor quote is fair before you sign.</h1>
+      <p class="lede">HVAC, plumbing, roofing, appliances, turnovers. Forward any quote and get each line checked against fair local prices, with padded charges flagged and the exact words to push back.</p>
+      <div class="cta-row"><a class="btn" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Check 3 quotes free</a><span>Results in one business day. No sign-up.</span></div>
+      <ul class="pm-trust"><li>Local labor data for 10+ US metros</li><li>Line-by-line, not a ballpark</li><li>Independent of every vendor</li></ul>
+    </div>
+      <div class="pm-visual"><figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="HVAC technician servicing an apartment air conditioner" width="800" height="1000"></figure>
+      <div class="pm-card" aria-label="Example result"><p class="pm-card-k">Example check · HVAC repair · Dallas</p>
+        <div class="pm-row"><span>Quoted</span><b>$1,850</b></div><div class="pm-row"><span>Fair range</span><b class="ok">$1,100–1,400</b></div>
+        <div class="pm-row"><span>Lines flagged</span><b class="bad">2 of 6</b></div><p class="pm-card-n">Illustrative example</p></div></div>
     </div>
   </div>
 
