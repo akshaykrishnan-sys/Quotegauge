@@ -401,7 +401,8 @@ teams_page = head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge",
 </html>
 """
 PAYJS = """<script>document.querySelectorAll('[data-plan]').forEach(function(b){b.onclick=function(){var t=b.textContent;b.textContent='Opening checkout…';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:b.dataset.plan})}).then(function(r){return r.json()}).then(function(d){if(d.url)location.href=d.url;else{b.textContent='Try again';b.disabled=false}}).catch(function(){b.textContent='Try again';b.disabled=false})}})</script>"""
-(ROOT / "teams.html").write_text(teams_page.replace("</body>", PAYJS + "</body>", 1))
+from pm_page import pm_body as _pb, PM_CSS as _pc
+(ROOT / "teams.html").write_text(head("QuoteGauge for Teams: Check Every Vendor Quote | QuoteGauge", teams_desc, teams_url, teams_graph, "Approve vendor quotes with proof, not trust").replace("</head>", _pc + "</head>", 1) + _pb("hello@quotegauge.pro"))
 
 # ---------- Property managers page ----------
 pm_url = SITE + "/property-managers"
