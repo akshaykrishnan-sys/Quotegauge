@@ -138,10 +138,24 @@
 .pm-hero .cta-row span{opacity:.85;font-size:15px}
 .pm-photo{margin:0;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);aspect-ratio:4/5;background:#163f33}
 .pm-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.pm main>section{padding:96px 0!important}
+.pm main>section+section{border-top:1px solid rgba(15,59,46,.08)}
+.pm .sec-head{max-width:720px;margin-bottom:40px}
+.pm .sec-head h2{font-size:clamp(30px,3.2vw,42px);text-transform:none;letter-spacing:-.01em;line-height:1.1;margin-bottom:12px}
+.pm .sec-head p{font-size:18px;opacity:.8}
+.pm .cols.three{gap:24px}
+.pm .cols .col{background:#fff;border:1px solid rgba(15,59,46,.12);border-radius:14px;padding:26px}
+.pm .dark .cols .col{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.pm .col h3{font-size:20px;margin-bottom:8px}
+.pm .math{gap:16px}
+.pm .promise{padding:64px 0!important;text-align:center}
+.pm .promise .wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.pm .promise p{font-size:26px;font-weight:700}
+.pm .faq{max-width:820px}
 @media(max-width:860px){.pm-hero .wrap{grid-template-columns:1fr}.pm-photo{aspect-ratio:16/10}}
 </style>
 </head>
-<body>
+<body class="pm">
 
 <header class="top"><div class="wrap"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Start the free check</a></nav></div></header>

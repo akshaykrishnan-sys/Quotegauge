@@ -421,6 +421,21 @@ pm_page = pm_page.replace('<section aria-labelledby="math-title">', """<section 
   </section>
 
   <section aria-labelledby="math-title">""",1)
+PM_EXTRA = """.pm main>section{padding:96px 0!important}
+.pm main>section+section{border-top:1px solid rgba(15,59,46,.08)}
+.pm .sec-head{max-width:720px;margin-bottom:40px}
+.pm .sec-head h2{font-size:clamp(30px,3.2vw,42px);text-transform:none;letter-spacing:-.01em;line-height:1.1;margin-bottom:12px}
+.pm .sec-head p{font-size:18px;opacity:.8}
+.pm .cols.three{gap:24px}
+.pm .cols .col{background:#fff;border:1px solid rgba(15,59,46,.12);border-radius:14px;padding:26px}
+.pm .dark .cols .col{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14)}
+.pm .col h3{font-size:20px;margin-bottom:8px}
+.pm .math{gap:16px}
+.pm .promise{padding:64px 0!important;text-align:center}
+.pm .promise .wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.pm .promise p{font-size:26px;font-weight:700}
+.pm .faq{max-width:820px}
+"""
 PM_CSS = """<style>
 .pm-hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
 .pm-hero h1{font-size:clamp(36px,4.4vw,58px);line-height:1.05;text-transform:none;letter-spacing:-.01em}
@@ -430,10 +445,10 @@ PM_CSS = """<style>
 .pm-hero .cta-row span{opacity:.85;font-size:15px}
 .pm-photo{margin:0;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);aspect-ratio:4/5;background:#163f33}
 .pm-photo img{width:100%;height:100%;object-fit:cover;display:block}
-@media(max-width:860px){.pm-hero .wrap{grid-template-columns:1fr}.pm-photo{aspect-ratio:16/10}}
+"""+PM_EXTRA+"""@media(max-width:860px){.pm-hero .wrap{grid-template-columns:1fr}.pm-photo{aspect-ratio:16/10}}
 </style>
 </head>"""
-pm_page = pm_page.replace("</head>", PM_CSS, 1).replace('<div class="hero">', '<div class="hero pm-hero">', 1)
+pm_page = pm_page.replace("</head>", PM_CSS, 1).replace("<body>", '<body class="pm">', 1).replace('<div class="hero">', '<div class="hero pm-hero">', 1)
 _h = pm_page.index('pm-hero">'); _c = pm_page.index('</span></div>', _h) + len('</span></div>')
 _e = pm_page.index('</div>', _c) + len('</div>')
 pm_page = pm_page[:_h] + pm_page[_h:].replace('<div class="wrap">\n      <p class="kicker">', '<div class="wrap"><div>\n      <p class="kicker">', 1)
