@@ -129,18 +129,30 @@
 }
 </script>
 <link rel="stylesheet" href="/assets/site.css?v=50e415d6">
+<style>
+.pm-hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.pm-hero h1{font-size:clamp(36px,4.4vw,58px);line-height:1.05;text-transform:none;letter-spacing:-.01em}
+.pm-hero .lede{font-size:19px!important;max-width:560px!important}
+.pm-hero .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:26px}
+.pm-hero .cta-row .btn{background:var(--brass);border-color:var(--brass);color:var(--green-2);font-weight:700;padding:14px 22px}
+.pm-hero .cta-row span{opacity:.85;font-size:15px}
+.pm-photo{margin:0;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);aspect-ratio:4/5;background:#163f33}
+.pm-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:860px){.pm-hero .wrap{grid-template-columns:1fr}.pm-photo{aspect-ratio:16/10}}
+</style>
 </head>
 <body>
 
 <header class="top"><div class="wrap"><a class="logo" href="/" aria-label="QuoteGauge home"><i></i>QuoteGauge</a>
 <nav class="nav" aria-label="Main"><a href="#how">How it works</a><a href="#plans">Plans</a><a class="btn keep" style="font-size:19px;padding:9px 16px" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Start the free check</a></nav></div></header>
 <main>
-  <div class="hero">
-    <div class="wrap">
+  <div class="hero pm-hero">
+    <div class="wrap"><div>
       <p class="kicker">For property managers and maintenance directors</p>
       <h1>The AC is down, the resident is calling, and there's no time for three bids.</h1>
       <p class="lede" style="max-width:780px;font-size:21px;margin-top:18px">So you approve the vendor's number and hope it was fair, then explain the invoice to the owner later. QuoteGauge checks every quote line by line against local prices, flags the padded and vague lines, and gives your team the exact words to push back. In about a minute, from a phone.</p>
-      <div class="cta-row"><a class="btn" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Send us 3 quotes, free</a><span>Results within one business day. No sign-up, no sales call.</span></div>
+      <div class="cta-row"><a class="btn" href="mailto:hello@quotegauge.pro?subject=Free%203-quote%20check&body=Company%3A%0ACity%3A%0AAttach%203%20recent%20vendor%20quotes%20(photos%20or%20PDFs)%20and%20we%27ll%20send%20results%20within%20one%20business%20day.%0A">Send us 3 quotes, free</a><span>Results within one business day. No sign-up, no sales call.</span></div></div>
+      <figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="Technician repairing an air conditioning unit" width="800" height="1000" onerror="this.parentNode.remove()"></figure>
     </div>
   </div>
 

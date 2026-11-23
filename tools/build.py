@@ -421,6 +421,24 @@ pm_page = pm_page.replace('<section aria-labelledby="math-title">', """<section 
   </section>
 
   <section aria-labelledby="math-title">""",1)
+PM_CSS = """<style>
+.pm-hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.pm-hero h1{font-size:clamp(36px,4.4vw,58px);line-height:1.05;text-transform:none;letter-spacing:-.01em}
+.pm-hero .lede{font-size:19px!important;max-width:560px!important}
+.pm-hero .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:26px}
+.pm-hero .cta-row .btn{background:var(--brass);border-color:var(--brass);color:var(--green-2);font-weight:700;padding:14px 22px}
+.pm-hero .cta-row span{opacity:.85;font-size:15px}
+.pm-photo{margin:0;border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35);aspect-ratio:4/5;background:#163f33}
+.pm-photo img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:860px){.pm-hero .wrap{grid-template-columns:1fr}.pm-photo{aspect-ratio:16/10}}
+</style>
+</head>"""
+pm_page = pm_page.replace("</head>", PM_CSS, 1).replace('<div class="hero">', '<div class="hero pm-hero">', 1)
+_h = pm_page.index('pm-hero">'); _c = pm_page.index('</span></div>', _h) + len('</span></div>')
+_e = pm_page.index('</div>', _c) + len('</div>')
+pm_page = pm_page[:_h] + pm_page[_h:].replace('<div class="wrap">\n      <p class="kicker">', '<div class="wrap"><div>\n      <p class="kicker">', 1)
+_c = pm_page.index('</span></div>', _h) + len('</span></div>')
+pm_page = pm_page[:_c] + '</div>\n      <figure class="pm-photo"><img src="/img/pm-hero.jpg" alt="Technician repairing an air conditioning unit" width="800" height="1000" onerror="this.parentNode.remove()"></figure>' + pm_page[_c:]
 (ROOT / "property-managers.html").write_text(pm_page)
 
 
