@@ -1,0 +1,88 @@
+PM_FAQ = [
+ ("Will this upset our vendors?", "No vendor sees QuoteGauge. You get the numbers privately and decide what to ask. Most teams use it to ask better questions, not to switch vendors."),
+ ("Where do the fair prices come from?", "Local labor rates from U.S. Bureau of Labor Statistics wage data for your metro, combined with typical parts and materials costs for each job. Every range shows its basis."),
+ ("What trades do you cover?", "HVAC, plumbing, electrical, roofing, appliances, pest control, landscaping, turnovers and fleet vehicle repairs."),
+ ("Is our data private?", "Quotes are used only to produce your report. We never share them with vendors, owners or anyone else."),
+ ("Can we cancel?", "Yes. Plans are monthly and you can cancel anytime from the billing link in your receipt."),
+]
+def pm_body(email):
+    faq = "".join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in PM_FAQ)
+    return f"""<header class="x-nav"><div class="x-w"><a class="x-logo" href="/">QuoteGauge</a><nav><a href="#roi">Savings</a><a href="#how">How it works</a><a href="#plans">Plans</a><a href="#faq">FAQ</a><a class="x-btn x-sm" href="#start">Free 3-quote check</a></nav></div></header>
+<main class="pmx">
+<section class="x-hero"><div class="x-w x-hero-g">
+ <div><p class="x-kicker">For property managers and maintenance teams</p>
+ <h1>Approve vendor quotes with proof, not trust.</h1>
+ <p class="x-lede">Forward any HVAC, plumbing, roofing or turnover quote. Get every line checked against fair local prices, padded charges flagged, and the exact words to push back.</p>
+ <div class="x-ctas"><a class="x-btn" href="#start">Check 3 quotes free</a><a class="x-btn x-ghost" href="#plans">See plans</a></div>
+ <ul class="x-ticks"><li>Results in one business day</li><li>No sign-up, no sales call</li><li>Independent of every vendor</li></ul></div>
+ <div class="x-card" aria-label="Illustrative example check"><div class="x-card-h"><span>HVAC repair · Dallas, TX</span><em>Example</em></div>
+  <div class="x-row"><span>Compressor replacement</span><b>$1,150</b><i class="ok">Fair</i></div>
+  <div class="x-row"><span>Refrigerant, 6 lb</span><b>$420</b><i class="hi">High</i></div>
+  <div class="x-row"><span>Diagnostic fee</span><b>$180</b><i class="hi">High</i></div>
+  <div class="x-row"><span>Labor, 3 hrs</span><b>$100</b><i class="ok">Fair</i></div>
+  <div class="x-sum"><div><small>Quoted</small><b>$1,850</b></div><div><small>Fair range</small><b>$1,100–1,400</b></div><div class="x-save"><small>To question</small><b>$450</b></div></div>
+ </div></div></section>
+<section class="x-strip"><div class="x-w"><span><b>Local labor data</b> from the U.S. Bureau of Labor Statistics</span><span><b>Every trade</b> from HVAC to turnovers</span><span><b>All 50 states</b>, priced by metro</span></div></section>
+<section class="x-sec" id="roi"><div class="x-w x-roi">
+ <div><h2>See what padded quotes cost your portfolio.</h2><p class="x-sub">Move the sliders to match your month. Even a small share of avoidable spend adds up fast.</p>
+ <label>Vendor quotes approved a month <output id="o1">40</output><input type="range" id="r1" min="5" max="400" step="5" value="40"></label>
+ <label>Average quote <output id="o2">$1,200</output><input type="range" id="r2" min="200" max="10000" step="100" value="1200"></label>
+ <label>Share that's avoidable <output id="o3">8%</output><input type="range" id="r3" min="2" max="20" step="1" value="8"></label></div>
+ <div class="x-res"><small>Avoidable spend a year</small><b id="yr">$46,080</b><p>Team plan costs <b>$2,388 a year</b>, about <b id="mult">19×</b> less.</p><a class="x-btn x-gold" href="#start">Test it on 3 real quotes</a><p class="x-note">An estimate for planning, not a promise. Your free check shows your real number.</p></div>
+</div></section>
+<section class="x-sec x-alt" id="how"><div class="x-w"><h2>Built for the way maintenance actually runs.</h2><p class="x-sub">No software rollout. No vendor portal. A phone and a quote.</p>
+ <div class="x-3"><div><span class="x-n">1</span><h3>Snap or forward the quote</h3><p>Photo, PDF or email. Any trade, any vendor, any city in the US.</p></div>
+ <div><span class="x-n">2</span><h3>See every line priced</h3><p>Each line marked fair, high or unclear for that ZIP code, with the fair range beside it.</p></div>
+ <div><span class="x-n">3</span><h3>Push back with numbers</h3><p>A short, polite script your coordinator can send the vendor. Owners get a clean record of why you approved.</p></div></div></div></section>
+<section class="x-sec" id="plans"><div class="x-w"><h2>Simple monthly plans.</h2><p class="x-sub">Cancel anytime. The first 10 teams get 50% off for 6 months.</p>
+ <div class="x-plans">
+  <article><h3>Team</h3><p class="x-p"><b>$199</b>/month</p><ul><li>Up to 5 people</li><li>150 quote checks a month</li><li>Every trade, every city</li><li>Same-day email support</li></ul><button class="x-btn x-wide" data-plan="team">Subscribe to Team</button></article>
+  <article class="x-best"><span class="x-tag">Most value</span><h3>Portfolio</h3><p class="x-p"><b>$499</b>/month</p><ul><li>Unlimited people</li><li>600 quote checks a month</li><li>Side-by-side bid comparisons</li><li>Onboarding call and monthly review</li></ul><button class="x-btn x-gold x-wide" data-plan="portfolio">Subscribe to Portfolio</button></article>
+ </div><p class="x-sub x-c">Just checking your own quotes? <a href="/#pricing">See personal plans</a></p></div></section>
+<section class="x-sec x-alt" id="faq"><div class="x-w x-faq"><h2>Questions teams ask first.</h2>{faq}</div></section>
+<section class="x-sec x-final" id="start"><div class="x-w"><h2>Send us 3 quotes. See what we find.</h2><p class="x-sub">Email photos or PDFs of 3 recent vendor quotes. You'll get each one back, line by line, within one business day. Free.</p>
+ <div class="x-ctas x-cc"><a class="x-btn x-gold" href="mailto:{email}?subject=Free%203-quote%20check">Email {email}</a><button class="x-btn x-ghost" type="button" onclick="navigator.clipboard.writeText('{email}');this.textContent='Copied'">Copy email</button></div></div></section>
+</main>
+<footer class="x-foot"><div class="x-w"><span>© QuoteGauge · US mailing address: 123 Main St, STE 200 #456, San Francisco, CA 94105</span><span><a href="/">Home</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span></div></footer>
+<script>(function(){{var f=function(n){{return '$'+Math.round(n).toLocaleString('en-US')}};function u(){{var a=+r1.value,b=+r2.value,c=+r3.value;o1.textContent=a;o2.textContent=f(b);o3.textContent=c+'%';var y=a*b*c/100*12;yr.textContent=f(y);mult.textContent=Math.max(1,Math.round(y/2388))+'×'}}['r1','r2','r3'].forEach(function(i){{document.getElementById(i).oninput=u}});u();
+document.querySelectorAll('[data-plan]').forEach(function(b){{b.onclick=function(){{var t=b.textContent;b.textContent='Opening checkout…';b.disabled=true;fetch('/api/subscribe',{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{plan:b.dataset.plan}})}}).then(function(r){{return r.json()}}).then(function(d){{if(d.url)location.href=d.url;else{{b.textContent='Try again';b.disabled=false}}}}).catch(function(){{b.textContent='Try again';b.disabled=false}})}}}})}})();</script>
+</body></html>"""
+PM_CSS = """<style>
+.pmx,.x-nav,.x-foot{--g:#0d3328;--g2:#14493a;--mint:#eaf6ef;--gold:#c4a243;--ink:#12201b;--mut:#4b5a53;font-size:17px}
+.x-w{max-width:1160px;margin:0 auto;padding:0 28px}
+.x-nav{background:var(--g);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(255,255,255,.08)}.x-nav .x-w{display:flex;align-items:center;justify-content:space-between;height:68px}
+.x-logo{color:#fff;font-weight:800;font-size:20px;text-decoration:none}.x-nav nav{display:flex;gap:26px;align-items:center}.x-nav nav a{color:#d6e8de;text-decoration:none;font-size:15px;font-weight:600}
+.x-btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--g)!important;border:0;border-radius:999px;padding:15px 26px;font:700 16px/1 inherit;text-decoration:none;cursor:pointer;transition:transform .15s}.x-btn:hover{transform:translateY(-1px)}
+.x-sm{padding:10px 16px;font-size:14px}.x-gold{background:var(--gold);color:#1b1a10!important}.x-ghost{background:transparent;color:#fff!important;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45)}.x-wide{width:100%}
+.x-hero{background:radial-gradient(800px 400px at 80% 10%,#1f5c48 0,transparent 70%),var(--g);color:#fff;padding:84px 0 96px}
+.x-hero-g{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.x-kicker{color:var(--gold);font-weight:700;font-size:15px;margin:0 0 16px}
+.x-hero h1{color:#fff;font-size:clamp(38px,5vw,60px);line-height:1.05;letter-spacing:-.02em;margin:0}
+.x-lede{color:#d6e8de;font-size:19px;line-height:1.55;margin:22px 0 0;max-width:540px}
+.x-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.x-ticks{list-style:none;padding:0;margin:26px 0 0;display:flex;gap:22px;flex-wrap:wrap;color:#b9d4c6;font-size:14px}.x-ticks li:before{content:"✓ ";color:var(--gold);font-weight:800}
+.x-card{background:#fff;color:var(--ink);border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.x-card-h{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:14px}.x-card-h em{font-style:normal;color:var(--mut);font-weight:500;font-size:13px}
+.x-row{display:grid;grid-template-columns:1fr auto 64px;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #e7eee9;font-size:15px}.x-row b{font-variant-numeric:tabular-nums}
+.x-row i{font-style:normal;font-size:12px;font-weight:700;text-align:center;border-radius:999px;padding:5px 0}.x-row .ok{background:#e3f4e8;color:#166534}.x-row .hi{background:#fdeadf;color:#b4410e}
+.x-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;background:var(--mint);border-radius:14px;padding:14px}.x-sum small{display:block;color:var(--mut);font-size:12px}.x-sum b{font-size:17px}.x-save b{color:#b4410e}
+.x-strip{background:#0a2a21;color:#b9d4c6;font-size:14px;padding:16px 0}.x-strip .x-w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.x-strip b{color:#fff}
+.x-sec{padding:96px 0;background:#fff;color:var(--ink)}.x-alt{background:var(--mint)}
+.x-sec h2{font-size:clamp(30px,3.6vw,44px);line-height:1.1;letter-spacing:-.015em;margin:0;max-width:720px}
+.x-sub{color:var(--mut);font-size:18px;margin:14px 0 0;max-width:620px}.x-c{text-align:center;margin:32px auto 0}
+.x-roi{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.x-roi label{display:block;margin-top:28px;font-weight:600;font-size:15px}.x-roi output{float:right;font-weight:800}.x-roi input{width:100%;margin-top:12px;accent-color:var(--g)}
+.x-res{background:var(--g);color:#d6e8de;border-radius:24px;padding:40px}.x-res small{font-size:15px}.x-res>b{display:block;color:var(--gold);font-size:clamp(44px,5vw,64px);line-height:1.1;margin:6px 0 10px;font-variant-numeric:tabular-nums}.x-res p b{color:#fff}.x-res .x-btn{margin-top:18px}.x-note{font-size:13px;opacity:.75;margin-top:16px}
+.x-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}.x-3>div{background:#fff;border-radius:20px;padding:30px}.x-3 h3{font-size:20px;margin:14px 0 8px}.x-3 p{color:var(--mut);margin:0}
+.x-n{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--g);color:#fff;font-weight:800}
+.x-plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px;max-width:880px}
+.x-plans article{position:relative;border:1.5px solid #dbe6df;border-radius:24px;padding:34px}.x-plans h3{font-size:22px;margin:0}.x-p{margin:10px 0 18px;color:var(--mut)}.x-p b{font-size:46px;color:var(--ink);letter-spacing:-.02em}
+.x-plans ul{list-style:none;padding:0;margin:0 0 26px}.x-plans li{padding:8px 0 8px 26px;position:relative}.x-plans li:before{content:"✓";position:absolute;left:0;color:#15803d;font-weight:800}
+.x-plans .x-btn{background:var(--g);color:#fff!important}.x-plans .x-best .x-btn{background:var(--gold);color:#1b1a10!important}
+.x-best{background:var(--g);color:#fff;border-color:var(--g)!important}.x-best h3,.x-best .x-p b{color:#fff}.x-best .x-p{color:#b9d4c6}.x-best li:before{color:var(--gold)}
+.x-tag{position:absolute;top:-13px;left:30px;background:var(--gold);color:#1b1a10;font-size:13px;font-weight:700;border-radius:999px;padding:5px 12px}
+.x-faq{max-width:820px}.x-faq h2{margin-bottom:28px}.x-faq details{background:#fff;border-radius:16px;padding:20px 24px;margin-top:12px}.x-faq summary{font-weight:700;cursor:pointer}.x-faq p{color:var(--mut);margin:12px 0 0}
+.x-final{background:var(--g);color:#fff;text-align:center}.x-final h2{color:#fff;margin:0 auto}.x-final .x-sub{color:#d6e8de;margin:16px auto 0}.x-cc{justify-content:center}
+.x-foot{background:#0a2a21;color:#b9d4c6;font-size:14px;padding:26px 0}.x-foot .x-w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.x-foot a{color:#fff}
+@media(max-width:900px){.x-hero-g,.x-roi,.x-plans,.x-3{grid-template-columns:1fr}.x-hero{padding:56px 0 64px}.x-sec{padding:64px 0}.x-nav nav a:not(.x-btn){display:none}.x-w{padding:0 20px}.x-res{padding:28px}}
+</style>"""

@@ -503,7 +503,9 @@ pm_page = pm_page.replace("</body>", """<script>(function(){var c=document.getEl
 document.querySelectorAll('[data-plan]').forEach(function(b){b.onclick=function(){var t=b.textContent;b.textContent='Opening checkout…';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan:b.dataset.plan})}).then(function(r){return r.json()}).then(function(d){if(d.url)location.href=d.url;else{b.textContent=t;b.disabled=false;location.hash='start'}}).catch(function(){b.textContent=t;b.disabled=false;location.hash='start'})}})})();</script>
 </body>""",1)
 pm_page = pm_page.replace("</style>", ".pm-start{background:#dff3e4}.pm-mail{display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:#fff;border-radius:16px;padding:16px 18px;max-width:640px}.pm-mail span{font-weight:700;font-size:20px;flex:1;min-width:220px}\n</style>",1)
-(ROOT / "property-managers.html").write_text(pm_page)
+from pm_page import pm_body, PM_CSS
+_h = head("QuoteGauge for Property Managers: Check Every Vendor Quote | QuoteGauge", pm_desc, pm_url, pm_graph, "Approve vendor quotes with proof, not trust")
+(ROOT / "property-managers.html").write_text(_h.replace("</head>", PM_CSS + "</head>", 1) + pm_body("hello@quotegauge.pro"))
 
 
 # ---------- Cost pages ----------
