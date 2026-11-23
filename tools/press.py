@@ -11,10 +11,10 @@ ITEMS = [
 def press_html():
     cards = "".join(f'<a class="pr-c" href="{u}" target="_blank" rel="noopener"><span class="pr-src pr-{s.split()[0].lower()}">{s}</span><q>{q}</q><small>{n}</small></a>' for s,q,n,u in ITEMS)
     dup = cards.replace("<a ", '<a aria-hidden="true" tabindex="-1" ')
-    return '<section class="pr" aria-label="What consumer research says about repair quotes"><p class="pr-h">What the research says about repair quotes</p><div class="pr-v"><div class="pr-t">' + cards + dup + '</div></div></section>'
+    return '<section class="pr" aria-label="What consumer research says about repair quotes"><p class="pr-h">What the research says about repair quotes</p><p class="pr-d">Independent research, not endorsements of QuoteGauge</p><div class="pr-v"><div class="pr-t">' + cards + dup + '</div></div></section>'
 PRESS_CSS = """<style>
 .pr{background:#fff;padding:40px 0 44px;border-bottom:1px solid #e6ece8;overflow:hidden}
-.pr-h{text-align:center;font-weight:700;font-size:14px;color:#5b6b63;margin:0 0 22px}
+.pr-h{text-align:center;font-weight:700;font-size:14px;color:#5b6b63;margin:0}.pr-d{text-align:center;font-size:12px;color:#8a978f;margin:4px 0 20px}
 .pr-v{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
 .pr-t{display:flex;gap:20px;width:max-content;animation:prs 70s linear infinite}.pr:hover .pr-t{animation-play-state:paused}
 @keyframes prs{from{transform:translateX(-50%)}to{transform:translateX(0)}}
