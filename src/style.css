@@ -662,3 +662,15 @@ h2 { font-size: clamp(30px, 4.4vw, 54px); line-height: 0.98; }
 .qgf-band figcaption{position:absolute;left:32px;bottom:28px;background:#fff;border-radius:18px;padding:18px 22px;max-width:380px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
 .qgf-band figcaption b{display:block;font-size:20px;line-height:1.25;color:#0f3b2e}.qgf-band figcaption span{display:block;margin-top:6px;font-size:14px;color:#3d4a44}
 @media(max-width:860px){.qgf-grid{grid-template-columns:1fr;gap:28px}.qgf-band{aspect-ratio:4/3}.qgf-band figcaption{left:14px;right:14px;bottom:14px}}
+
+.qgh{position:relative;overflow:hidden;padding:32px 0 44px}
+.qgh .wrap{position:relative;z-index:1}
+.qgd-layer{position:absolute;inset:0;pointer-events:none}
+.qgd{position:absolute;fill:none;stroke:#0f3b2e;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.16;animation:qgfloat 12s ease-in-out infinite}
+@keyframes qgfloat{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(10px,-14px) rotate(6deg)}50%{transform:translate(-6px,-24px) rotate(-4deg)}75%{transform:translate(-12px,-8px) rotate(3deg)}}
+@media(prefers-reduced-motion:reduce){.qgd{animation:none}}
+@media(max-width:860px){.qgd{opacity:.1}}
+.qgh-badges{margin-bottom:18px}.qgh .lede{margin-top:14px}.qgh-cta{margin-top:20px}
+.qgc{margin-top:26px}.qgh-chips{margin-top:18px}
+.qgf{padding:48px 0 24px}.qgf-band{margin-top:36px}
+.qgp{padding:64px 0}
